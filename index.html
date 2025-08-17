@@ -12,13 +12,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
-        }
-
-        @media (max-width: 768px) {
-            * {
-                cursor: auto;
-            }
         }
 
         :root {
@@ -47,44 +40,6 @@
             min-width: 320px;
         }
 
-        /* Custom Cursor */
-        .cursor {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-            display: none;
-        }
-
-        .cursor.hover {
-            transform: translate(-50%, -50%) scale(1.5);
-            background: var(--accent);
-            opacity: 0.3;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        @media (min-width: 769px) {
-            .cursor, .cursor-dot {
-                display: block;
-            }
-        }
 
         /* Noise Texture Overlay */
         .noise {
@@ -273,7 +228,7 @@
             gap: 6px;
             background: none;
             border: none;
-            cursor: none;
+cursor: pointer;
             padding: 10px;
             z-index: 1001;
             touch-action: manipulation;
@@ -716,7 +671,7 @@
         .room-card {
             background: var(--white);
             transition: all 0.5s ease;
-            cursor: none;
+cursor: pointer;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -1112,7 +1067,7 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            cursor: none;
+cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -1592,9 +1547,6 @@
     <!-- Noise Texture -->
     <div class="noise"></div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
 
     <!-- Loading Screen -->
     <div class="loader" id="loader">
@@ -2196,41 +2148,22 @@
     </footer>
 
     <script>
-        // Custom Cursor - Desktop Only
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-        
-        // Only enable custom cursor on desktop
-        if (window.innerWidth >= 769) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            });
 
-            document.querySelectorAll('a, button').forEach(element => {
-                element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-                element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-            });
-        }
-
-        // Handle window resize for custom cursor
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 769) {
-                cursor.style.display = 'block';
-                cursorDot.style.display = 'block';
-            } else {
-                cursor.style.display = 'none';
-                cursorDot.style.display = 'none';
-            }
-        });
-
-        // Hide Loader
+        // Hide Loader - Show only once per session
         window.addEventListener('load', () => {
-            setTimeout(() => {
+            const hasSeenLoader = sessionStorage.getItem('daysinn-loader-shown');
+            
+            if (hasSeenLoader) {
+                // Hide loader immediately if already shown in this session
                 document.getElementById('loader').classList.add('hidden');
-            }, 1500);
+            } else {
+                // Show loader for first time in session
+                setTimeout(() => {
+                    document.getElementById('loader').classList.add('hidden');
+                    // Mark that loader has been shown in this session
+                    sessionStorage.setItem('daysinn-loader-shown', 'true');
+                }, 1500);
+            }
         });
 
         // Navbar Scroll Effect
@@ -2312,11 +2245,6 @@
             }
         });
 
-        // Disable custom cursor on touch devices
-        if ('ontouchstart' in window) {
-            document.querySelector('.cursor').style.display = 'none';
-            document.querySelector('.cursor-dot').style.display = 'none';
-        }
     </script>
 </body>
 </html>
