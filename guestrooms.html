@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Rooms | Days Inn & Suites NASA Webster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --accent: #c9a961;
+            --cream: #faf8f3;
+            --forest: #1b3b36;
+            --sand: #d4c4b0;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.02);
+            --text-light: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Noise Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            animation: pulse 2s ease infinite;
+        }
+
+        .loader-bar {
+            width: 300px;
+            height: 2px;
+            background: rgba(201, 169, 97, 0.2);
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            height: 100%;
+            background: var(--accent);
+            animation: load 2s ease forwards;
+        }
+
+        @keyframes load {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            mix-blend-mode: difference;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            mix-blend-mode: normal;
+            padding: 1rem 3rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-now {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.8rem 2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .book-now::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .book-now:hover {
+            color: var(--primary);
+        }
+
+        .book-now:hover::before {
+            left: 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: right 0.3s ease;
+            display: none;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-content {
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Hero Section */
+        .rooms-hero {
+            height: 60vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--forest) 100%);
+        }
+
+        .rooms-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 59, 54, 0.3) 0%, rgba(10, 10, 10, 0.4) 100%);
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.7s forwards;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s 0.9s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Room Filters */
+        .room-filters {
+            padding: 3rem 3rem 2rem;
+            background: linear-gradient(180deg, var(--primary) 0%, #0f0f0f 100%);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        .filters-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            border: 1px solid var(--accent);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            min-width: 120px;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+        }
+
+        .filter-btn.active::before,
+        .filter-btn:hover::before {
+            width: 100%;
+        }
+
+        /* Rooms Grid Section */
+        .rooms-section {
+            padding: 4rem 3rem 8rem;
+            background: var(--cream);
+            color: var(--primary);
+            position: relative;
+        }
+
+        .rooms-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .room-card {
+            background: var(--white);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .room-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .room-image-container {
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--primary) 100%);
+        }
+
+        .room-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover .room-img {
+            transform: scale(1.1);
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-details {
+            padding: 2.5rem;
+        }
+
+        .room-category {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .room-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .room-desc {
+            color: var(--forest);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            height: 100px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .room-feature {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: var(--cream);
+            font-size: 0.8rem;
+            color: var(--forest);
+            border: 1px solid var(--sand);
+            font-weight: 500;
+            text-align: center;
+            min-height: 40px;
+        }
+
+        .feature-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent);
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .room-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            min-width: 0;
+            white-space: nowrap;
+        }
+
+        .btn-details {
+            background: transparent;
+            color: var(--forest);
+            border: 2px solid var(--forest);
+        }
+
+        .btn-details:hover {
+            background: var(--forest);
+            color: var(--white);
+        }
+
+        .btn-availability {
+            background: var(--accent);
+            color: var(--primary);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-availability:hover {
+            background: var(--primary);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-occupancy {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--forest);
+            font-size: 0.9rem;
+        }
+
+        .occupancy-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .occupancy-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+
+        /* CTA Section */
+        .rooms-cta {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--primary) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rooms-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 3rem 2rem;
+            background: var(--primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .rooms-grid {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .rooms-hero {
+                height: 50vh;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .room-filters {
+                padding: 2rem 1.5rem 1rem;
+            }
+
+            .filters-container {
+                gap: 1rem;
+            }
+
+            .filter-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .rooms-section {
+                padding: 3rem 1.5rem 5rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .room-name {
+                font-size: 1.5rem;
+            }
+
+            .room-details {
+                padding: 1.5rem;
+            }
+
+            .room-actions {
+                flex-direction: column;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">DAYS INN</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DAYS INN NASA</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Guest Rooms</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="index.html#location" class="nav-link">Location</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="#" class="mobile-nav-link">Guest Rooms</a>
+            <a href="amenities.html" class="mobile-nav-link">Amenities</a>
+            <a href="index.html#location" class="mobile-nav-link">Location</a>
+            <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="mobile-nav-link">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="rooms-hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">63 Comfortable Guest Rooms</div>
+            <h1 class="hero-title">Our Accommodations</h1>
+            <p class="hero-description">
+                Choose from our selection of contemporary rooms and suites, each thoughtfully designed with modern amenities and comfort in mind
+            </p>
+        </div>
+    </section>
+
+    <!-- Room Filters -->
+    <section class="room-filters">
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">All Rooms</button>
+            <button class="filter-btn" data-filter="king">King Rooms</button>
+            <button class="filter-btn" data-filter="queen">Queen Rooms</button>
+            <button class="filter-btn" data-filter="suite">Suites</button>
+            <button class="filter-btn" data-filter="accessible">Accessible</button>
+        </div>
+    </section>
+
+    <!-- Rooms Grid Section -->
+    <section class="rooms-section">
+        <div class="rooms-container">
+            <div class="section-header">
+                <h2 class="section-title">Select Your Perfect Room</h2>
+                <p class="section-subtitle">
+                    All rooms include complimentary continental breakfast, free WiFi, and access to our indoor heated pool
+                </p>
+            </div>
+
+            <div class="rooms-grid">
+                <!-- Room 1: King Bed Smoking -->
+                <div class="room-card" data-category="king" id="room-king-smoking">
+                    <div class="room-image-container">
+                        <img src="Images/index/card1.avif" alt="1 King Bed Smoking Room" class="room-img">
+                        <span class="room-badge">Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">King Room</div>
+                        <h3 class="room-name">1 King Bed, Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Air-conditioned room with large and comfortable King bed. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity with hairdryer, complimentary toiletries and plush towels.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Free WiFi
+                            </div>
+                            <div class="room-feature">
+                                Microwave
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-king-smoking-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 2: King Bed Second Floor Non-Smoking -->
+                <div class="room-card" data-category="king" id="room-king-second-floor">
+                    <div class="room-image-container">
+                        <img src="Images/index/card2.avif" alt="1 King Bed Second Floor Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">King Room - Second Floor</div>
+                        <h3 class="room-name">1 King Bed, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned room with large and comfortable King bed. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Second Floor
+                            </div>
+                            <div class="room-feature">
+                                Ceiling Fan
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-king-second-floor-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 3: King Bed Non-Smoking -->
+                <div class="room-card" data-category="king" id="room-king-non-smoking">
+                    <div class="room-image-container">
+                        <img src="Images/index/card3.avif" alt="1 King Bed Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">King Room</div>
+                        <h3 class="room-name">1 King Bed, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Air-conditioned room with large and comfortable King bed perfect for couples. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity with hairdryer.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Free WiFi
+                            </div>
+                            <div class="room-feature">
+                                Coffee Maker
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-king-non-smoking-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 4: 2 Queen Beds Second Floor -->
+                <div class="room-card" data-category="queen" id="room-queen-second-floor">
+                    <div class="room-image-container">
+                        <img src="Images/index/card4.avif" alt="2 Queen Beds Second Floor Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Double Queen - Second Floor</div>
+                        <h3 class="room-name">2 Queen Beds, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 4 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned room with two Queen beds that can easily accommodate up to four adults. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Second Floor
+                            </div>
+                            <div class="room-feature">
+                                Family Room
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-queen-second-floor-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 5: 2 Queen Beds Non-Smoking -->
+                <div class="room-card" data-category="queen" id="room-queen-non-smoking">
+                    <div class="room-image-container">
+                        <img src="Images/index/card5.avif" alt="2 Queen Beds Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Double Queen</div>
+                        <h3 class="room-name">2 Queen Beds, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 4 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Air-conditioned non-smoking room with two Queen beds that can easily accommodate up to four adults. This spacious and comfortable room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Free WiFi
+                            </div>
+                            <div class="room-feature">
+                                Family Room
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-queen-non-smoking-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 6: King Studio Suite -->
+                <div class="room-card" data-category="suite" id="room-king-studio-suite">
+                    <div class="room-image-container">
+                        <img src="Images/index/card6.avif" alt="1 King Bed Studio Suite Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Suite</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Studio Suite</div>
+                        <h3 class="room-name">1 King Bed, Studio Suite, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned Studio Suite with a comfortable King bed. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Studio Layout
+                            </div>
+                            <div class="room-feature">
+                                Premium
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-king-studio-suite-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 7: 1 Queen Bed Second Floor -->
+                <div class="room-card" data-category="queen" id="room-single-queen-second-floor">
+                    <div class="room-image-container">
+                        <img src="Images/index/card1.avif" alt="1 Queen Bed Second Floor Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Queen Room - Second Floor</div>
+                        <h3 class="room-name">1 Queen Bed, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned non-smoking room with one Queen bed that can easily accommodate up to two adults. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Second Floor
+                            </div>
+                            <div class="room-feature">
+                                Free WiFi
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-single-queen-second-floor-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 8: King Accessible -->
+                <div class="room-card" data-category="accessible king" id="room-king-accessible">
+                    <div class="room-image-container">
+                        <img src="Images/index/card2.avif" alt="1 King Bed Accessible Room" class="room-img">
+                        <span class="room-badge">Accessible</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Accessible Room</div>
+                        <h3 class="room-name">1 King Bed, Accessible</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Designed for guests with additional needs, this accessible room features a large and comfortable King bed. Spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and accessible work desk. Free WiFi included. Accessible bathroom with full tub and granite vanity.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                
+                                Wheelchair Accessible
+                            </div>
+                            <div class="room-feature">
+                                
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                
+                                Free WiFi
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="#room-king-accessible-details" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="rooms-cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Book Your Stay?</h2>
+            <p class="cta-text">
+                All rooms include complimentary continental breakfast, free WiFi, and access to our amenities. Book directly for the best rates and availability.
+            </p>
+            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="cta-button">Reserve Your Room Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">DAYS INN & SUITES NASA</div>
+                <p class="footer-description">
+                    One of the area's best hotels in Webster, TX near Clear Lake and within the Houston metropolitan area. Offering location convenience, affordability, and comfort with true Southern Texas hospitality.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Hotel Features</h4>
+                <ul class="footer-links">
+                    <li><a href="#">63 Guest Rooms</a></li>
+                    <li><a href="amenities.html">Free Continental Breakfast</a></li>
+                    <li><a href="amenities.html">Indoor Heated Pool</a></li>
+                    <li><a href="amenities.html">Business Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Nearby Attractions</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#location">NASA Johnson Space Center</a></li>
+                    <li><a href="index.html#location">Kemah Boardwalk</a></li>
+                    <li><a href="index.html#location">Schlitterbahn Galveston</a></li>
+                    <li><a href="index.html#location">Gulf Greyhound Park</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Guest Services</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#contact">24-Hour Front Desk</a></li>
+                    <li><a href="amenities.html">Express Check-In/Out</a></li>
+                    <li><a href="amenities.html">Multilingual Staff</a></li>
+                    <li><a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank">Make a Reservation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Days Inn & Suites NASA. 201 North Texas Ave, Webster, Texas 77598 | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Hide Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Room Filters
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const roomCards = document.querySelectorAll('.room-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter rooms
+                roomCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe room cards
+        document.querySelectorAll('.room-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

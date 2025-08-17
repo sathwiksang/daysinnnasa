@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Days Inn & Suites NASA Webster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --accent: #c9a961;
+            --cream: #faf8f3;
+            --forest: #1b3b36;
+            --sand: #d4c4b0;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.02);
+            --text-light: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Noise Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            animation: pulse 2s ease infinite;
+        }
+
+        .loader-bar {
+            width: 300px;
+            height: 2px;
+            background: rgba(201, 169, 97, 0.2);
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            height: 100%;
+            background: var(--accent);
+            animation: load 2s ease forwards;
+        }
+
+        @keyframes load {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            mix-blend-mode: difference;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            mix-blend-mode: normal;
+            padding: 1rem 3rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-now {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.8rem 2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .book-now::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .book-now:hover {
+            color: var(--primary);
+        }
+
+        .book-now:hover::before {
+            left: 0;
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, #0f0f0f 50%, var(--forest) 100%);
+        }
+
+
+
+        .about-hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .about-hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+            font-weight: 500;
+        }
+
+        .about-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.7s forwards;
+            font-weight: 700;
+        }
+
+        .about-hero-desc {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s 0.9s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(180deg, var(--primary) 0%, #0f0f0f 100%);
+            position: relative;
+        }
+
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .story-content {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+
+        .story-content.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            font-weight: 600;
+        }
+
+        .story-text {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .story-visual {
+            position: relative;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .story-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .story-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .story-image.active {
+            opacity: 1;
+        }
+
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(201, 169, 97, 0.1), transparent);
+            z-index: 1;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 8rem 3rem;
+            background: var(--forest);
+            position: relative;
+        }
+
+        .values-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .values-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .values-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .value-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .value-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--accent);
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .value-card p {
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--forest) 100%);
+            position: relative;
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 51%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 51%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--primary), 0 0 0 6px var(--accent);
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-radius: 12px;
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-event {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 8rem 3rem;
+            background: var(--cream);
+            color: var(--primary);
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .team-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .team-subtitle {
+            font-size: 1.15rem;
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--sand));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .team-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .team-bio {
+            color: var(--forest);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 3rem 2rem;
+            background: var(--primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .story-container,
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                grid-template-columns: 1fr;
+                margin: 0;
+                text-align: left;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-dot {
+                left: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">DAYS INN</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DAYS INN NASA</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="guestrooms.html" class="nav-link">Guest Rooms</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="index.html#location" class="nav-link">Location</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="about-hero-subtitle">Welcome to Our Story</div>
+            <h1 class="about-hero-title">Southern Texas Hospitality at Its Finest</h1>
+            <p class="about-hero-desc">
+                Experience the warmth of true Texas hospitality combined with modern comfort and convenience at Days Inn & Suites NASA
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <div class="section-label">Our Heritage</div>
+                <h2 class="story-title">A Legacy of Excellence in Webster, Texas</h2>
+                <p class="story-text">
+                    The Days Inn & Suites NASA stands as one of Webster's premier hospitality destinations, offering an unmatched combination of location, affordability, and comfort. With 63 meticulously maintained suite-style units, we've established ourselves as the gateway to Houston's most exciting attractions.
+                </p>
+                <p class="story-text">
+                    Located in the heart of the Houston metropolitan area, just 2 miles from NASA Johnson Space Center, our hotel has been serving travelers, space enthusiasts, and business professionals with dedication and pride. We're more than just a place to stay – we're your home away from home in Texas.
+                </p>
+                <p class="story-text">
+                    Our commitment to excellence is reflected in every detail, from our contemporary room designs to our friendly, multilingual staff who embody the spirit of Southern hospitality. Whether you're here for business, leisure, or to explore the wonders of space exploration, we ensure your stay is comfortable, convenient, and memorable.
+                </p>
+            </div>
+            <div class="story-visual">
+                <div class="story-image-container">
+                    <img src="Images/about/daysinn.avif" alt="Days Inn NASA Hotel" class="story-image active">
+                    <div class="story-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-container">
+            <div class="values-header">
+                <h2 class="values-title">Our Core Values</h2>
+                <p class="values-subtitle">The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M50 10 L60 40 L90 40 L65 55 L75 85 L50 65 L25 85 L35 55 L10 40 L40 40 Z"/>
+                        </svg>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in every aspect of our service, from our immaculate rooms to our attentive customer care</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M50 20 C30 20 20 35 20 45 C20 65 50 80 50 80 C50 80 80 65 80 45 C80 35 70 20 50 20 Z"/>
+                        </svg>
+                    </div>
+                    <h3>Hospitality</h3>
+                    <p>True Southern Texas hospitality is at the heart of everything we do, making every guest feel welcomed and valued</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <path d="M50 30 L50 50 L65 65" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Convenience</h3>
+                    <p>Strategic location and thoughtful amenities ensure your stay is as convenient and comfortable as possible</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M30 40 L30 70 L50 80 L70 70 L70 40 L50 30 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <path d="M30 40 L50 50 L70 40" stroke="currentColor" stroke-width="3"/>
+                            <path d="M50 50 L50 80" stroke="currentColor" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <h3>Value</h3>
+                    <p>Exceptional value without compromising on quality, offering the best accommodation experience in Webster</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Our Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Foundation</div>
+                        <div class="timeline-event">Established in Webster</div>
+                        <div class="timeline-desc">Opening our doors with a vision to provide exceptional hospitality near NASA Johnson Space Center</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Growth</div>
+                        <div class="timeline-event">Expanded to 63 Rooms</div>
+                        <div class="timeline-desc">Growing our capacity to serve more guests with suite-style accommodations</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Innovation</div>
+                        <div class="timeline-event">Modern Renovations</div>
+                        <div class="timeline-desc">Complete renovation with contemporary design, LVP flooring, and modern amenities</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Today</div>
+                        <div class="timeline-event">Premier NASA Area Hotel</div>
+                        <div class="timeline-desc">Recognized as one of the best value hotels in the Webster-Clear Lake area</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="team-header">
+                <h2 class="team-title">Our Dedicated Team</h2>
+                <p class="team-subtitle">Meet the people who make your stay exceptional</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar">GM</div>
+                    <h3 class="team-name">General Management</h3>
+                    <div class="team-role">Leadership Team</div>
+                    <p class="team-bio">Leading with vision and dedication to ensure every guest experiences the best of Southern hospitality</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">FD</div>
+                    <h3 class="team-name">Front Desk Team</h3>
+                    <div class="team-role">24/7 Guest Services</div>
+                    <p class="team-bio">Our multilingual front desk team is available around the clock to assist with all your needs</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">HK</div>
+                    <h3 class="team-name">Housekeeping Excellence</h3>
+                    <div class="team-role">Comfort & Cleanliness</div>
+                    <p class="team-bio">Dedicated to maintaining the highest standards of cleanliness and comfort in every room</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Experience True Texas Hospitality</h2>
+            <p class="cta-text">
+                Join us at Days Inn & Suites NASA and discover why we're Webster's preferred choice for comfort, convenience, and value. Your gateway to Houston's attractions awaits.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="cta-btn cta-btn-primary">Book Your Stay</a>
+                <a href="index.html#contact" class="cta-btn cta-btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">DAYS INN & SUITES NASA</div>
+                <p class="footer-description">
+                    One of the area's best hotels in Webster, TX near Clear Lake and within the Houston metropolitan area. Offering location convenience, affordability, and comfort with true Southern Texas hospitality.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Hotel Features</h4>
+                <ul class="footer-links">
+                    <li><a href="guestrooms.html">63 Guest Rooms</a></li>
+                    <li><a href="amenities.html">Free Continental Breakfast</a></li>
+                    <li><a href="amenities.html">Indoor Heated Pool</a></li>
+                    <li><a href="amenities.html">Business Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Nearby Attractions</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#location">NASA Johnson Space Center</a></li>
+                    <li><a href="index.html#location">Kemah Boardwalk</a></li>
+                    <li><a href="index.html#location">Schlitterbahn Galveston</a></li>
+                    <li><a href="index.html#location">Gulf Greyhound Park</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Guest Services</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#contact">24-Hour Front Desk</a></li>
+                    <li><a href="amenities.html">Express Check-In/Out</a></li>
+                    <li><a href="amenities.html">Multilingual Staff</a></li>
+                    <li><a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank">Make a Reservation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Days Inn & Suites NASA. 201 North Texas Ave, Webster, Texas 77598 | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Hide Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.story-content, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
