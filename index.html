@@ -80,9 +80,8 @@
             display: none;
         }
 
-        @media (min-width: 768px) {
-            .cursor,
-            .cursor-dot {
+        @media (min-width: 769px) {
+            .cursor, .cursor-dot {
                 display: block;
             }
         }
@@ -2197,20 +2196,34 @@
     </footer>
 
     <script>
-        // Custom Cursor
+        // Custom Cursor - Desktop Only
         const cursor = document.querySelector('.cursor');
         const cursorDot = document.querySelector('.cursor-dot');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
+        // Only enable custom cursor on desktop
+        if (window.innerWidth >= 769) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
 
-        document.querySelectorAll('a, button').forEach(element => {
-            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            document.querySelectorAll('a, button').forEach(element => {
+                element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        // Handle window resize for custom cursor
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 769) {
+                cursor.style.display = 'block';
+                cursorDot.style.display = 'block';
+            } else {
+                cursor.style.display = 'none';
+                cursorDot.style.display = 'none';
+            }
         });
 
         // Hide Loader
