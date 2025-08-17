@@ -15,6 +15,12 @@
             cursor: none;
         }
 
+        @media (max-width: 768px) {
+            * {
+                cursor: auto;
+            }
+        }
+
         :root {
             --primary: #0a0a0a;
             --accent: #c9a961;
@@ -38,9 +44,10 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+            min-width: 320px;
         }
 
-        /* Custom Cursor */
+        /* Custom Cursor - Desktop Only */
         .cursor {
             position: fixed;
             width: 60px;
@@ -52,6 +59,7 @@
             transition: all 0.1s ease;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
+            display: none;
         }
 
         .cursor.hover {
@@ -69,6 +77,14 @@
             pointer-events: none;
             z-index: 10000;
             transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .cursor,
+            .cursor-dot {
+                display: block;
+            }
         }
 
         /* Noise Texture Overlay */
@@ -149,6 +165,9 @@
             z-index: 1000;
             mix-blend-mode: difference;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
         }
 
         nav.scrolled {
@@ -164,6 +183,8 @@
             align-items: center;
             max-width: 1600px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .logo {
@@ -191,6 +212,8 @@
             letter-spacing: 0.03em;
             position: relative;
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .nav-link::after {
@@ -220,6 +243,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             font-weight: 500;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .book-now::before {
@@ -242,16 +267,18 @@
             left: 0;
         }
 
-        /* Mobile Menu Toggle */
+        /* Menu Toggle */
         .menu-toggle {
             display: none;
             flex-direction: column;
             gap: 6px;
             background: none;
             border: none;
-            cursor: pointer;
+            cursor: none;
             padding: 10px;
             z-index: 1001;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .menu-toggle span {
@@ -259,6 +286,58 @@
             height: 2px;
             background: var(--white);
             transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        .nav-links.active {
+            display: flex !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-links.active.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links.active .nav-link {
+            font-size: 1.2rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links.active .book-now {
+            margin-top: 1rem;
+            font-size: 1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Close button for mobile menu */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Hero Section */
@@ -270,6 +349,13 @@
             justify-content: center;
             overflow: hidden;
             background: linear-gradient(135deg, var(--primary) 0%, var(--forest) 100%);
+        }
+
+        @media (max-width: 768px) {
+            .amenities-hero {
+                height: 50vh;
+                padding: 0 1rem;
+            }
         }
 
         .amenities-hero::before {
@@ -304,7 +390,7 @@
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             line-height: 1.1;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
@@ -314,7 +400,7 @@
         }
 
         .hero-description {
-            font-size: 1.15rem;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
             font-weight: 300;
             max-width: 700px;
             margin: 0 auto;
@@ -754,43 +840,6 @@
             font-size: 0.9rem;
         }
 
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 999;
-            transition: right 0.3s ease;
-            display: none;
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav-content {
-            padding: 6rem 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .mobile-nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav-link:hover {
-            color: var(--accent);
-            padding-left: 1rem;
-        }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -804,8 +853,27 @@
         }
 
         @media (max-width: 768px) {
+            /* Navigation */
             nav {
-                padding: 1rem 1.5rem;
+                padding: 0.8rem 1rem;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                mix-blend-mode: normal;
+            }
+
+            nav.scrolled {
+                padding: 0.8rem 1rem;
+                background: rgba(10, 10, 10, 0.98);
+            }
+
+            .nav-container {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+                letter-spacing: 0.02em;
             }
 
             .nav-links {
@@ -814,86 +882,282 @@
 
             .menu-toggle {
                 display: flex;
+                padding: 8px;
             }
 
-            .mobile-nav {
-                display: block;
+            .menu-toggle span {
+                width: 25px;
+                height: 2px;
+            }
+
+            /* Hero Section */
+            .amenities-hero {
+                padding: 0 0.8rem;
+                min-height: 50vh;
+                height: auto;
+            }
+
+            .hero-content {
+                padding: 6rem 0.8rem 4rem;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(0.7rem, 2vw, 0.85rem);
+                letter-spacing: 0.15em;
+                margin-bottom: 1rem;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 6vw, 2.8rem);
+                margin-bottom: 1rem;
             }
 
+            .hero-description {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+                line-height: 1.6;
+                margin: 1.2rem auto 2rem;
+                max-width: 95%;
+            }
+
+            /* Sections */
+            .featured-amenities,
+            .categories-section,
+            .accessibility-section {
+                padding: 3rem 1rem;
+            }
+
+            .amenities-cta {
+                padding: 3rem 1rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .section-subtitle {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+            }
+
+            /* Featured Cards */
             .featured-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .featured-card {
-                padding: 2rem;
+                padding: 1.5rem;
+                border-radius: 15px;
             }
 
+            .featured-title {
+                font-size: clamp(1.3rem, 4vw, 1.6rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .featured-description {
+                font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+                line-height: 1.6;
+            }
+
+            /* Category Tabs */
             .category-tabs {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.8rem;
+                margin-bottom: 2.5rem;
             }
 
             .tab-btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
             }
 
+            /* Amenity Grid */
             .amenity-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
+            .amenity-item {
+                padding: 1rem;
+                border-radius: 10px;
+            }
+
+            .amenity-name {
+                font-size: clamp(0.85rem, 2.2vw, 0.9rem);
+            }
+
+            /* Accessibility */
             .accessibility-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
 
+            .accessibility-item {
+                padding: 1.2rem;
+                border-radius: 10px;
+            }
+
+            .accessibility-text {
+                font-size: clamp(0.85rem, 2.2vw, 0.9rem);
+            }
+
+            /* CTA */
+            .cta-title {
+                font-size: clamp(1.5rem, 5vw, 2.2rem);
+                margin-bottom: 1.2rem;
+            }
+
+            .cta-text {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+                margin-bottom: 2rem;
+                line-height: 1.6;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .amenities-hero {
-                height: 50vh;
+            footer {
+                padding: 3rem 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.6rem 0.8rem;
             }
 
-            .section-header {
-                margin-bottom: 3rem;
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero-content {
+                padding: 5rem 0.6rem 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 5.5vw, 2.2rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.65rem;
+                letter-spacing: 0.1em;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin: 1rem auto 1.5rem;
             }
 
             .featured-amenities,
             .categories-section,
             .accessibility-section {
-                padding: 4rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
+                padding: 2rem 0.6rem;
             }
 
-            .hero-description {
-                font-size: 1rem;
+            .amenities-cta {
+                padding: 2.5rem 0.6rem;
+            }
+
+            .featured-card {
+                padding: 1.2rem;
             }
 
             .featured-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .tab-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.75rem;
             }
 
             .amenity-item {
+                padding: 0.8rem;
+                gap: 1rem;
+            }
+
+            .amenity-name {
+                font-size: 0.8rem;
+            }
+
+            .accessibility-item {
                 padding: 1rem;
             }
 
+            .accessibility-text {
+                font-size: 0.8rem;
+            }
+
             .cta-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .cta-text {
+                font-size: 0.85rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-content {
+                padding: 4.5rem 0.5rem 2.5rem;
+            }
+
+            .hero-title {
+                font-size: clamp(1.6rem, 5vw, 2rem);
+            }
+
+            .hero-subtitle {
+                font-size: 0.6rem;
+                letter-spacing: 0.08em;
+            }
+
+            .hero-description {
+                font-size: 0.8rem;
+                margin: 0.8rem auto 1.2rem;
+            }
+
+            .featured-amenities,
+            .categories-section,
+            .accessibility-section {
+                padding: 1.8rem 0.5rem;
+            }
+
+            .amenities-cta {
+                padding: 2rem 0.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.7rem;
+                max-width: 260px;
             }
         }
     </style>
@@ -938,19 +1202,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-content">
-            <a href="index.html" class="mobile-nav-link">Home</a>
-            <a href="about.html" class="mobile-nav-link">About</a>
-            <a href="guestrooms.html" class="mobile-nav-link">Guest Rooms</a>
-            <a href="#" class="mobile-nav-link">Amenities</a>
-            <a href="gallery.html" class="mobile-nav-link">Gallery</a>
-            <a href="index.html#location" class="mobile-nav-link">Location</a>
-            <a href="index.html#contact" class="mobile-nav-link">Contact</a>
-            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="mobile-nav-link">Book Now</a>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="amenities-hero">
@@ -1523,19 +1774,29 @@
         });
 
         // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
         
         menuToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
+            navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            
+            // Add visible class for animation
+            if (navLinks.classList.contains('active')) {
+                setTimeout(() => navLinks.classList.add('visible'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                navLinks.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
         });
 
         // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        document.querySelectorAll('.nav-link, .book-now').forEach(link => {
             link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
+                navLinks.classList.remove('active', 'visible');
                 menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
@@ -1593,6 +1854,12 @@
                 }
             });
         });
+
+        // Disable custom cursor on touch devices
+        if ('ontouchstart' in window) {
+            document.querySelector('.cursor').style.display = 'none';
+            document.querySelector('.cursor-dot').style.display = 'none';
+        }
     </script>
 </body>
 </html>

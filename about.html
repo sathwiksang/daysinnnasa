@@ -15,6 +15,12 @@
             cursor: none;
         }
 
+        @media (max-width: 768px) {
+            * {
+                cursor: auto;
+            }
+        }
+
         :root {
             --primary: #0a0a0a;
             --accent: #c9a961;
@@ -38,9 +44,10 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+            min-width: 320px;
         }
 
-        /* Custom Cursor */
+        /* Custom Cursor - Desktop Only */
         .cursor {
             position: fixed;
             width: 60px;
@@ -52,6 +59,7 @@
             transition: all 0.1s ease;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
+            display: none;
         }
 
         .cursor.hover {
@@ -69,6 +77,14 @@
             pointer-events: none;
             z-index: 10000;
             transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        /* Show cursor only on desktop */
+        @media (min-width: 769px) {
+            .cursor, .cursor-dot {
+                display: block;
+            }
         }
 
         /* Noise Texture Overlay */
@@ -149,6 +165,9 @@
             z-index: 1000;
             mix-blend-mode: difference;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
         }
 
         nav.scrolled {
@@ -164,6 +183,8 @@
             align-items: center;
             max-width: 1600px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .logo {
@@ -191,6 +212,8 @@
             letter-spacing: 0.03em;
             position: relative;
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .nav-link::after {
@@ -220,6 +243,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             font-weight: 500;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .book-now::before {
@@ -242,6 +267,79 @@
             left: 0;
         }
 
+        /* Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: none;
+            padding: 10px;
+            z-index: 1001;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu */
+        .nav-links.active {
+            display: flex !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .nav-links.active.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-links.active .nav-link {
+            font-size: 1.2rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links.active .book-now {
+            margin-top: 1rem;
+            font-size: 1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Close button for mobile menu */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* About Hero Section */
         .about-hero {
             height: 70vh;
@@ -251,6 +349,7 @@
             justify-content: center;
             overflow: hidden;
             background: linear-gradient(135deg, var(--primary) 0%, #0f0f0f 50%, var(--forest) 100%);
+            box-sizing: border-box;
         }
 
 
@@ -260,6 +359,8 @@
             z-index: 2;
             max-width: 1000px;
             padding: 0 2rem;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .about-hero-subtitle {
@@ -272,6 +373,8 @@
             opacity: 0;
             animation: fadeInUp 1s 0.5s forwards;
             font-weight: 500;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .about-hero-title {
@@ -294,6 +397,8 @@
             line-height: 1.8;
             opacity: 0;
             animation: fadeInUp 1s 0.9s forwards;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         @keyframes fadeInUp {
@@ -842,16 +947,106 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Navigation */
+            nav {
+                padding: 0.8rem 1rem;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                mix-blend-mode: normal;
+            }
+
+            nav.scrolled {
+                padding: 0.8rem 1rem;
+                background: rgba(10, 10, 10, 0.98);
+            }
+
+            .nav-container {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+                letter-spacing: 0.02em;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .story-container,
+            .menu-toggle {
+                display: flex;
+                padding: 8px;
+            }
+
+            .menu-toggle span {
+                width: 25px;
+                height: 2px;
+            }
+
+            /* Hero Section */
+            .about-hero {
+                height: auto;
+                min-height: 60vh;
+                padding: 0 0.8rem;
+            }
+
+            .about-hero-content {
+                padding: 6rem 0.8rem 4rem;
+            }
+
+            .about-hero-subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 0.15em;
+                margin-bottom: 1.2rem;
+                line-height: 1.4;
+            }
+
+            .about-hero-title {
+                font-size: clamp(2.2rem, 7vw, 3.2rem);
+                margin-bottom: 1rem;
+                line-height: 1.1;
+            }
+
+            .about-hero-desc {
+                font-size: 0.95rem;
+                margin: 1.5rem auto;
+                line-height: 1.6;
+                max-width: 90%;
+            }
+
+            /* Sections */
+            .story-section,
+            .values-section,
+            .timeline-section,
+            .team-section,
+            .cta-section {
+                padding: 3rem 1rem;
+            }
+
+            .story-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-visual {
+                height: 400px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .value-card {
+                padding: 2rem 1.5rem;
+            }
+
             .timeline-item:nth-child(odd) .timeline-content,
             .timeline-item:nth-child(even) .timeline-content {
-                grid-template-columns: 1fr;
-                margin: 0;
+                margin: 0 !important;
                 text-align: left;
+                width: calc(100% - 4rem);
             }
 
             .timeline::before {
@@ -862,9 +1057,246 @@
                 left: 2rem;
             }
 
+            .timeline-content {
+                margin-left: 3rem !important;
+                margin-right: 1rem !important;
+                width: calc(100% - 4rem);
+                box-sizing: border-box;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-member {
+                padding: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            footer {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            /* Prevent horizontal overflow */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            .about-hero,
+            .story-section,
+            .values-section,
+            .timeline-section,
+            .team-section,
+            .cta-section,
+            footer {
+                overflow-x: hidden;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Ensure proper mobile layout */
+            .story-container,
+            .values-container,
+            .timeline-container,
+            .team-container,
+            .cta-container {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0;
+            }
+        }
+
+        /* Mobile optimizations for small screens */
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .about-hero-content {
+                padding: 5rem 0.6rem 3rem;
+            }
+
+            .about-hero-title {
+                font-size: clamp(2rem, 6vw, 2.8rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .about-hero-subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 0.1em;
+                margin-bottom: 1rem;
+            }
+
+            .about-hero-desc {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin: 1.2rem auto;
+                max-width: 95%;
+            }
+
+            .story-section,
+            .values-section,
+            .timeline-section,
+            .team-section,
+            .cta-section {
+                padding: 2.5rem 0.8rem;
+            }
+
+            .story-title,
+            .values-title,
+            .timeline-title,
+            .team-title,
+            .cta-title {
+                font-size: clamp(1.8rem, 5vw, 2.2rem);
+                line-height: 1.2;
+            }
+
+            .section-label {
+                font-size: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .story-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .story-visual {
+                height: 280px;
+                border-radius: 12px;
+            }
+
+            .value-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .value-card h3 {
+                font-size: 1.2rem;
+                line-height: 1.3;
+            }
+
+            .value-card p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .timeline-content {
+                padding: 1.2rem;
+                margin-left: 2.5rem !important;
+                margin-right: 0.5rem !important;
+                width: calc(100% - 3rem);
+            }
+
+            .timeline-year {
+                font-size: 1.4rem;
+            }
+
+            .timeline-event {
+                font-size: 1.1rem;
+            }
+
+            .timeline-desc {
+                font-size: 0.9rem;
+            }
+
+            .timeline::before {
+                left: 1.5rem;
+            }
+
+            .timeline-dot {
+                left: 1.5rem;
+            }
+
+            .team-member {
+                padding: 1.2rem;
+            }
+
+            .team-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .team-name {
+                font-size: 1.3rem;
+            }
+
+            .team-bio {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .cta-btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.8rem;
+                max-width: 280px;
+            }
+        }
+
+        /* Extra small devices (320px) */
+        @media (max-width: 375px) {
+            .about-hero-content {
+                padding: 4.5rem 0.5rem 2.5rem;
+            }
+
+            .about-hero-title {
+                font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+            }
+
+            .about-hero-subtitle {
+                font-size: 0.65rem;
+                letter-spacing: 0.08em;
+            }
+
+            .about-hero-desc {
+                font-size: 0.85rem;
+                margin: 1rem auto;
+            }
+
+            .story-section,
+            .values-section,
+            .timeline-section,
+            .team-section,
+            .cta-section {
+                padding: 2rem 0.6rem;
+            }
+
+            .story-title,
+            .values-title,
+            .timeline-title,
+            .team-title,
+            .cta-title {
+                font-size: clamp(1.6rem, 4.5vw, 2rem);
+            }
+
+            .values-subtitle,
+            .team-subtitle,
+            .cta-text {
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
         }
     </style>
@@ -901,6 +1333,11 @@
                 <li><a href="index.html#contact" class="nav-link">Contact</a></li>
                 <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
             </ul>
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -1122,20 +1559,34 @@
     </footer>
 
     <script>
-        // Custom Cursor
+        // Custom Cursor - Desktop Only
         const cursor = document.querySelector('.cursor');
         const cursorDot = document.querySelector('.cursor-dot');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
+        // Only enable custom cursor on desktop
+        if (window.innerWidth >= 769) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
 
-        document.querySelectorAll('a, button').forEach(element => {
-            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            document.querySelectorAll('a, button').forEach(element => {
+                element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        // Handle window resize for custom cursor
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 769) {
+                cursor.style.display = 'block';
+                cursorDot.style.display = 'block';
+            } else {
+                cursor.style.display = 'none';
+                cursorDot.style.display = 'none';
+            }
         });
 
         // Hide Loader
@@ -1189,6 +1640,48 @@
                 }
             });
         });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Add visible class for animation
+            if (navLinks.classList.contains('active')) {
+                setTimeout(() => navLinks.classList.add('visible'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                navLinks.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Disable custom cursor on touch devices
+        if ('ontouchstart' in window) {
+            document.querySelector('.cursor').style.display = 'none';
+            document.querySelector('.cursor-dot').style.display = 'none';
+        }
     </script>
 </body>
 </html>
