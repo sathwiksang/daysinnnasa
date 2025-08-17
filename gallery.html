@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Days Inn & Suites NASA Webster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --accent: #c9a961;
+            --cream: #faf8f3;
+            --forest: #1b3b36;
+            --sand: #d4c4b0;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.02);
+            --text-light: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .cursor.view-mode {
+            transform: translate(-50%, -50%) scale(2);
+            background: transparent;
+            border: 2px solid var(--accent);
+        }
+
+        .cursor.view-mode::after {
+            content: '+';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Noise Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            animation: pulse 2s ease infinite;
+        }
+
+        .loader-bar {
+            width: 300px;
+            height: 2px;
+            background: rgba(201, 169, 97, 0.2);
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            height: 100%;
+            background: var(--accent);
+            animation: load 2s ease forwards;
+        }
+
+        @keyframes load {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            mix-blend-mode: difference;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            mix-blend-mode: normal;
+            padding: 1rem 3rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-now {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.8rem 2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .book-now::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .book-now:hover {
+            color: var(--primary);
+        }
+
+        .book-now:hover::before {
+            left: 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: right 0.3s ease;
+            display: none;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-content {
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Gallery Hero */
+        .gallery-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--forest) 100%);
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+            z-index: 1;
+            animation: pulse-bg 8s ease infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-gallery-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+        }
+
+        .preview-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.5s forwards;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.7s forwards;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s 0.9s forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gallery Controls */
+        .gallery-controls {
+            padding: 4rem 3rem 2rem;
+            background: linear-gradient(180deg, var(--primary) 0%, #0f0f0f 100%);
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+
+        .controls-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .view-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .view-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .view-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        .view-btn.active::before,
+        .view-btn:hover::before {
+            width: 100%;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 3rem 8rem;
+            background: var(--cream);
+            min-height: 100vh;
+        }
+
+        .gallery-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Grid View */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .gallery-grid.hidden {
+            display: none;
+        }
+
+        /* Masonry View */
+        .gallery-masonry {
+            column-count: 3;
+            column-gap: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .gallery-masonry.hidden {
+            display: none;
+        }
+
+        /* Carousel View */
+        .gallery-carousel {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+            background: var(--primary);
+            border-radius: 20px;
+        }
+
+        .gallery-carousel.hidden {
+            display: none;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: all;
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .carousel-btn:hover svg {
+            stroke: var(--primary);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--accent);
+            transform: scale(1.5);
+        }
+
+        /* Gallery Item */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 10, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-grid .gallery-item {
+            height: 350px;
+        }
+
+        .gallery-masonry .gallery-item:nth-child(3n+1) {
+            height: 400px;
+        }
+
+        .gallery-masonry .gallery-item:nth-child(3n+2) {
+            height: 300px;
+        }
+
+        .gallery-masonry .gallery-item:nth-child(3n) {
+            height: 450px;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .gallery-category {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .view-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            z-index: 3;
+        }
+
+        .gallery-item:hover .view-icon {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .view-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary);
+            fill: none;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: lightboxZoom 0.3s ease;
+        }
+
+        @keyframes lightboxZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+        }
+
+        .lightbox-close:hover svg {
+            stroke: var(--primary);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .lightbox-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 169, 97, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: all;
+        }
+
+        .lightbox-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .lightbox-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            fill: none;
+        }
+
+        .lightbox-btn:hover svg {
+            stroke: var(--primary);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 3rem 2rem;
+            background: var(--primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .gallery-masonry {
+                column-count: 2;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .view-options,
+            .filter-options {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .gallery-masonry {
+                column-count: 1;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-carousel {
+                height: 400px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-gallery-preview {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .view-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.8rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .lightbox-btn,
+            .carousel-btn {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">DAYS INN</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DAYS INN NASA</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="guestrooms.html" class="nav-link">Guest Rooms</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="#" class="nav-link">Gallery</a></li>
+                <li><a href="index.html#location" class="nav-link">Location</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="guestrooms.html" class="mobile-nav-link">Guest Rooms</a>
+            <a href="amenities.html" class="mobile-nav-link">Amenities</a>
+            <a href="#" class="mobile-nav-link">Gallery</a>
+            <a href="index.html#location" class="mobile-nav-link">Location</a>
+            <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="mobile-nav-link">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="hero-gallery-preview">
+            <img src="Images/gallery/1.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/2.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/3.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/4.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/5.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/6.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/7.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/8.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/9.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/10.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/11.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/12.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/13.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/14.avif" alt="Gallery Preview" class="preview-img">
+            <img src="Images/gallery/15.avif" alt="Gallery Preview" class="preview-img">
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle">Visual Journey</div>
+            <h1 class="hero-title">Hotel Gallery</h1>
+            <p class="hero-description">
+                Explore our beautiful property through stunning imagery showcasing our rooms, amenities, and the exceptional experience that awaits you
+            </p>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <polyline points="7 10 12 15 17 10"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Gallery Controls -->
+    <section class="gallery-controls">
+        <div class="controls-container">
+            <div class="view-options">
+                <button class="view-btn active" data-view="grid">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Grid
+                </button>
+                <button class="view-btn" data-view="masonry">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="10" width="7" height="11"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Masonry
+                </button>
+                <button class="view-btn" data-view="carousel">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></svg>
+                    Carousel
+                </button>
+            </div>
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="rooms">Rooms</button>
+                <button class="filter-btn" data-filter="amenities">Amenities</button>
+                <button class="filter-btn" data-filter="exterior">Exterior</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <!-- Grid View -->
+            <div class="gallery-grid" id="gridView">
+                <div class="gallery-item" data-category="rooms" data-index="1">
+                    <img src="Images/gallery/1.avif" alt="Luxury King Suite" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Luxury King Suite</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="amenities" data-index="2">
+                    <img src="Images/gallery/2.avif" alt="Indoor Heated Pool" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Indoor Heated Pool</h3>
+                        <p class="gallery-category">Amenities</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="exterior" data-index="3">
+                    <img src="Images/gallery/3.avif" alt="Hotel Exterior" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Hotel Exterior</h3>
+                        <p class="gallery-category">Property</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="rooms" data-index="4">
+                    <img src="Images/gallery/4.avif" alt="Double Queen Room" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Double Queen Room</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="amenities" data-index="5">
+                    <img src="Images/gallery/5.avif" alt="Business Center" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Business Center</h3>
+                        <p class="gallery-category">Amenities</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="amenities" data-index="6">
+                    <img src="Images/gallery/6.avif" alt="Continental Breakfast" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Continental Breakfast</h3>
+                        <p class="gallery-category">Dining</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="rooms" data-index="7">
+                    <img src="Images/gallery/7.avif" alt="Studio Suite" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Studio Suite</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="exterior" data-index="8">
+                    <img src="Images/gallery/8.avif" alt="Hotel Entrance" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Hotel Entrance</h3>
+                        <p class="gallery-category">Property</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="rooms" data-index="9">
+                    <img src="Images/gallery/9.avif" alt="Accessible Room" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Accessible Room</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="amenities" data-index="10">
+                    <img src="Images/gallery/10.avif" alt="Lobby Area" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Lobby Area</h3>
+                        <p class="gallery-category">Interior</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="rooms" data-index="11">
+                    <img src="Images/gallery/11.avif" alt="Modern Bathroom" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Modern Bathroom</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="exterior" data-index="12">
+                    <img src="Images/gallery/12.avif" alt="Parking Area" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Free Parking</h3>
+                        <p class="gallery-category">Property</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="amenities" data-index="13">
+                    <img src="Images/gallery/13.avif" alt="Fitness Area" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Fitness Area</h3>
+                        <p class="gallery-category">Amenities</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="rooms" data-index="14">
+                    <img src="Images/gallery/14.avif" alt="Work Desk Area" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Work Desk Area</h3>
+                        <p class="gallery-category">Guest Rooms</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="exterior" data-index="15">
+                    <img src="Images/gallery/15.avif" alt="Night View" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Night View</h3>
+                        <p class="gallery-category">Property</p>
+                    </div>
+                    <div class="view-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry View -->
+            <div class="gallery-masonry hidden" id="masonryView">
+                <!-- Content will be dynamically populated -->
+            </div>
+
+            <!-- Carousel View -->
+            <div class="gallery-carousel hidden" id="carouselView">
+                <div class="carousel-track">
+                    <!-- Slides will be dynamically populated -->
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="carousel-btn next">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    <!-- Indicators will be dynamically populated -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+            <div class="lightbox-nav">
+                <button class="lightbox-btn prev">
+                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="lightbox-btn next">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+            <div class="lightbox-counter">
+                <span id="currentImage">1</span> / <span id="totalImages">15</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">DAYS INN & SUITES NASA</div>
+                <p class="footer-description">
+                    One of the area's best hotels in Webster, TX near Clear Lake and within the Houston metropolitan area. Offering location convenience, affordability, and comfort with true Southern Texas hospitality.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Hotel Features</h4>
+                <ul class="footer-links">
+                    <li><a href="guestrooms.html">63 Guest Rooms</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                    <li><a href="amenities.html">Free Continental Breakfast</a></li>
+                    <li><a href="amenities.html">Indoor Heated Pool</a></li>
+                    <li><a href="amenities.html">Business Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Nearby Attractions</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#location">NASA Johnson Space Center</a></li>
+                    <li><a href="index.html#location">Kemah Boardwalk</a></li>
+                    <li><a href="index.html#location">Schlitterbahn Galveston</a></li>
+                    <li><a href="index.html#location">Gulf Greyhound Park</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Guest Services</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#contact">24-Hour Front Desk</a></li>
+                    <li><a href="amenities.html">Express Check-In/Out</a></li>
+                    <li><a href="amenities.html">Multilingual Staff</a></li>
+                    <li><a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank">Make a Reservation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Days Inn & Suites NASA. 201 North Texas Ave, Webster, Texas 77598 | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Data
+        const galleryData = [
+            { id: 1, title: 'Luxury King Suite', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 2, title: 'Indoor Heated Pool', category: 'amenities', categoryName: 'Amenities' },
+            { id: 3, title: 'Hotel Exterior', category: 'exterior', categoryName: 'Property' },
+            { id: 4, title: 'Double Queen Room', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 5, title: 'Business Center', category: 'amenities', categoryName: 'Amenities' },
+            { id: 6, title: 'Continental Breakfast', category: 'amenities', categoryName: 'Dining' },
+            { id: 7, title: 'Studio Suite', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 8, title: 'Hotel Entrance', category: 'exterior', categoryName: 'Property' },
+            { id: 9, title: 'Accessible Room', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 10, title: 'Lobby Area', category: 'amenities', categoryName: 'Interior' },
+            { id: 11, title: 'Modern Bathroom', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 12, title: 'Free Parking', category: 'exterior', categoryName: 'Property' },
+            { id: 13, title: 'Fitness Area', category: 'amenities', categoryName: 'Amenities' },
+            { id: 14, title: 'Work Desk Area', category: 'rooms', categoryName: 'Guest Rooms' },
+            { id: 15, title: 'Night View', category: 'exterior', categoryName: 'Property' }
+        ];
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button').forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Gallery items cursor effect
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
+            item.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
+        });
+
+        // Hide Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // View Controls
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const gridView = document.getElementById('gridView');
+        const masonryView = document.getElementById('masonryView');
+        const carouselView = document.getElementById('carouselView');
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.getAttribute('data-view');
+                
+                // Update active button
+                viewBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Hide all views
+                gridView.classList.add('hidden');
+                masonryView.classList.add('hidden');
+                carouselView.classList.add('hidden');
+                
+                // Show selected view
+                if (view === 'grid') {
+                    gridView.classList.remove('hidden');
+                } else if (view === 'masonry') {
+                    setupMasonryView();
+                    masonryView.classList.remove('hidden');
+                } else if (view === 'carousel') {
+                    setupCarouselView();
+                    carouselView.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Setup Masonry View
+        function setupMasonryView() {
+            if (masonryView.children.length === 0) {
+                const gridItems = document.querySelectorAll('.gallery-grid .gallery-item');
+                gridItems.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    masonryView.appendChild(clone);
+                });
+                // Re-attach lightbox listeners
+                attachLightboxListeners();
+            }
+        }
+
+        // Setup Carousel View
+        let currentSlide = 0;
+        
+        function setupCarouselView() {
+            const track = carouselView.querySelector('.carousel-track');
+            const indicators = carouselView.querySelector('.carousel-indicators');
+            
+            if (track.children.length === 0) {
+                // Create slides
+                galleryData.forEach((item, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `<img src="Images/gallery/${item.id}.avif" alt="${item.title}">`;
+                    track.appendChild(slide);
+                    
+                    // Create indicator
+                    const indicator = document.createElement('div');
+                    indicator.className = 'indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicators.appendChild(indicator);
+                });
+            }
+        }
+
+        // Carousel Navigation
+        function goToSlide(n) {
+            const track = document.querySelector('.carousel-track');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            currentSlide = n;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        document.querySelector('.carousel-btn.prev')?.addEventListener('click', () => {
+            currentSlide = currentSlide > 0 ? currentSlide - 1 : galleryData.length - 1;
+            goToSlide(currentSlide);
+        });
+
+        document.querySelector('.carousel-btn.next')?.addEventListener('click', () => {
+            currentSlide = currentSlide < galleryData.length - 1 ? currentSlide + 1 : 0;
+            goToSlide(currentSlide);
+        });
+
+        // Filter Controls
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter items
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        const category = item.getAttribute('data-category');
+                        item.style.display = category === filter ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index - 1;
+            lightbox.classList.add('active');
+            updateLightboxImage();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        function updateLightboxImage() {
+            const item = galleryData[currentImageIndex];
+            lightboxImg.src = `Images/gallery/${item.id}.avif`;
+            lightboxImg.alt = item.title;
+            document.getElementById('currentImage').textContent = currentImageIndex + 1;
+            document.getElementById('totalImages').textContent = galleryData.length;
+        }
+
+        function attachLightboxListeners() {
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.getAttribute('data-index'));
+                    openLightbox(index);
+                });
+            });
+        }
+
+        attachLightboxListeners();
+
+        // Lightbox controls
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        
+        document.querySelector('.lightbox-btn.prev').addEventListener('click', () => {
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : galleryData.length - 1;
+            updateLightboxImage();
+        });
+
+        document.querySelector('.lightbox-btn.next').addEventListener('click', () => {
+            currentImageIndex = currentImageIndex < galleryData.length - 1 ? currentImageIndex + 1 : 0;
+            updateLightboxImage();
+        });
+
+        // Close lightbox on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') document.querySelector('.lightbox-btn.prev').click();
+                if (e.key === 'ArrowRight') document.querySelector('.lightbox-btn.next').click();
+            }
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery items
+        document.querySelectorAll('.gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
