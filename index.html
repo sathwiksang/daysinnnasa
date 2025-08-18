@@ -15,15 +15,30 @@
         }
 
         :root {
-            --primary: #0a0a0a;
-            --accent: #c9a961;
-            --cream: #faf8f3;
-            --forest: #1b3b36;
-            --sand: #d4c4b0;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.02);
-            --text-light: rgba(255, 255, 255, 0.85);
-            --text-muted: rgba(255, 255, 255, 0.65);
+            /* Days Inn Brand Colors */
+            --brand-blue: #003c71;
+            --brand-blue-dark: #002449;
+            --brand-blue-light: #0054a6;
+            --brand-yellow: #ffc72c;
+            --brand-yellow-bright: #ffdd00;
+            --brand-yellow-soft: #ffe380;
+            --brand-white: #ffffff;
+            
+            /* Luxury Variations */
+            --midnight-blue: #001f3f;
+            --royal-blue: #004080;
+            --sky-blue: #4a90e2;
+            --champagne: #fff5d6;
+            --pearl: #fafafa;
+            --silver: #e8e8e8;
+            
+            /* Functional Colors */
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-blue: rgba(0, 60, 113, 0.05);
+            --text-light: rgba(255, 255, 255, 0.95);
+            --text-muted: rgba(255, 255, 255, 0.75);
+            --text-dark: #002449;
+            --shadow: rgba(0, 36, 73, 0.15);
         }
 
         html {
@@ -32,16 +47,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary);
-            color: var(--white);
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue) 100%);
+            color: var(--brand-white);
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
             min-width: 320px;
         }
 
-
-        /* Noise Texture Overlay */
+        /* Premium Noise Texture */
         .noise {
             position: fixed;
             top: 0;
@@ -49,9 +63,11 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: 1;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 199, 44, 0.01) 35px, rgba(255, 199, 44, 0.01) 70px),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
         }
 
         /* Loading Screen */
@@ -59,7 +75,7 @@
             position: fixed;
             width: 100%;
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--brand-blue) 100%);
             z-index: 10001;
             display: flex;
             align-items: center;
@@ -79,25 +95,31 @@
         .loader-logo {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: 0.1em;
             animation: pulse 2s ease infinite;
+            filter: drop-shadow(0 4px 20px rgba(255, 199, 44, 0.3));
         }
 
         .loader-bar {
             width: 300px;
-            height: 2px;
-            background: rgba(201, 169, 97, 0.2);
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
             margin: 2rem auto;
             position: relative;
             overflow: hidden;
+            border-radius: 3px;
         }
 
         .loader-progress {
             position: absolute;
             height: 100%;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             animation: load 2s ease forwards;
+            box-shadow: 0 0 20px rgba(255, 199, 44, 0.5);
         }
 
         @keyframes load {
@@ -106,11 +128,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            0%, 100% { 
+                opacity: 0.8; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.02);
+            }
         }
 
-        /* Navigation */
+        /* Premium Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -118,17 +146,17 @@
             padding: 1.5rem 3rem;
             z-index: 1000;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-sizing: border-box;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+            background: linear-gradient(180deg, rgba(0, 31, 63, 0.95) 0%, rgba(0, 60, 113, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 199, 44, 0.15);
         }
 
         nav.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(25px);
+            background: linear-gradient(180deg, rgba(0, 36, 73, 0.98) 0%, rgba(0, 60, 113, 0.95) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
             padding: 1rem 3rem;
-            border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+            border-bottom: 1px solid rgba(255, 199, 44, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.3);
         }
 
         .nav-container {
@@ -138,17 +166,25 @@
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--white);
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.2));
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 4px 20px rgba(255, 199, 44, 0.4));
+            transform: translateY(-1px);
         }
 
         .nav-links {
@@ -159,15 +195,14 @@
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--brand-white);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
             letter-spacing: 0.03em;
             position: relative;
             transition: all 0.3s ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 36, 73, 0.3);
         }
 
         .nav-link::after {
@@ -176,9 +211,15 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 1px;
-            background: var(--accent);
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 199, 44, 0.5);
+        }
+
+        .nav-link:hover {
+            color: var(--brand-yellow-soft);
+            transform: translateY(-1px);
         }
 
         .nav-link:hover::after {
@@ -186,39 +227,80 @@
         }
 
         .book-now {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
+            border: 2px solid transparent;
+            padding: 0.9rem 2.2rem;
             font-size: 0.85rem;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 3px;
+            box-shadow: 
+                0 2px 10px rgba(255, 199, 44, 0.3),
+                0 10px 40px rgba(255, 199, 44, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 10px rgba(0, 36, 73, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.2);
+            transform-style: preserve-3d;
         }
 
         .book-now::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--accent);
-            transition: left 0.3s ease;
-            z-index: -1;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .book-now::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .book-now:hover {
-            color: var(--primary);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 4px 20px rgba(255, 199, 44, 0.5),
+                0 15px 50px rgba(255, 199, 44, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 15px rgba(0, 36, 73, 0.15);
+            background: linear-gradient(135deg, var(--brand-yellow-bright) 0%, var(--brand-yellow) 50%, var(--brand-yellow-bright) 100%);
+            border-color: rgba(255, 199, 44, 0.3);
         }
 
         .book-now:hover::before {
-            left: 0;
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .book-now:hover::after {
+            opacity: 1;
+        }
+
+        .book-now:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 2px 10px rgba(255, 199, 44, 0.4),
+                0 8px 25px rgba(255, 199, 44, 0.2),
+                inset 0 2px 5px rgba(0, 36, 73, 0.2);
         }
 
         /* Menu Toggle */
@@ -228,17 +310,15 @@
             gap: 6px;
             background: none;
             border: none;
-cursor: pointer;
+            cursor: pointer;
             padding: 10px;
             z-index: 1001;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .menu-toggle span {
             width: 30px;
             height: 2px;
-            background: var(--white);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-white) 100%);
             transition: all 0.3s ease;
         }
 
@@ -250,16 +330,14 @@ cursor: pointer;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.98) 0%, rgba(0, 60, 113, 0.98) 100%);
+            backdrop-filter: blur(30px);
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 2rem;
             z-index: 1000;
             padding: 2rem;
-            box-sizing: border-box;
-            overflow-y: auto;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -270,18 +348,6 @@ cursor: pointer;
             visibility: visible;
         }
 
-        .nav-links.active .nav-link {
-            font-size: 1.2rem;
-            padding: 1rem 0;
-        }
-
-        .nav-links.active .book-now {
-            margin-top: 1rem;
-            font-size: 1rem;
-            padding: 1rem 2.5rem;
-        }
-
-        /* Close button for mobile menu */
         .menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
@@ -294,43 +360,341 @@ cursor: pointer;
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
+        /* Hero Section - Luxury Edition */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--brand-blue) 50%, var(--royal-blue) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 199, 44, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            z-index: 1;
+            animation: pulse-bg 10s ease infinite;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.25;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            animation: kenBurns 20s ease-in-out infinite;
+            filter: contrast(1.1) brightness(1.05);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.1s forwards;
+            font-weight: 500;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.3));
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.2s forwards;
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
+        }
+
+        .hero-title span {
+            display: block;
+            font-size: 0.35em;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+            background: linear-gradient(90deg, var(--brand-yellow-soft) 0%, var(--brand-white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+            text-shadow: 0 2px 10px rgba(0, 36, 73, 0.3);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s 0.4s forwards;
+        }
 
         .btn {
-            padding: 1.2rem 3rem;
+            padding: 1.3rem 3.2rem;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border-radius: 3px;
             display: inline-block;
-            white-space: nowrap;
-            text-align: center;
+            transform-style: preserve-3d;
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
+            border: 2px solid transparent;
+            box-shadow: 
+                0 4px 15px rgba(255, 199, 44, 0.35),
+                0 15px 50px rgba(255, 199, 44, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 10px rgba(0, 36, 73, 0.1);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.15);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 25px rgba(255, 199, 44, 0.5),
+                0 20px 60px rgba(255, 199, 44, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -4px 15px rgba(0, 36, 73, 0.15);
+            background: linear-gradient(135deg, var(--brand-yellow-bright) 0%, var(--brand-yellow) 50%, var(--brand-yellow-bright) 100%);
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .btn-primary:hover::after {
+            width: 300%;
+            height: 300%;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 3px 15px rgba(255, 199, 44, 0.4),
+                0 10px 30px rgba(255, 199, 44, 0.25),
+                inset 0 2px 8px rgba(0, 36, 73, 0.2);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            color: var(--brand-white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 
+                0 4px 15px rgba(0, 36, 73, 0.2),
+                0 10px 40px rgba(0, 36, 73, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -2px 10px rgba(0, 36, 73, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 36, 73, 0.3);
+            font-weight: 500;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                transparent 0%, 
+                rgba(255, 199, 44, 0.1) 50%, 
+                transparent 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
         }
 
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, transparent 50%, var(--brand-yellow) 100%);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
 
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 199, 44, 0.15) 0%, 
+                rgba(255, 199, 44, 0.1) 50%, 
+                rgba(255, 199, 44, 0.15) 100%);
+            border-color: rgba(255, 199, 44, 0.5);
+            color: var(--brand-yellow-soft);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 25px rgba(255, 199, 44, 0.3),
+                0 15px 50px rgba(0, 36, 73, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -3px 15px rgba(0, 36, 73, 0.1);
+        }
 
-        /* About Section */
+        .btn-secondary:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .btn-secondary:hover::after {
+            opacity: 0.3;
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 3px 15px rgba(255, 199, 44, 0.25),
+                0 8px 25px rgba(0, 36, 73, 0.15),
+                inset 0 2px 5px rgba(0, 36, 73, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--brand-yellow);
+            fill: none;
+            stroke-width: 2;
+            filter: drop-shadow(0 4px 10px rgba(255, 199, 44, 0.4));
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.08) translate(-2%, -1%); }
+            50% { transform: scale(1.1) translate(2%, 1%); }
+            75% { transform: scale(1.05) translate(-1%, 2%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        /* About Section - Premium Blue */
         .about {
             padding: 8rem 3rem;
-            background: linear-gradient(180deg, var(--primary) 0%, #0f0f0f 100%);
+            background: 
+                linear-gradient(180deg, var(--brand-blue) 0%, var(--midnight-blue) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23003c71" opacity="0.03"/><circle cx="50" cy="50" r="1" fill="%23ffc72c" opacity="0.1"/></svg>');
+            position: relative;
         }
 
         .about-container {
@@ -358,9 +722,13 @@ cursor: pointer;
             font-size: 0.85rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--accent);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 2rem;
             font-weight: 500;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.3));
         }
 
         .about-title {
@@ -370,6 +738,7 @@ cursor: pointer;
             margin-bottom: 2rem;
             letter-spacing: -0.02em;
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .about-text {
@@ -390,22 +759,30 @@ cursor: pointer;
         .stat-item {
             text-align: center;
             padding: 1.5rem;
-            background: var(--glass);
-            border: 1px solid rgba(201, 169, 97, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 199, 44, 0.05) 100%);
+            border: 1px solid rgba(255, 199, 44, 0.2);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            border-radius: 10px;
         }
 
         .stat-item:hover {
-            background: rgba(201, 169, 97, 0.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 199, 44, 0.1) 100%);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 199, 44, 0.2);
+            border-color: var(--brand-yellow);
         }
 
         .stat-number {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.3));
         }
 
         .stat-label {
@@ -430,7 +807,7 @@ cursor: pointer;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(201, 169, 97, 0.05) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 199, 44, 0.1) 50%, transparent 70%);
             border-radius: 20px;
             z-index: -1;
             opacity: 0;
@@ -441,28 +818,6 @@ cursor: pointer;
             opacity: 1;
         }
 
-        .about-visual::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), transparent, rgba(201, 169, 97, 0.1));
-            border-radius: 25px;
-            z-index: -2;
-            opacity: 0;
-            transition: all 0.6s ease;
-            transform: scale(0.8);
-        }
-
-        .about-visual:hover::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-
-
         .about-image {
             width: 100%;
             height: auto;
@@ -470,23 +825,38 @@ cursor: pointer;
             min-height: 400px;
             object-fit: cover;
             border-radius: 16px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 169, 97, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 36, 73, 0.4),
+                0 0 0 1px rgba(255, 199, 44, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             filter: brightness(1.05) contrast(1.1);
         }
 
         .about-image:hover {
             transform: scale(1.05) translateY(-10px);
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(201, 169, 97, 0.2);
-            filter: brightness(1.1) contrast(1.15);
+            box-shadow: 
+                0 35px 70px rgba(0, 36, 73, 0.5),
+                0 0 0 2px var(--brand-yellow),
+                0 0 40px rgba(255, 199, 44, 0.3);
         }
 
-        /* Rooms Section */
+        /* Rooms Section - Elegant White */
         .rooms {
             padding: 8rem 3rem;
-            background: var(--cream);
-            color: var(--primary);
+            background: linear-gradient(180deg, var(--pearl) 0%, var(--brand-white) 100%);
+            color: var(--text-dark);
             position: relative;
+        }
+
+        .rooms::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--brand-yellow) 50%, transparent 100%);
         }
 
         .rooms-header {
@@ -500,12 +870,16 @@ cursor: pointer;
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
             font-weight: 600;
+            background: linear-gradient(135deg, var(--brand-blue-dark) 0%, var(--royal-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .rooms-subtitle {
             font-size: 1.15rem;
             font-weight: 400;
-            color: var(--forest);
+            color: var(--brand-blue);
             line-height: 1.6;
         }
 
@@ -518,20 +892,25 @@ cursor: pointer;
         }
 
         .room-card {
-            background: var(--white);
+            background: var(--brand-white);
             transition: all 0.5s ease;
-cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 36, 73, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 60, 113, 0.1);
         }
 
         .room-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 
+                0 20px 40px rgba(0, 36, 73, 0.15),
+                0 0 0 2px var(--brand-yellow);
         }
 
         .room-image {
             height: 300px;
-            background: linear-gradient(135deg, var(--forest) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -552,13 +931,15 @@ cursor: pointer;
             position: absolute;
             top: 2rem;
             right: 2rem;
-            background: var(--accent);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
+            color: var(--brand-blue-dark);
             padding: 0.5rem 1.5rem;
             font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.4);
         }
 
         .room-details {
@@ -570,10 +951,11 @@ cursor: pointer;
             font-size: 1.8rem;
             margin-bottom: 1rem;
             font-weight: 600;
+            color: var(--brand-blue-dark);
         }
 
         .room-desc {
-            color: var(--forest);
+            color: var(--brand-blue);
             line-height: 1.6;
             margin-bottom: 2rem;
             font-size: 0.95rem;
@@ -588,32 +970,49 @@ cursor: pointer;
 
         .room-feature {
             padding: 0.4rem 1rem;
-            background: var(--cream);
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.05) 0%, rgba(255, 199, 44, 0.05) 100%);
             font-size: 0.8rem;
-            color: var(--forest);
-            border: 1px solid var(--sand);
+            color: var(--brand-blue);
+            border: 1px solid rgba(0, 60, 113, 0.2);
             font-weight: 500;
+            border-radius: 20px;
         }
 
-        /* Amenities Section */
+        /* Amenities Section - Royal Blue */
         .amenities {
             padding: 8rem 3rem;
-            background: var(--forest);
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 50%, var(--brand-blue-dark) 100%);
             position: relative;
+        }
+
+        .amenities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 199, 44, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(74, 144, 226, 0.1) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .amenities-container {
             max-width: 1400px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .amenities-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--brand-white);
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .amenities-subtitle {
@@ -630,17 +1029,21 @@ cursor: pointer;
         }
 
         .amenity-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 199, 44, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 199, 44, 0.2);
             padding: 2.5rem;
             text-align: center;
             transition: all 0.5s ease;
+            border-radius: 16px;
         }
 
         .amenity-card:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 199, 44, 0.08) 100%);
             transform: translateY(-10px);
+            box-shadow: 
+                0 20px 40px rgba(0, 36, 73, 0.3),
+                0 0 0 1px var(--brand-yellow);
         }
 
         .amenity-icon {
@@ -658,8 +1061,12 @@ cursor: pointer;
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 600;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.3));
         }
 
         .amenity-card p {
@@ -672,7 +1079,8 @@ cursor: pointer;
         /* Location Section */
         .location {
             padding: 8rem 3rem;
-            background: linear-gradient(180deg, var(--primary) 0%, var(--forest) 100%);
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue) 50%, var(--royal-blue) 100%);
+            position: relative;
         }
 
         .location-container {
@@ -689,8 +1097,9 @@ cursor: pointer;
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--brand-white);
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .location-subtitle {
@@ -708,9 +1117,10 @@ cursor: pointer;
 
         .location-info {
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(201, 169, 97, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 199, 44, 0.03) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 199, 44, 0.2);
+            border-radius: 16px;
         }
 
         .location-list {
@@ -723,7 +1133,7 @@ cursor: pointer;
             gap: 1.5rem;
             margin-bottom: 2rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 199, 44, 0.1);
         }
 
         .location-item:last-child {
@@ -733,15 +1143,19 @@ cursor: pointer;
         .location-icon {
             width: 24px;
             height: 24px;
-            fill: var(--accent);
+            fill: var(--brand-yellow);
             flex-shrink: 0;
             margin-top: 0.2rem;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.4));
         }
 
         .location-details h4 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
@@ -754,22 +1168,24 @@ cursor: pointer;
 
         .map-container {
             height: 500px;
-            background: var(--forest);
+            background: var(--brand-blue-dark);
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            box-shadow: 
+                0 10px 30px rgba(0, 36, 73, 0.3),
+                0 0 0 1px rgba(255, 199, 44, 0.2);
         }
 
         .map-wrapper {
             width: 100%;
             height: 100%;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
         }
 
         .map-wrapper iframe {
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .map-actions {
@@ -786,34 +1202,78 @@ cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 20px;
-            background: var(--accent);
-            color: var(--white);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
+            border-radius: 3px;
+            font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 3px 12px rgba(255, 199, 44, 0.35),
+                0 10px 30px rgba(255, 199, 44, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 8px rgba(0, 36, 73, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .map-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
         }
 
         .map-btn:hover {
-            background: var(--white);
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(201, 169, 97, 0.4);
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--champagne) 50%, var(--brand-white) 100%);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 5px 20px rgba(255, 199, 44, 0.5),
+                0 15px 40px rgba(255, 199, 44, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -3px 10px rgba(0, 36, 73, 0.1);
+            border-color: rgba(255, 199, 44, 0.3);
+        }
+
+        .map-btn:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .map-btn:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 2px 10px rgba(255, 199, 44, 0.4),
+                0 8px 20px rgba(255, 199, 44, 0.2),
+                inset 0 2px 5px rgba(0, 36, 73, 0.2);
         }
 
         .map-btn svg {
             stroke: currentColor;
             fill: none;
+            transition: transform 0.3s ease;
+        }
+
+        .map-btn:hover svg {
+            transform: translateX(2px);
         }
 
         /* Contact Section */
         .contact {
             padding: 8rem 3rem;
-            background: var(--cream);
-            color: var(--primary);
+            background: linear-gradient(180deg, var(--pearl) 0%, var(--brand-white) 100%);
+            color: var(--text-dark);
         }
 
         .contact-container {
@@ -826,15 +1286,20 @@ cursor: pointer;
 
         .contact-info {
             padding: 3rem;
-            background: var(--white);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--brand-white);
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 60, 113, 0.1);
         }
 
         .contact-title {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--brand-blue-dark) 0%, var(--royal-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 600;
         }
 
@@ -847,14 +1312,15 @@ cursor: pointer;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
-            color: var(--forest);
+            color: var(--brand-blue);
         }
 
         .contact-item svg {
             width: 24px;
             height: 24px;
-            stroke: var(--accent);
+            stroke: var(--brand-yellow);
             fill: none;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.3));
         }
 
         .contact-form {
@@ -871,26 +1337,28 @@ cursor: pointer;
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            background: var(--cream);
-            border: 1px solid var(--sand);
-            color: var(--primary);
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.02) 0%, rgba(255, 199, 44, 0.02) 100%);
+            border: 1px solid rgba(0, 60, 113, 0.2);
+            color: var(--text-dark);
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             transition: all 0.3s ease;
+            border-radius: 8px;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            background: var(--white);
+            border-color: var(--brand-yellow);
+            background: var(--brand-white);
+            box-shadow: 0 0 0 3px rgba(255, 199, 44, 0.1);
         }
 
         .form-group label {
             position: absolute;
             top: 1rem;
             left: 1rem;
-            color: var(--forest);
+            color: var(--brand-blue);
             transition: all 0.3s ease;
             pointer-events: none;
         }
@@ -902,35 +1370,97 @@ cursor: pointer;
             top: -0.5rem;
             left: 0.5rem;
             font-size: 0.8rem;
-            background: var(--white);
+            background: var(--brand-white);
             padding: 0 0.5rem;
-            color: var(--accent);
+            color: var(--brand-yellow);
+            font-weight: 500;
         }
 
         .submit-btn {
-            background: var(--accent);
-            color: var(--primary);
-            border: none;
-            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
+            border: 2px solid transparent;
+            padding: 1.2rem 3rem;
             font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-cursor: pointer;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 3px;
+            box-shadow: 
+                0 4px 15px rgba(255, 199, 44, 0.35),
+                0 15px 50px rgba(255, 199, 44, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 10px rgba(0, 36, 73, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.15);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 60, 113, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
         }
 
         .submit-btn:hover {
-            background: var(--forest);
-            color: var(--white);
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--royal-blue) 50%, var(--brand-blue) 100%);
+            color: var(--brand-white);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 25px rgba(0, 36, 73, 0.4),
+                0 20px 60px rgba(0, 36, 73, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -4px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--brand-blue);
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .submit-btn:hover::after {
+            width: 300%;
+            height: 300%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 3px 15px rgba(0, 36, 73, 0.3),
+                0 10px 30px rgba(0, 36, 73, 0.15),
+                inset 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
         footer {
             padding: 5rem 3rem 2rem;
-            background: var(--primary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue-dark) 100%);
+            border-top: 1px solid rgba(255, 199, 44, 0.2);
         }
 
         .footer-content {
@@ -951,9 +1481,13 @@ cursor: pointer;
         .footer-logo {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             font-weight: 600;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.3));
         }
 
         .footer-description {
@@ -967,7 +1501,10 @@ cursor: pointer;
             font-size: 0.9rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--accent);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
@@ -988,31 +1525,27 @@ cursor: pointer;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--brand-yellow);
             padding-left: 0.5rem;
+            text-shadow: 0 2px 10px rgba(255, 199, 44, 0.3);
         }
 
         .footer-bottom {
             padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 199, 44, 0.1);
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            /* Navigation */
             nav {
                 padding: 0.8rem 1rem;
-                background: rgba(10, 10, 10, 0.98);
-                backdrop-filter: blur(20px);
-                mix-blend-mode: normal;
             }
 
             nav.scrolled {
                 padding: 0.8rem 1rem;
-                background: rgba(10, 10, 10, 0.98);
             }
 
             .nav-container {
@@ -1022,7 +1555,6 @@ cursor: pointer;
 
             .logo {
                 font-size: 1.3rem;
-                letter-spacing: 0.02em;
             }
 
             .nav-links {
@@ -1031,25 +1563,24 @@ cursor: pointer;
 
             .menu-toggle {
                 display: flex;
-                padding: 8px;
             }
-
-            .menu-toggle span {
-                width: 25px;
-                height: 2px;
-            }
-
 
             .btn {
                 width: 100%;
                 max-width: 300px;
                 text-align: center;
-                padding: 1rem 2rem;
+                padding: 1.1rem 2.2rem;
                 font-size: 0.9rem;
-                border-radius: 4px;
+                margin: 0 auto;
+                display: block;
             }
 
-            /* Sections */
+            .hero-cta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
             .about,
             .rooms,
             .amenities,
@@ -1071,11 +1602,6 @@ cursor: pointer;
                 margin-top: 2rem;
             }
 
-            .stat-item {
-                padding: 1.2rem;
-                text-align: center;
-            }
-
             .room-grid {
                 grid-template-columns: 1fr;
                 gap: 1.8rem;
@@ -1086,44 +1612,13 @@ cursor: pointer;
                 gap: 1.5rem;
             }
 
-            .amenity-card {
-                padding: 1.8rem 1.2rem;
-            }
-
-            .about-image {
-                min-height: 280px;
-                max-width: 100%;
-                border-radius: 12px;
-            }
-
-            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            footer {
-                padding: 3rem 1.5rem 2rem;
-            }
-
-            /* Prevent horizontal overflow */
-            body {
-                overflow-x: hidden;
-            }
-
-            .about,
-            .rooms,
-            .amenities,
-            .location,
-            .contact,
-            footer {
-                overflow-x: hidden;
-            }
-
-            /* Map container mobile */
             .map-container {
                 height: 300px;
-                margin-bottom: 1rem;
             }
 
             .map-actions {
@@ -1138,35 +1633,16 @@ cursor: pointer;
             .map-btn {
                 width: 100%;
                 justify-content: center;
-                padding: 1rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            /* Improve touch targets */
-            .room-card,
-            .amenity-card,
-            .stat-item {
-                min-height: 44px;
-                touch-action: manipulation;
-            }
-
-            /* Better form experience on mobile */
-            .form-group input,
-            .form-group textarea {
-                padding: 1.2rem;
-                font-size: 1rem;
-                border-radius: 4px;
+                padding: 14px 24px;
             }
 
             .submit-btn {
-                padding: 1.2rem 2rem;
-                font-size: 1rem;
                 width: 100%;
-                border-radius: 4px;
+                padding: 1.1rem 2rem;
+                font-size: 0.95rem;
             }
         }
 
-        /* Mobile optimizations for small screens */
         @media (max-width: 480px) {
             nav {
                 padding: 0.6rem 0.8rem;
@@ -1177,9 +1653,19 @@ cursor: pointer;
             }
 
             .btn {
-                padding: 0.9rem 1.5rem;
-                font-size: 0.8rem;
+                padding: 1rem 1.8rem;
+                font-size: 0.85rem;
                 max-width: 280px;
+            }
+
+            .submit-btn {
+                padding: 1rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .map-btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
             }
 
             .about,
@@ -1196,384 +1682,22 @@ cursor: pointer;
             .location-title,
             .contact-title {
                 font-size: clamp(1.8rem, 5vw, 2.2rem);
-                line-height: 1.2;
-            }
-
-            .section-label {
-                font-size: 0.75rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .about-text {
-                font-size: 0.95rem;
-                line-height: 1.6;
             }
 
             .room-details {
                 padding: 1.2rem;
             }
 
-            .room-name {
-                font-size: 1.4rem;
-                line-height: 1.3;
-            }
-
-            .room-desc {
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-
             .amenity-card {
                 padding: 1.5rem 1rem;
-            }
-
-            .amenity-card h3 {
-                font-size: 1.2rem;
-                line-height: 1.3;
-            }
-
-            .amenity-card p {
-                font-size: 0.9rem;
-                line-height: 1.5;
             }
 
             .location-info {
                 padding: 1.5rem 1rem;
             }
 
-            .location-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-                padding-bottom: 1.5rem;
-            }
-
-            .location-details h4 {
-                font-size: 1.1rem;
-            }
-
-            .location-details p {
-                font-size: 0.9rem;
-            }
-
             .contact-info {
                 padding: 1.5rem 1rem;
-            }
-
-            .contact-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.8rem;
-                margin-bottom: 1.2rem;
-            }
-
-            .contact-item span {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Extra small devices (320px) */
-        @media (max-width: 375px) {
-
-            .btn {
-                padding: 0.8rem 1.2rem;
-                font-size: 0.75rem;
-                max-width: 260px;
-            }
-
-            .about,
-            .rooms,
-            .amenities,
-            .location,
-            .contact {
-                padding: 2rem 0.6rem;
-            }
-
-            .about-title,
-            .rooms-title,
-            .amenities-title,
-            .location-title,
-            .contact-title {
-                font-size: clamp(1.6rem, 4.5vw, 2rem);
-            }
-
-            .rooms-subtitle,
-            .amenities-subtitle,
-            .location-subtitle {
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-        }
-
-        /* Hero Section - Gallery Page Approach */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--forest) 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(201, 169, 97, 0.3) 0%, transparent 70%);
-            z-index: 1;
-            animation: pulse-bg 8s ease infinite;
-        }
-
-        .hero-slideshow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.2;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            animation: kenBurns 20s ease-in-out infinite;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 1000px;
-            padding: 0 2rem;
-        }
-
-        .hero-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s 0.1s forwards;
-            font-weight: 500;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s 0.2s forwards;
-            font-weight: 700;
-        }
-
-        .hero-title span {
-            display: block;
-            font-size: 0.35em;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            margin-top: 1rem;
-            color: var(--sand);
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 1s 0.3s forwards;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeInUp 1s 0.4s forwards;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--primary);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            z-index: 2;
-        }
-
-        .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
-        }
-
-        @keyframes pulse-bg {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        @keyframes kenBurns {
-            0% {
-                transform: scale(1) translate(0, 0);
-            }
-            25% {
-                transform: scale(1.08) translate(-2%, -1%);
-            }
-            50% {
-                transform: scale(1.1) translate(2%, 1%);
-            }
-            75% {
-                transform: scale(1.05) translate(-1%, 2%);
-            }
-            100% {
-                transform: scale(1) translate(0, 0);
-            }
-        }
-
-        /* Mobile Hero Styles */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 0 1rem;
-                min-height: 100vh;
-            }
-
-            .hero-content {
-                padding: 6rem 1rem 4rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.8rem;
-                letter-spacing: 0.2em;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-title {
-                font-size: clamp(2.5rem, 8vw, 4rem);
-                margin-bottom: 1rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin: 1.5rem auto 2rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-                padding: 1rem 2rem;
-            }
-
-            .scroll-indicator {
-                bottom: 20px;
-            }
-
-            .scroll-indicator svg {
-                width: 24px;
-                height: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 5rem 0.5rem 3rem;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 7vw, 3rem);
-            }
-
-            .hero-description {
-                font-size: 0.9rem;
-            }
-
-            .btn {
-                padding: 0.9rem 1.5rem;
-                font-size: 0.8rem;
             }
         }
     </style>
@@ -1581,7 +1705,6 @@ cursor: pointer;
 <body>
     <!-- Noise Texture -->
     <div class="noise"></div>
-
 
     <!-- Loading Screen -->
     <div class="loader" id="loader">
@@ -1698,7 +1821,6 @@ cursor: pointer;
                     <p class="room-desc">
                         First floor room with Free WiFi, free light breakfast, mini-refrigerator, wet bar, microwave, air conditioning, coffee/tea maker, hair dryer, HDTV, bathroom amenities, pulsing shower heads, alarm clock, desk, iron, ironing board, ceiling fan, headboards with built in Outlets, LVP Flooring.
                     </p>
-
                 </div>
             </div>
             <div class="room-card">
@@ -1775,21 +1897,21 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="breakfast-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Coffee cup -->
                             <path d="M25 35 C25 30, 30 25, 35 25 L55 25 C60 25, 65 30, 65 35 L65 55 C65 60, 60 65, 55 65 L35 65 C30 65, 25 60, 25 55 Z" fill="url(#breakfast-gradient)" opacity="0.9"/>
-                            <path d="M65 40 L70 40 C75 40, 78 43, 78 48 C78 53, 75 56, 70 56 L65 56" stroke="#c9a961" stroke-width="2" fill="none"/>
+                            <path d="M65 40 L70 40 C75 40, 78 43, 78 48 C78 53, 75 56, 70 56 L65 56" stroke="#ffc72c" stroke-width="2" fill="none"/>
                             <!-- Steam -->
-                            <path d="M35 20 Q37 15, 35 10 Q33 5, 35 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
-                            <path d="M45 20 Q47 15, 45 10 Q43 5, 45 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
-                            <path d="M55 20 Q57 15, 55 10 Q53 5, 55 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
+                            <path d="M35 20 Q37 15, 35 10 Q33 5, 35 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6"/>
+                            <path d="M45 20 Q47 15, 45 10 Q43 5, 45 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6"/>
+                            <path d="M55 20 Q57 15, 55 10 Q53 5, 55 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6"/>
                             <!-- Plate -->
-                            <ellipse cx="50" cy="75" rx="35" ry="8" fill="#d4c4b0" opacity="0.5"/>
+                            <ellipse cx="50" cy="75" rx="35" ry="8" fill="#ffe380" opacity="0.5"/>
                             <!-- Croissant -->
-                            <path d="M40 70 Q45 65, 50 70 Q55 65, 60 70" fill="#c9a961" opacity="0.8"/>
+                            <path d="M40 70 Q45 65, 50 70 Q55 65, 60 70" fill="#ffc72c" opacity="0.8"/>
                         </svg>
                     </div>
                     <h3>Free Continental Breakfast</h3>
@@ -1800,17 +1922,17 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="wifi-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- WiFi signal waves -->
                             <circle cx="50" cy="70" r="5" fill="url(#wifi-gradient)"/>
-                            <path d="M35 55 Q50 40, 65 55" stroke="#c9a961" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
-                            <path d="M25 45 Q50 25, 75 45" stroke="#c9a961" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
-                            <path d="M15 35 Q50 10, 85 35" stroke="#c9a961" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+                            <path d="M35 55 Q50 40, 65 55" stroke="#ffc72c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+                            <path d="M25 45 Q50 25, 75 45" stroke="#ffc72c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+                            <path d="M15 35 Q50 10, 85 35" stroke="#ffc72c" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
                             <!-- Signal dots -->
-                            <circle cx="50" cy="50" r="2" fill="#c9a961" opacity="0.6">
+                            <circle cx="50" cy="50" r="2" fill="#ffc72c" opacity="0.6">
                                 <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
                             </circle>
                         </svg>
@@ -1823,25 +1945,22 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="pool-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#1b3b36;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Pool -->
                             <rect x="10" y="40" width="80" height="45" rx="5" fill="url(#pool-gradient)" opacity="0.3"/>
                             <!-- Water waves -->
-                            <path d="M15 50 Q25 45, 35 50 T55 50 T75 50 T85 50" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.8">
+                            <path d="M15 50 Q25 45, 35 50 T55 50 T75 50 T85 50" stroke="#4a90e2" stroke-width="2" fill="none" opacity="0.8">
                                 <animate attributeName="d" values="M15 50 Q25 45, 35 50 T55 50 T75 50 T85 50;M15 50 Q25 55, 35 50 T55 50 T75 50 T85 50;M15 50 Q25 45, 35 50 T55 50 T75 50 T85 50" dur="3s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M15 60 Q25 65, 35 60 T55 60 T75 60 T85 60" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.6">
+                            <path d="M15 60 Q25 65, 35 60 T55 60 T75 60 T85 60" stroke="#4a90e2" stroke-width="2" fill="none" opacity="0.6">
                                 <animate attributeName="d" values="M15 60 Q25 65, 35 60 T55 60 T75 60 T85 60;M15 60 Q25 55, 35 60 T55 60 T75 60 T85 60;M15 60 Q25 65, 35 60 T55 60 T75 60 T85 60" dur="3s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M15 70 Q25 75, 35 70 T55 70 T75 70 T85 70" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.4">
-                                <animate attributeName="d" values="M15 70 Q25 75, 35 70 T55 70 T75 70 T85 70;M15 70 Q25 65, 35 70 T55 70 T75 70 T85 70;M15 70 Q25 75, 35 70 T55 70 T75 70 T85 70" dur="3s" repeatCount="indefinite"/>
-                            </path>
                             <!-- Swimmer -->
-                            <circle cx="50" cy="25" r="6" fill="#c9a961" opacity="0.8"/>
-                            <path d="M44 30 L50 35 L56 30" stroke="#c9a961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <circle cx="50" cy="25" r="6" fill="#ffc72c" opacity="0.8"/>
+                            <path d="M44 30 L50 35 L56 30" stroke="#ffc72c" stroke-width="2" fill="none" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3>Indoor Heated Pool</h3>
@@ -1852,34 +1971,26 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="tub-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Bathtub -->
                             <path d="M15 45 C15 40, 20 35, 25 35 L75 35 C80 35, 85 40, 85 45 L85 65 C85 70, 80 75, 75 75 L25 75 C20 75, 15 70, 15 65 Z" fill="url(#tub-gradient)" opacity="0.3"/>
-                            <path d="M15 45 L85 45" stroke="#c9a961" stroke-width="2"/>
+                            <path d="M15 45 L85 45" stroke="#ffc72c" stroke-width="2"/>
                             <!-- Faucet -->
-                            <rect x="45" y="25" width="10" height="15" rx="2" fill="#c9a961" opacity="0.8"/>
-                            <circle cx="50" cy="25" r="4" fill="#d4c4b0"/>
+                            <rect x="45" y="25" width="10" height="15" rx="2" fill="#ffc72c" opacity="0.8"/>
+                            <circle cx="50" cy="25" r="4" fill="#ffe380"/>
                             <!-- Bubbles/Jets -->
-                            <circle cx="30" cy="55" r="3" fill="none" stroke="#c9a961" stroke-width="1" opacity="0.6">
+                            <circle cx="30" cy="55" r="3" fill="none" stroke="#ffc72c" stroke-width="1" opacity="0.6">
                                 <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" repeatCount="indefinite"/>
                             </circle>
-                            <circle cx="50" cy="60" r="3" fill="none" stroke="#c9a961" stroke-width="1" opacity="0.6">
+                            <circle cx="50" cy="60" r="3" fill="none" stroke="#ffc72c" stroke-width="1" opacity="0.6">
                                 <animate attributeName="r" values="3;5;3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
                             </circle>
-                            <circle cx="70" cy="55" r="3" fill="none" stroke="#c9a961" stroke-width="1" opacity="0.6">
+                            <circle cx="70" cy="55" r="3" fill="none" stroke="#ffc72c" stroke-width="1" opacity="0.6">
                                 <animate attributeName="r" values="3;5;3" dur="2s" begin="1s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
                             </circle>
-                            <!-- Water drops -->
-                            <circle cx="35" cy="50" r="1.5" fill="#c9a961" opacity="0.8"/>
-                            <circle cx="45" cy="52" r="1.5" fill="#c9a961" opacity="0.8"/>
-                            <circle cx="55" cy="50" r="1.5" fill="#c9a961" opacity="0.8"/>
-                            <circle cx="65" cy="52" r="1.5" fill="#c9a961" opacity="0.8"/>
                         </svg>
                     </div>
                     <h3>Jetted Tubs</h3>
@@ -1890,24 +2001,24 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="business-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Monitor -->
                             <rect x="20" y="20" width="60" height="40" rx="3" fill="url(#business-gradient)" opacity="0.3"/>
-                            <rect x="25" y="25" width="50" height="30" fill="#0a0a0a" opacity="0.3"/>
+                            <rect x="25" y="25" width="50" height="30" fill="#003c71" opacity="0.3"/>
                             <!-- Screen content -->
-                            <rect x="30" y="30" width="20" height="3" fill="#c9a961" opacity="0.8"/>
-                            <rect x="30" y="36" width="40" height="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="30" y="40" width="40" height="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="30" y="44" width="30" height="2" fill="#d4c4b0" opacity="0.6"/>
+                            <rect x="30" y="30" width="20" height="3" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="30" y="36" width="40" height="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="30" y="40" width="40" height="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="30" y="44" width="30" height="2" fill="#ffe380" opacity="0.6"/>
                             <!-- Stand -->
-                            <rect x="47" y="60" width="6" height="15" fill="#c9a961" opacity="0.8"/>
-                            <rect x="35" y="75" width="30" height="4" rx="2" fill="#c9a961" opacity="0.8"/>
+                            <rect x="47" y="60" width="6" height="15" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="35" y="75" width="30" height="4" rx="2" fill="#ffc72c" opacity="0.8"/>
                             <!-- Keyboard -->
-                            <rect x="25" y="82" width="50" height="12" rx="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="28" y="85" width="44" height="6" fill="#c9a961" opacity="0.3"/>
+                            <rect x="25" y="82" width="50" height="12" rx="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="28" y="85" width="44" height="6" fill="#ffc72c" opacity="0.3"/>
                         </svg>
                     </div>
                     <h3>Business Center</h3>
@@ -1918,25 +2029,25 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="clock-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Clock face -->
                             <circle cx="50" cy="50" r="35" fill="none" stroke="url(#clock-gradient)" stroke-width="3"/>
                             <circle cx="50" cy="50" r="30" fill="url(#clock-gradient)" opacity="0.1"/>
                             <!-- Hour markers -->
-                            <rect x="48" y="20" width="4" height="8" fill="#c9a961" opacity="0.8"/>
-                            <rect x="48" y="72" width="4" height="8" fill="#c9a961" opacity="0.8"/>
-                            <rect x="20" y="48" width="8" height="4" fill="#c9a961" opacity="0.8"/>
-                            <rect x="72" y="48" width="8" height="4" fill="#c9a961" opacity="0.8"/>
+                            <rect x="48" y="20" width="4" height="8" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="48" y="72" width="4" height="8" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="20" y="48" width="8" height="4" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="72" y="48" width="8" height="4" fill="#ffc72c" opacity="0.8"/>
                             <!-- Clock hands -->
-                            <line x1="50" y1="50" x2="50" y2="30" stroke="#c9a961" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="50" y1="50" x2="65" y2="50" stroke="#d4c4b0" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="50" y1="50" x2="50" y2="30" stroke="#ffc72c" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="50" y1="50" x2="65" y2="50" stroke="#ffe380" stroke-width="2" stroke-linecap="round"/>
                             <!-- Center dot -->
-                            <circle cx="50" cy="50" r="4" fill="#c9a961"/>
+                            <circle cx="50" cy="50" r="4" fill="#ffc72c"/>
                             <!-- 24/7 text -->
-                            <text x="50" y="90" text-anchor="middle" fill="#c9a961" font-family="Inter" font-size="12" font-weight="600">24/7</text>
+                            <text x="50" y="90" text-anchor="middle" fill="#ffc72c" font-family="Inter" font-size="12" font-weight="600">24/7</text>
                         </svg>
                     </div>
                     <h3>24-Hour Front Desk</h3>
@@ -1947,27 +2058,27 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="laundry-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Washing machine body -->
                             <rect x="20" y="25" width="60" height="65" rx="5" fill="url(#laundry-gradient)" opacity="0.3"/>
                             <!-- Door -->
-                            <circle cx="50" cy="55" r="20" fill="none" stroke="#c9a961" stroke-width="2"/>
-                            <circle cx="50" cy="55" r="18" fill="#0a0a0a" opacity="0.2"/>
+                            <circle cx="50" cy="55" r="20" fill="none" stroke="#ffc72c" stroke-width="2"/>
+                            <circle cx="50" cy="55" r="18" fill="#003c71" opacity="0.2"/>
                             <!-- Window -->
-                            <circle cx="50" cy="55" r="16" fill="none" stroke="#d4c4b0" stroke-width="1"/>
+                            <circle cx="50" cy="55" r="16" fill="none" stroke="#ffe380" stroke-width="1"/>
                             <!-- Clothes inside -->
-                            <path d="M40 55 Q50 45, 60 55 Q50 65, 40 55" fill="#c9a961" opacity="0.4">
+                            <path d="M40 55 Q50 45, 60 55 Q50 65, 40 55" fill="#ffc72c" opacity="0.4">
                                 <animateTransform attributeName="transform" type="rotate" from="0 50 55" to="360 50 55" dur="4s" repeatCount="indefinite"/>
                             </path>
                             <!-- Control panel -->
-                            <rect x="30" y="30" width="40" height="8" fill="#d4c4b0" opacity="0.6"/>
-                            <circle cx="35" cy="34" r="2" fill="#c9a961"/>
-                            <circle cx="45" cy="34" r="2" fill="#c9a961"/>
-                            <circle cx="55" cy="34" r="2" fill="#c9a961"/>
-                            <circle cx="65" cy="34" r="2" fill="#c9a961"/>
+                            <rect x="30" y="30" width="40" height="8" fill="#ffe380" opacity="0.6"/>
+                            <circle cx="35" cy="34" r="2" fill="#ffc72c"/>
+                            <circle cx="45" cy="34" r="2" fill="#ffc72c"/>
+                            <circle cx="55" cy="34" r="2" fill="#ffc72c"/>
+                            <circle cx="65" cy="34" r="2" fill="#ffc72c"/>
                         </svg>
                     </div>
                     <h3>Coin-Op Laundry</h3>
@@ -1978,26 +2089,26 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="parking-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <!-- Parking lot -->
                             <rect x="10" y="40" width="80" height="50" fill="url(#parking-gradient)" opacity="0.2"/>
                             <!-- Parking lines -->
-                            <rect x="20" y="45" width="3" height="40" fill="#c9a961" opacity="0.6"/>
-                            <rect x="38" y="45" width="3" height="40" fill="#c9a961" opacity="0.6"/>
-                            <rect x="56" y="45" width="3" height="40" fill="#c9a961" opacity="0.6"/>
-                            <rect x="74" y="45" width="3" height="40" fill="#c9a961" opacity="0.6"/>
+                            <rect x="20" y="45" width="3" height="40" fill="#ffc72c" opacity="0.6"/>
+                            <rect x="38" y="45" width="3" height="40" fill="#ffc72c" opacity="0.6"/>
+                            <rect x="56" y="45" width="3" height="40" fill="#ffc72c" opacity="0.6"/>
+                            <rect x="74" y="45" width="3" height="40" fill="#ffc72c" opacity="0.6"/>
                             <!-- Car -->
-                            <rect x="25" y="55" width="11" height="20" rx="2" fill="#c9a961" opacity="0.8"/>
-                            <rect x="26" y="60" width="9" height="6" fill="#0a0a0a" opacity="0.3"/>
+                            <rect x="25" y="55" width="11" height="20" rx="2" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="26" y="60" width="9" height="6" fill="#003c71" opacity="0.3"/>
                             <!-- Bus -->
-                            <rect x="43" y="50" width="11" height="30" rx="2" fill="#d4c4b0" opacity="0.8"/>
-                            <rect x="44" y="53" width="9" height="8" fill="#0a0a0a" opacity="0.3"/>
+                            <rect x="43" y="50" width="11" height="30" rx="2" fill="#ffe380" opacity="0.8"/>
+                            <rect x="44" y="53" width="9" height="8" fill="#003c71" opacity="0.3"/>
                             <!-- P sign -->
-                            <circle cx="50" cy="25" r="12" fill="none" stroke="#c9a961" stroke-width="2"/>
-                            <text x="50" y="30" text-anchor="middle" fill="#c9a961" font-family="Inter" font-size="14" font-weight="bold">P</text>
+                            <circle cx="50" cy="25" r="12" fill="none" stroke="#ffc72c" stroke-width="2"/>
+                            <text x="50" y="30" text-anchor="middle" fill="#ffc72c" font-family="Inter" font-size="14" font-weight="bold">P</text>
                         </svg>
                     </div>
                     <h3>Free Parking</h3>
@@ -2118,9 +2229,9 @@ cursor: pointer;
                         <span>Email us for information and special requests</span>
                     </div>
                 </div>
-                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--cream); border-left: 3px solid var(--accent);">
-                    <h4 style="color: var(--forest); margin-bottom: 0.5rem;">Cancellation Policy</h4>
-                    <p style="color: var(--forest); font-size: 0.9rem;">24-hour cancellation policy. Cancel by 4 PM, 24 hours prior to arrival to avoid charges.</p>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 60, 113, 0.05) 0%, rgba(255, 199, 44, 0.05) 100%); border-left: 3px solid var(--brand-yellow); border-radius: 8px;">
+                    <h4 style="color: var(--brand-blue); margin-bottom: 0.5rem;">Cancellation Policy</h4>
+                    <p style="color: var(--brand-blue); font-size: 0.9rem;">24-hour cancellation policy. Cancel by 4 PM, 24 hours prior to arrival to avoid charges.</p>
                 </div>
             </div>
             <form class="contact-form" onsubmit="event.preventDefault()">
@@ -2189,19 +2300,15 @@ cursor: pointer;
     </footer>
 
     <script>
-
         // Hide Loader - Show only once per session
         window.addEventListener('load', () => {
             const hasSeenLoader = sessionStorage.getItem('daysinn-loader-shown');
             
             if (hasSeenLoader) {
-                // Hide loader immediately if already shown in this session
                 document.getElementById('loader').classList.add('hidden');
             } else {
-                // Show loader for first time in session
                 setTimeout(() => {
                     document.getElementById('loader').classList.add('hidden');
-                    // Mark that loader has been shown in this session
                     sessionStorage.setItem('daysinn-loader-shown', 'true');
                 }, 1500);
             }
@@ -2258,7 +2365,6 @@ cursor: pointer;
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
             
-            // Add visible class for animation
             if (navLinks.classList.contains('active')) {
                 setTimeout(() => navLinks.classList.add('visible'), 10);
                 document.body.style.overflow = 'hidden';
@@ -2285,9 +2391,6 @@ cursor: pointer;
                 document.body.style.overflow = '';
             }
         });
-
-
-
 
         // Hero Slideshow
         const slides = document.querySelectorAll('.hero-slide');
