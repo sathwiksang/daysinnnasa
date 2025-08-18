@@ -474,6 +474,9 @@
             position: relative;
             border-radius: 12px;
             border: 1px solid rgba(0, 60, 113, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .room-card::before {
@@ -536,6 +539,9 @@
 
         .room-details {
             padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .room-category {
@@ -601,6 +607,7 @@
         .room-actions {
             display: flex;
             gap: 0.75rem;
+            margin-top: auto;
         }
 
         .room-btn {
@@ -1057,7 +1064,97 @@
                             </div>
                         </div>
                         <div class="room-actions">
-                            <a href="#room-king-smoking-details" class="room-btn btn-details">See Details</a>
+                            <a href="pages/king-bed-smoking-page.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 5b: 2 Queen Beds First Floor Non-Smoking -->
+                <div class="room-card" data-category="queen" id="room-queen-first-floor">
+                    <div class="room-image-container">
+                        <img src="Images/index/card5.avif" alt="2 Queen Beds First Floor Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Double Queen - First Floor</div>
+                        <h3 class="room-name">2 Queen Beds, First Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 4 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Ground floor air-conditioned room with two Queen beds. Easy access and spacious layout with 40 inch HDTV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">40" HDTV</div>
+                            <div class="room-feature">First Floor</div>
+                            <div class="room-feature">Family Room</div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/queen-beds-first-floor-page.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 6b: 1 Queen Bed Second Floor Non-Smoking -->
+                <div class="room-card" data-category="queen" id="room-queen-second-floor-single">
+                    <div class="room-image-container">
+                        <img src="Images/gallery/3.avif" alt="1 Queen Bed Second Floor Non-Smoking Room" class="room-img">
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Queen Room - Second Floor</div>
+                        <h3 class="room-name">1 Queen Bed, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor non-smoking room with one Queen bed. Features 40 inch HDTV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">40" HDTV</div>
+                            <div class="room-feature">Second Floor</div>
+                            <div class="room-feature">Free WiFi</div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/queen-room-second-floor.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 7b: 1 King Bed Studio Suite Non-Smoking -->
+                <div class="room-card" data-category="suite" id="room-king-studio-suite">
+                    <div class="room-image-container">
+                        <img src="Images/index/card6.avif" alt="1 King Bed Studio Suite Non-Smoking" class="room-img">
+                        <span class="room-badge">Suite</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Studio Suite</div>
+                        <h3 class="room-name">1 King Bed, Studio Suite, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Spacious non-smoking studio suite with sofa bed, sitting area, and kitchenette. Includes 40 inch HDTV w/HBO, coffee maker, microwave, oven, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">Kitchenette</div>
+                            <div class="room-feature">Sofa Bed</div>
+                            <div class="room-feature">Indoor Access</div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/king-studio-suite.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>
@@ -1093,7 +1190,7 @@
                             </div>
                         </div>
                         <div class="room-actions">
-                            <a href="#room-king-second-floor-details" class="room-btn btn-details">See Details</a>
+                            <a href="pages/king-bed-second-floor-page.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>
@@ -1129,7 +1226,7 @@
                             </div>
                         </div>
                         <div class="room-actions">
-                            <a href="#room-king-non-smoking-details" class="room-btn btn-details">See Details</a>
+                            <a href="pages/king-bed-non-smoking.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>
@@ -1168,7 +1265,7 @@
                             </div>
                         </div>
                         <div class="room-actions">
-                            <a href="#room-queen-second-floor-details" class="room-btn btn-details">See Details</a>
+                            <a href="pages/queen-beds-second-floor-page.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>
@@ -1204,7 +1301,7 @@
                             </div>
                         </div>
                         <div class="room-actions">
-                            <a href="#room-king-accessible-details" class="room-btn btn-details">See Details</a>
+                            <a href="pages/king-bed-accessible-page.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>

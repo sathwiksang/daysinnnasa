@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 King Bed, Accessible | Days Inn & Suites NASA Webster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Days Inn Brand Colors */
+            --brand-blue: #003c71;
+            --brand-blue-dark: #002449;
+            --brand-blue-light: #0054a6;
+            --brand-yellow: #ffc72c;
+            --brand-yellow-bright: #ffdd00;
+            --brand-yellow-soft: #ffe380;
+            --brand-white: #ffffff;
+            
+            /* Luxury Variations */
+            --midnight-blue: #001f3f;
+            --royal-blue: #004080;
+            --sky-blue: #4a90e2;
+            --champagne: #fff5d6;
+            --pearl: #fafafa;
+            --silver: #e8e8e8;
+            --accessible-blue: #0066cc;
+            --accessible-light: #e6f2ff;
+            
+            /* Functional Colors */
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-blue: rgba(0, 60, 113, 0.05);
+            --text-light: rgba(255, 255, 255, 0.95);
+            --text-muted: rgba(255, 255, 255, 0.75);
+            --text-dark: #002449;
+            --shadow: rgba(0, 36, 73, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--pearl);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Premium Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(180deg, rgba(0, 31, 63, 0.95) 0%, rgba(0, 60, 113, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 199, 44, 0.15);
+        }
+
+        nav.scrolled {
+            background: linear-gradient(180deg, rgba(0, 36, 73, 0.98) 0%, rgba(0, 60, 113, 0.95) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            padding: 1rem 3rem;
+            border-bottom: 1px solid rgba(255, 199, 44, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.2));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--brand-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-now {
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
+            padding: 0.9rem 2.2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 3px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(255, 199, 44, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .book-now:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 4px 20px rgba(255, 199, 44, 0.5);
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            position: fixed;
+            top: 85px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
+            padding: 1rem 3rem;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255, 199, 44, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .breadcrumb-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--brand-yellow);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 199, 44, 0.3);
+            border-radius: 3px;
+            background: rgba(255, 199, 44, 0.05);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 199, 44, 0.15);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.2);
+        }
+
+        /* Room Hero Section */
+        .room-hero {
+            margin-top: 145px;
+            position: relative;
+            background: linear-gradient(180deg, var(--pearl) 0%, var(--brand-white) 100%);
+        }
+
+        .room-hero-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 4rem 3rem;
+            align-items: center;
+        }
+
+        .room-image-showcase {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 36, 73, 0.2);
+            height: 600px;
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
+        }
+
+        .room-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.05) contrast(1.1);
+        }
+
+        .image-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accessible-blue) 0%, var(--sky-blue) 100%);
+            color: var(--brand-white);
+            padding: 0.6rem 1.8rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accessible-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-white);
+        }
+
+        .perfect-for-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.9) 0%, rgba(0, 36, 73, 0.9) 100%);
+            color: var(--brand-yellow);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 199, 44, 0.3);
+            border-radius: 3px;
+        }
+
+        .ada-certified-badge {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            color: var(--accessible-blue);
+            padding: 0.6rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 204, 0.3);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .room-info {
+            padding: 2rem;
+        }
+
+        .room-category-label {
+            font-size: 0.9rem;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 5px rgba(255, 199, 44, 0.2));
+        }
+
+        .room-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: var(--brand-blue-dark);
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 36, 73, 0.1);
+        }
+
+        .room-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 199, 44, 0.1) 0%, rgba(255, 199, 44, 0.05) 100%);
+            border-left: 3px solid var(--brand-yellow);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+            color: var(--brand-blue-dark);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .room-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--brand-blue);
+            margin-bottom: 2rem;
+        }
+
+        .room-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--brand-blue-dark);
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--brand-yellow);
+            filter: drop-shadow(0 2px 5px rgba(255, 199, 44, 0.3));
+        }
+
+        .room-cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
+            color: var(--brand-blue-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(255, 199, 44, 0.3);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 199, 44, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 2px solid var(--brand-blue);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--brand-blue);
+            color: var(--brand-white);
+            box-shadow: 0 5px 20px rgba(0, 36, 73, 0.3);
+        }
+
+        /* Accessibility Notice */
+        .accessibility-notice {
+            background: linear-gradient(135deg, var(--accessible-light) 0%, rgba(74, 144, 226, 0.05) 100%);
+            border: 1px solid rgba(0, 102, 204, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .notice-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--accessible-blue);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .notice-text {
+            color: var(--brand-blue-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Amenities Section */
+        .amenities-section {
+            padding: 5rem 3rem;
+            background: linear-gradient(135deg, var(--pearl) 0%, var(--brand-white) 100%);
+        }
+
+        .amenities-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--brand-blue-dark);
+            font-weight: 600;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .amenity-group {
+            background: var(--brand-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.1);
+            border: 1px solid rgba(0, 60, 113, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .amenity-group::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--brand-yellow), var(--brand-yellow-bright), var(--brand-yellow));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .amenity-group:hover::before {
+            transform: scaleX(1);
+        }
+
+        .amenity-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 36, 73, 0.15);
+        }
+
+        .amenity-group-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--brand-blue-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--brand-yellow);
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--royal-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .amenity-list {
+            list-style: none;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            color: var(--brand-blue);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:hover {
+            padding-left: 0.5rem;
+            color: var(--brand-blue-dark);
+        }
+
+        .amenity-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-yellow);
+            flex-shrink: 0;
+        }
+
+        /* ADA Features Section */
+        .ada-features-section {
+            padding: 5rem 3rem;
+            background: linear-gradient(135deg, var(--accessible-light) 0%, var(--brand-white) 100%);
+        }
+
+        .ada-features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ada-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .ada-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--brand-blue-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .ada-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--brand-blue);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ada-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .ada-feature-card {
+            background: var(--brand-white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.1);
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ada-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accessible-blue), var(--sky-blue));
+        }
+
+        .ada-feature-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accessible-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ada-feature-icon {
+            width: 28px;
+            height: 28px;
+            fill: var(--accessible-blue);
+        }
+
+        .ada-feature-list {
+            list-style: none;
+        }
+
+        .ada-feature-item {
+            padding: 0.8rem 0;
+            color: var(--brand-blue);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(0, 60, 113, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .ada-feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .ada-check-icon {
+            width: 18px;
+            height: 18px;
+            fill: var(--brand-yellow);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Other Rooms Section */
+        .other-rooms-section {
+            padding: 5rem 3rem;
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .other-rooms-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 199, 44, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(74, 144, 226, 0.08) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .other-rooms-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .other-rooms-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .other-rooms-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--brand-white);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
+        }
+
+        .other-rooms-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        .rooms-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0 60px;
+        }
+
+        .rooms-slider {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .other-room-card {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            background: var(--brand-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .other-room-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 36, 73, 0.3);
+        }
+
+        .other-room-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
+        }
+
+        .other-room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .other-room-card:hover .other-room-image img {
+            transform: scale(1.1);
+        }
+
+        .other-room-info {
+            padding: 1.5rem;
+        }
+
+        .other-room-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--brand-blue-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .other-room-type {
+            font-size: 0.85rem;
+            color: var(--brand-blue);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .other-room-link {
+            color: var(--brand-yellow);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .other-room-link:hover {
+            color: var(--brand-yellow-bright);
+            gap: 0.6rem;
+        }
+
+        /* Carousel Controls */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
+            color: var(--brand-blue-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 3;
+            box-shadow: 0 5px 20px rgba(255, 199, 44, 0.3);
+        }
+
+        .carousel-button:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 199, 44, 0.5);
+        }
+
+        .carousel-prev {
+            left: 0;
+        }
+
+        .carousel-next {
+            right: 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--brand-blue-dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--brand-blue);
+            margin-bottom: 2rem;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--brand-blue);
+            color: var(--brand-white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 36, 73, 0.3);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            background: var(--brand-blue-dark);
+            box-shadow: 0 8px 30px rgba(0, 36, 73, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 3rem 2rem;
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue-dark) 100%);
+            border-top: 1px solid rgba(255, 199, 44, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-yellow);
+            padding-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 199, 44, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .room-hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .room-image-showcase {
+                height: 400px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ada-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .other-room-card {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .breadcrumb {
+                padding: 0.8rem 1.5rem;
+                top: 70px;
+            }
+
+            .room-hero {
+                margin-top: 120px;
+            }
+
+            .room-hero-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .room-image-showcase {
+                height: 300px;
+            }
+
+            .room-title {
+                font-size: 2rem;
+            }
+
+            .room-cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .other-room-card {
+                flex: 0 0 100%;
+            }
+
+            .carousel-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DAYS INN NASA</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="guestrooms.html" class="nav-link">Guest Rooms</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="../guestrooms.html" class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                Back to Guest Rooms
+            </a>
+        </div>
+    </div>
+
+    <!-- Room Hero Section -->
+    <section class="room-hero">
+        <div class="room-hero-container">
+            <div class="room-image-showcase">
+                <img src="Images/gallery/king-accessible.jpg" alt="1 King Bed Accessible Room" class="room-main-image">
+                <div class="image-badge">
+                    <svg class="accessible-icon" viewBox="0 0 24 24">
+                        <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                    </svg>
+                    ADA Accessible
+                </div>
+                <div class="perfect-for-badge">Perfect for Couples</div>
+                <div class="ada-certified-badge">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    ADA Compliant
+                </div>
+            </div>
+            <div class="room-info">
+                <div class="room-category-label">Accessible King Room</div>
+                <h1 class="room-title">1 King Bed, Accessible</h1>
+                <div class="room-highlight">
+                    ✨ Thoughtfully designed for comfort and accessibility
+                </div>
+                
+                <div class="accessibility-notice">
+                    <svg class="notice-icon" viewBox="0 0 24 24">
+                        <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                    </svg>
+                    <div class="notice-text">
+                        <strong>Accessibility First:</strong> NASA Days Inn & Suites cares about accessibility. This room has been specially designed with comprehensive ADA features to ensure comfort and independence for all guests. Our staff is available to assist with any specific needs.
+                    </div>
+                </div>
+
+                <p class="room-description">
+                    NASA Days Inn & Suites cares about accessibility and we have designed the 1 King Bed, Accessible guest room for guests with additional needs. This room features a large and comfortable King bed that can easily accommodate up to 2 adults making this a perfect room for couples. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi is included. The room includes a private bath with full tub and granite vanity with hairdryer and complimentary toiletries and plush towels. Feel free to contact our staff for more information about this accommodation.
+                </p>
+                
+                <div class="room-features">
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        <span>Capacity: 2 Persons</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span>Non-Smoking</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                        </svg>
+                        <span>ADA Accessible Guest Room</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24">
+                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                        </svg>
+                        <span>Service Animals Welcome</span>
+                    </div>
+                </div>
+                
+                <div class="room-cta-buttons">
+                    <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="btn-primary">Book This Room</a>
+                    <a href="#ada-features" class="btn-secondary">View Accessibility Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standard Amenities Section -->
+    <section class="amenities-section" id="amenities">
+        <div class="amenities-container">
+            <h2 class="section-title">Room Amenities</h2>
+            
+            <div class="amenities-grid">
+                <div class="amenity-group">
+                    <h3 class="amenity-group-title">General Services</h3>
+                    <ul class="amenity-list">
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Non-Smoking
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M8 5h10v7h2V5c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v7h2V5zm10 14H8c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2zM20 13H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2z"/>
+                            </svg>
+                            Refrigerator
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M6.8 10.61L5.37 9.19C5.73 8.79 6.59 8 7.75 8c.8 0 1.39.39 1.81.67.31.21.51.33.69.33s.37-.12.69-.33c.41-.28 1-.67 1.81-.67s1.39.39 1.81.67c.31.21.51.33.69.33s.37-.12.69-.33c.41-.28 1-.67 1.81-.67 1.16 0 2.02.79 2.38 1.19l-1.43 1.42c-.18-.15-.43-.31-.75-.31-.37 0-.7.22-.98.42-.46.32-1.06.68-1.97.68s-1.51-.36-1.97-.68c-.28-.2-.61-.42-.98-.42-.37 0-.7.22-.98.42-.46.32-1.06.68-1.97.68s-1.51-.36-1.97-.68c-.28-.2-.61-.42-.98-.42-.32 0-.57.16-.75.31z"/>
+                            </svg>
+                            Microwave
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22z"/>
+                            </svg>
+                            Air Conditioner
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6v-9.02h12V20zm0-11H6V4h12v5z"/>
+                            </svg>
+                            Desk
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                            </svg>
+                            In Room Coffee/Tea Maker
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                            </svg>
+                            ADA Accessible
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                            </svg>
+                            Wet Bar Area
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                            </svg>
+                            Iron/Ironing Board
+                        </li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 class="amenity-group-title">Bathroom</h3>
+                    <ul class="amenity-list">
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            Toiletries
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            </svg>
+                            Hair Dryer
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M7 4v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zM5 9v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9H5z"/>
+                            </svg>
+                            Private Bathroom
+                        </li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 class="amenity-group-title">Technology</h3>
+                    <ul class="amenity-list">
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L11.17 10H2v4h9.17l-1.88 1.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l3.59-3.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01zM20 8V4h-2v4h-4v2h4v4h2v-4h4V8z"/>
+                            </svg>
+                            HBO
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/>
+                            </svg>
+                            Flat Screen TV
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M1 9l2-2v8l-2-2v-4zm4.67-1.5L7.5 5.67 12 10.17l4.5-4.5 1.83 1.83L12 13.83 5.67 7.5z"/>
+                            </svg>
+                            Free WiFi
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADA Features Section -->
+    <section class="ada-features-section" id="ada-features">
+        <div class="ada-features-container">
+            <div class="ada-section-header">
+                <h2 class="ada-section-title">Accessibility Features</h2>
+                <p class="ada-section-subtitle">
+                    Comprehensive ADA-compliant features designed to ensure comfort, independence, and ease of access for all our guests with mobility, hearing, or visual needs.
+                </p>
+            </div>
+            
+            <div class="ada-features-grid">
+                <!-- Room Features Card -->
+                <div class="ada-feature-card">
+                    <h3 class="ada-feature-title">
+                        <svg class="ada-feature-icon" viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Room Accessibility Features
+                    </h3>
+                    <ul class="ada-feature-list">
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Wheelchair accessible entrance with 32" clear passage width</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>36" or more accessible path around and between beds</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Door hardware usable with one hand without tight grasping</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Lowered closet bars and shelving for easy access</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Multi-level door viewers at accessible heights</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Service animals welcomed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technology & Controls Card -->
+                <div class="ada-feature-card">
+                    <h3 class="ada-feature-title">
+                        <svg class="ada-feature-icon" viewBox="0 0 24 24">
+                            <path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
+                        </svg>
+                        Technology & Controls
+                    </h3>
+                    <ul class="ada-feature-list">
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Closed captioning television</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Visual alarm equipment for hearing impaired</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Visual door knocker alert system</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Telephone with volume control and visual call alert</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Communication kits with TTY machine available</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Shaker alarm clock for hearing impaired</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bathroom Features Card -->
+                <div class="ada-feature-card">
+                    <h3 class="ada-feature-title">
+                        <svg class="ada-feature-icon" viewBox="0 0 24 24">
+                            <path d="M9 17c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1m3-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1m4 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        </svg>
+                        Accessible Bathroom Features
+                    </h3>
+                    <ul class="ada-feature-list">
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Wheelchair accessible sink with 29" clearance</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Raised toilet seat 17"-19" above floor</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Grab bars at toilet, tub, and shower</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Hand-held shower wand with 60" hose</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Tub and shower seats available</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Slip-resistant bathroom floors</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Electrical & Furniture Card -->
+                <div class="ada-feature-card">
+                    <h3 class="ada-feature-title">
+                        <svg class="ada-feature-icon" viewBox="0 0 24 24">
+                            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                        </svg>
+                        Electrical & Furniture
+                    </h3>
+                    <ul class="ada-feature-list">
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Accessible power outlets 15" from ground</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Power outlets within 4" of telephone</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Push button light and lamp controls</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Lower level individual thermostat</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Accessible desk height with knee space</span>
+                        </li>
+                        <li class="ada-feature-item">
+                            <svg class="ada-check-icon" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span>Drapery controls with lowered wands</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-content">
+            <h2 class="contact-title">Need Additional Assistance?</h2>
+            <p class="contact-text">
+                Our staff is committed to ensuring your stay is comfortable and meets all your accessibility needs. Please don't hesitate to contact us for more information or special arrangements.
+            </p>
+            <a href="tel:+12813326060" class="contact-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+                Call Us: (281) 332-6060
+            </a>
+        </div>
+    </section>
+
+    <!-- Other Rooms Section -->
+    <section class="other-rooms-section">
+        <div class="other-rooms-container">
+            <div class="other-rooms-header">
+                <h2 class="other-rooms-title">Explore Other Rooms</h2>
+                <p class="other-rooms-subtitle">Find the perfect accommodation for your stay</p>
+            </div>
+            <div class="rooms-carousel">
+                <button class="carousel-button carousel-prev" onclick="slideRooms(-1)">‹</button>
+                <button class="carousel-button carousel-next" onclick="slideRooms(1)">›</button>
+                <div class="rooms-slider" id="roomsSlider">
+                    <!-- Room 1 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="Images/gallery/king-non-smoking.jpg" alt="1 King Bed Non-Smoking">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">1 King Bed, Non-Smoking</h3>
+                            <p class="other-room-type">Ground Floor</p>
+                            <a href="king-bed-non-smoking.html" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                    <!-- Room 2 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="Images/gallery/king-smoking.jpg" alt="1 King Bed Smoking">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">1 King Bed, Smoking</h3>
+                            <p class="other-room-type">King Room</p>
+                            <a href="king-bed-smoking.html" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                    <!-- Room 3 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="Images/gallery/king-second-floor.jpg" alt="1 King Bed Second Floor">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">1 King Bed, Second Floor</h3>
+                            <p class="other-room-type">Interior Stairs Only</p>
+                            <a href="king-bed-second-floor.html" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                    <!-- Room 4 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="Images/gallery/queen-second-floor.jpg" alt="1 Queen Bed Second Floor">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">1 Queen Bed, Second Floor</h3>
+                            <p class="other-room-type">Interior Stairs Only</p>
+                            <a href="#" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                    <!-- Room 5 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="Images/gallery/queen-double.jpg" alt="2 Queen Beds">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">2 Queen Beds, Second Floor</h3>
+                            <p class="other-room-type">Family Room</p>
+                            <a href="#" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">DAYS INN & SUITES NASA</div>
+                <p class="footer-description">
+                    One of the area's best hotels in Webster, TX near Clear Lake and within the Houston metropolitan area. Offering location convenience, affordability, and comfort with true Southern Texas hospitality.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Hotel Features</h4>
+                <ul class="footer-links">
+                    <li><a href="guestrooms.html">63 Guest Rooms</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                    <li><a href="amenities.html">Free Grab & Go Breakfast</a></li>
+                    <li><a href="amenities.html">Indoor Heated Pool</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Nearby Attractions</h4>
+                <ul class="footer-links">
+                    <li><a href="#">NASA Johnson Space Center</a></li>
+                    <li><a href="#">Kemah Boardwalk</a></li>
+                    <li><a href="#">Schlitterbahn Galveston</a></li>
+                    <li><a href="#">Gulf Greyhound Park</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Guest Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">24/7 Virtual Front Desk</a></li>
+                    <li><a href="#">Express Check-In/Out</a></li>
+                    <li><a href="#">Multilingual Staff</a></li>
+                    <li><a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank">Make a Reservation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Days Inn & Suites NASA. 201 North Texas Ave, Webster, Texas 77598 | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slider = document.getElementById('roomsSlider');
+        const cards = document.querySelectorAll('.other-room-card');
+        let cardsPerView = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+
+        function updateCardsPerView() {
+            cardsPerView = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+        }
+
+        window.addEventListener('resize', updateCardsPerView);
+
+        function slideRooms(direction) {
+            const totalCards = cards.length;
+            const maxSlide = Math.max(0, totalCards - cardsPerView);
+            
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            } else if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            }
+            
+            const slideWidth = 100 / cardsPerView;
+            const translateX = -currentSlide * slideWidth;
+            slider.style.transform = `translateX(${translateX}%)`;
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            slideRooms(1);
+        }, 5000);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe amenity groups
+        document.querySelectorAll('.amenity-group').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Observe ADA feature cards
+        document.querySelectorAll('.ada-feature-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

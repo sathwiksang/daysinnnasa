@@ -1813,7 +1813,7 @@
             </p>
         </div>
         <div class="room-grid">
-            <div class="room-card">
+            <div class="room-card" data-href="pages/king-bed-smoking-page.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card1.avif" alt="1 King Bed Smoking Room" class="room-img">
                     <span class="room-badge">Smoking</span>
@@ -1825,7 +1825,7 @@
                     </p>
                 </div>
             </div>
-            <div class="room-card">
+            <div class="room-card" data-href="pages/king-bed-second-floor-page.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card2.avif" alt="1 King Bed Second Floor Non-Smoking Room" class="room-img">
                     <span class="room-badge">Non-Smoking</span>
@@ -1837,7 +1837,7 @@
                     </p>
                 </div>
             </div>
-            <div class="room-card">
+            <div class="room-card" data-href="pages/king-bed-non-smoking.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card3.avif" alt="1 King Bed Non-Smoking Room" class="room-img">
                     <span class="room-badge">Non-Smoking</span>
@@ -1849,7 +1849,7 @@
                     </p>
                 </div>
             </div>
-            <div class="room-card">
+            <div class="room-card" data-href="pages/queen-beds-second-floor-page.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card4.avif" alt="2 Queen Beds Second Floor Non-Smoking Room" class="room-img">
                     <span class="room-badge">Non-Smoking</span>
@@ -1861,7 +1861,7 @@
                     </p>
                 </div>
             </div>
-            <div class="room-card">
+            <div class="room-card" data-href="pages/queen-beds-first-floor-page.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card5.avif" alt="2 Queen Beds Non-Smoking Room" class="room-img">
                     <span class="room-badge">Non-Smoking</span>
@@ -1873,7 +1873,7 @@
                     </p>
                 </div>
             </div>
-            <div class="room-card">
+            <div class="room-card" data-href="pages/king-studio-suite.html" role="link" tabindex="0">
                 <div class="room-image">
                     <img src="Images/index/card6.avif" alt="1 King Bed Studio Suite Non-Smoking Room" class="room-img">
                     <span class="room-badge">Suite</span>
@@ -2441,6 +2441,20 @@
                 }
             });
         }
+
+        // Make home room cards clickable
+        document.querySelectorAll('.rooms .room-card[data-href]').forEach(card => {
+            const href = card.getAttribute('data-href');
+            card.addEventListener('click', () => {
+                if (href) window.location.href = href;
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (href) window.location.href = href;
+                }
+            });
+        });
     </script>
 </body>
 </html>
