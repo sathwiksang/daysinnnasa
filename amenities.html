@@ -15,15 +15,30 @@
         }
 
         :root {
-            --primary: #0a0a0a;
-            --accent: #c9a961;
-            --cream: #faf8f3;
-            --forest: #1b3b36;
-            --sand: #d4c4b0;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.02);
-            --text-light: rgba(255, 255, 255, 0.85);
-            --text-muted: rgba(255, 255, 255, 0.65);
+            /* Days Inn Brand Colors */
+            --brand-blue: #003c71;
+            --brand-blue-dark: #002449;
+            --brand-blue-light: #0054a6;
+            --brand-yellow: #ffc72c;
+            --brand-yellow-bright: #ffdd00;
+            --brand-yellow-soft: #ffe380;
+            --brand-white: #ffffff;
+            
+            /* Luxury Variations */
+            --midnight-blue: #001f3f;
+            --royal-blue: #004080;
+            --sky-blue: #4a90e2;
+            --champagne: #fff5d6;
+            --pearl: #fafafa;
+            --silver: #e8e8e8;
+            
+            /* Functional Colors */
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-blue: rgba(0, 60, 113, 0.05);
+            --text-light: rgba(255, 255, 255, 0.95);
+            --text-muted: rgba(255, 255, 255, 0.75);
+            --text-dark: #002449;
+            --shadow: rgba(0, 36, 73, 0.15);
         }
 
         html {
@@ -32,16 +47,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary);
-            color: var(--white);
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue) 100%);
+            color: var(--brand-white);
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
             min-width: 320px;
         }
 
-
-        /* Noise Texture Overlay */
+        /* Premium Noise Texture */
         .noise {
             position: fixed;
             top: 0;
@@ -49,31 +63,32 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: 1;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 199, 44, 0.01) 35px, rgba(255, 199, 44, 0.01) 70px),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter><rect width="200" height="200" filter="url(%23noise)" opacity="0.4"/></svg>');
         }
 
-
-        /* Navigation */
+        /* Premium Navigation - Matching index.html */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             padding: 1.5rem 3rem;
             z-index: 1000;
-            mix-blend-mode: difference;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-sizing: border-box;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(15px);
+            background: linear-gradient(180deg, rgba(0, 31, 63, 0.95) 0%, rgba(0, 60, 113, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 199, 44, 0.15);
         }
 
         nav.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            mix-blend-mode: normal;
+            background: linear-gradient(180deg, rgba(0, 36, 73, 0.98) 0%, rgba(0, 60, 113, 0.95) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
             padding: 1rem 3rem;
+            border-bottom: 1px solid rgba(255, 199, 44, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.3);
         }
 
         .nav-container {
@@ -83,17 +98,25 @@
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--white);
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.2));
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 4px 20px rgba(255, 199, 44, 0.4));
+            transform: translateY(-1px);
         }
 
         .nav-links {
@@ -104,15 +127,14 @@
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--brand-white);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
             letter-spacing: 0.03em;
             position: relative;
             transition: all 0.3s ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 36, 73, 0.3);
         }
 
         .nav-link::after {
@@ -121,9 +143,15 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 1px;
-            background: var(--accent);
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 199, 44, 0.5);
+        }
+
+        .nav-link:hover {
+            color: var(--brand-yellow-soft);
+            transform: translateY(-1px);
         }
 
         .nav-link:hover::after {
@@ -131,39 +159,56 @@
         }
 
         .book-now {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
+            border: 2px solid transparent;
+            padding: 0.9rem 2.2rem;
             font-size: 0.85rem;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 3px;
+            box-shadow: 
+                0 2px 10px rgba(255, 199, 44, 0.3),
+                0 10px 40px rgba(255, 199, 44, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 10px rgba(0, 36, 73, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.2);
+            transform-style: preserve-3d;
         }
 
         .book-now::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--accent);
-            transition: left 0.3s ease;
-            z-index: -1;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
         }
 
         .book-now:hover {
-            color: var(--primary);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 4px 20px rgba(255, 199, 44, 0.5),
+                0 15px 50px rgba(255, 199, 44, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 15px rgba(0, 36, 73, 0.15);
+            background: linear-gradient(135deg, var(--brand-yellow-bright) 0%, var(--brand-yellow) 50%, var(--brand-yellow-bright) 100%);
+            border-color: rgba(255, 199, 44, 0.3);
         }
 
         .book-now:hover::before {
-            left: 0;
+            transform: translateX(100%) skewX(-45deg);
         }
 
         /* Menu Toggle */
@@ -173,17 +218,15 @@
             gap: 6px;
             background: none;
             border: none;
-cursor: pointer;
+            cursor: pointer;
             padding: 10px;
             z-index: 1001;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .menu-toggle span {
             width: 30px;
             height: 2px;
-            background: var(--white);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-white) 100%);
             transition: all 0.3s ease;
         }
 
@@ -195,19 +238,18 @@ cursor: pointer;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.98) 0%, rgba(0, 60, 113, 0.98) 100%);
+            backdrop-filter: blur(30px);
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             z-index: 1000;
             padding: 2rem;
-            box-sizing: border-box;
-            overflow-y: auto;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
+            overflow-y: auto;
         }
 
         .nav-links.active.visible {
@@ -215,18 +257,6 @@ cursor: pointer;
             visibility: visible;
         }
 
-        .nav-links.active .nav-link {
-            font-size: 1.2rem;
-            padding: 1rem 0;
-        }
-
-        .nav-links.active .book-now {
-            margin-top: 1rem;
-            font-size: 1rem;
-            padding: 1rem 2.5rem;
-        }
-
-        /* Close button for mobile menu */
         .menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
@@ -239,22 +269,15 @@ cursor: pointer;
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        /* Hero Section */
+        /* Hero Section - Premium Edition */
         .amenities-hero {
-            height: 60vh;
+            height: 70vh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--forest) 100%);
-        }
-
-        @media (max-width: 768px) {
-            .amenities-hero {
-                height: 50vh;
-                padding: 0 1rem;
-            }
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--brand-blue) 50%, var(--royal-blue) 100%);
         }
 
         .amenities-hero::before {
@@ -264,8 +287,17 @@ cursor: pointer;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 199, 44, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
             z-index: 1;
+            animation: pulse-bg 10s ease infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
         .hero-content {
@@ -280,26 +312,31 @@ cursor: pointer;
             font-size: 0.95rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--accent);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 2rem;
             opacity: 0;
             animation: fadeInUp 1s 0.1s forwards;
             font-weight: 500;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.3));
         }
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             line-height: 1.1;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
             opacity: 0;
             animation: fadeInUp 1s 0.2s forwards;
             font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .hero-description {
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            font-size: 1.15rem;
             font-weight: 300;
             max-width: 700px;
             margin: 0 auto;
@@ -307,6 +344,7 @@ cursor: pointer;
             line-height: 1.8;
             opacity: 0;
             animation: fadeInUp 1s 0.3s forwards;
+            text-shadow: 0 2px 10px rgba(0, 36, 73, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -320,93 +358,31 @@ cursor: pointer;
             }
         }
 
-        /* Featured Amenities Section */
+        /* Featured Amenities Section - Premium Blue */
         .featured-amenities {
             padding: 8rem 3rem;
-            background: var(--primary);
+            background: linear-gradient(180deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
             position: relative;
+        }
+
+        .featured-amenities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 199, 44, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(74, 144, 226, 0.08) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .featured-container {
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .featured-card {
-            background: linear-gradient(135deg, var(--glass) 0%, rgba(201, 169, 97, 0.05) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(201, 169, 97, 0.2);
-            padding: 3rem;
-            border-radius: 20px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            overflow: hidden;
-        }
-
-        .featured-card::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
-            transition: all 0.5s ease;
-            opacity: 0;
-        }
-
-        .featured-card:hover::before {
-            opacity: 1;
-            transform: rotate(45deg);
-        }
-
-        .featured-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(201, 169, 97, 0.1);
-        }
-
-        .featured-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 2rem;
-        }
-
-        .featured-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .featured-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .featured-description {
-            color: var(--text-light);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* Amenities Categories */
-        .categories-section {
-            padding: 8rem 3rem;
-            background: linear-gradient(180deg, var(--forest) 0%, var(--primary) 100%);
-            position: relative;
-        }
-
-        .categories-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            z-index: 2;
         }
 
         .section-header {
@@ -419,12 +395,125 @@ cursor: pointer;
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .section-subtitle {
             font-size: 1.1rem;
             color: var(--text-muted);
             font-weight: 300;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 199, 44, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 199, 44, 0.2);
+            padding: 3rem;
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 36, 73, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 199, 44, 0.15) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .featured-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg);
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 199, 44, 0.08) 100%);
+            box-shadow: 
+                0 20px 40px rgba(0, 36, 73, 0.3),
+                0 0 0 1px var(--brand-yellow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .featured-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 15px rgba(255, 199, 44, 0.4));
+        }
+
+        .featured-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.3));
+        }
+
+        .featured-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Amenities Categories - Premium Style */
+        .categories-section {
+            padding: 8rem 3rem;
+            background: linear-gradient(180deg, var(--pearl) 0%, var(--brand-white) 100%);
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .categories-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--brand-yellow) 50%, transparent 100%);
+        }
+
+        .categories-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .categories-section .section-title {
+            background: linear-gradient(135deg, var(--brand-blue-dark) 0%, var(--royal-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+
+        .categories-section .section-subtitle {
+            color: var(--brand-blue);
         }
 
         .category-tabs {
@@ -437,9 +526,9 @@ cursor: pointer;
 
         .tab-btn {
             padding: 1rem 2rem;
-            background: transparent;
-            border: 1px solid rgba(201, 169, 97, 0.3);
-            color: var(--text-light);
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.05) 0%, rgba(255, 199, 44, 0.05) 100%);
+            border: 1px solid rgba(0, 60, 113, 0.2);
+            color: var(--brand-blue);
             font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -447,6 +536,8 @@ cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border-radius: 3px;
+            cursor: pointer;
         }
 
         .tab-btn::before {
@@ -456,15 +547,16 @@ cursor: pointer;
             left: 0;
             width: 0;
             height: 100%;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             transition: width 0.3s ease;
             z-index: -1;
         }
 
         .tab-btn.active,
         .tab-btn:hover {
-            color: var(--white);
-            border-color: var(--accent);
+            color: var(--brand-blue-dark);
+            border-color: var(--brand-yellow);
+            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.3);
         }
 
         .tab-btn.active::before,
@@ -497,16 +589,20 @@ cursor: pointer;
             align-items: center;
             gap: 1.5rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--brand-white);
+            border: 1px solid rgba(0, 60, 113, 0.1);
             border-radius: 12px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 36, 73, 0.05);
         }
 
         .amenity-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, var(--brand-white) 0%, var(--champagne) 100%);
             transform: translateX(10px);
-            border-color: var(--accent);
+            border-color: var(--brand-yellow);
+            box-shadow: 
+                0 5px 20px rgba(255, 199, 44, 0.2),
+                0 0 0 1px var(--brand-yellow);
         }
 
         .amenity-icon-small {
@@ -518,26 +614,42 @@ cursor: pointer;
         .amenity-icon-small svg {
             width: 100%;
             height: 100%;
-            stroke: var(--accent);
+            stroke: var(--brand-yellow);
             fill: none;
+            filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.3));
         }
 
         .amenity-name {
             font-size: 0.95rem;
-            color: var(--text-light);
+            color: var(--brand-blue-dark);
             line-height: 1.4;
         }
 
-        /* Accessibility Section */
+        /* Accessibility Section - Premium Blue */
         .accessibility-section {
             padding: 8rem 3rem;
-            background: var(--cream);
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 50%, var(--brand-blue-dark) 100%);
+            position: relative;
+        }
+
+        .accessibility-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 199, 44, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .accessibility-container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .accessibility-header {
@@ -548,14 +660,15 @@ cursor: pointer;
         .accessibility-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--primary);
+            color: var(--brand-white);
             margin-bottom: 1rem;
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .accessibility-subtitle {
             font-size: 1.15rem;
-            color: var(--forest);
+            color: var(--text-muted);
             line-height: 1.6;
         }
 
@@ -570,15 +683,20 @@ cursor: pointer;
             align-items: flex-start;
             gap: 1.5rem;
             padding: 2rem;
-            background: var(--white);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 199, 44, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 199, 44, 0.2);
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 36, 73, 0.1);
         }
 
         .accessibility-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 199, 44, 0.08) 100%);
+            box-shadow: 
+                0 10px 30px rgba(0, 36, 73, 0.2),
+                0 0 0 1px var(--brand-yellow);
         }
 
         .accessibility-icon {
@@ -590,19 +708,20 @@ cursor: pointer;
         .accessibility-icon svg {
             width: 100%;
             height: 100%;
-            fill: var(--accent);
+            fill: var(--brand-yellow);
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.4));
         }
 
         .accessibility-text {
             font-size: 0.95rem;
-            color: var(--forest);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* CTA Section */
+        /* CTA Section - Premium Gradient */
         .amenities-cta {
             padding: 6rem 3rem;
-            background: linear-gradient(135deg, var(--forest) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--brand-blue) 50%, var(--royal-blue) 100%);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -615,7 +734,7 @@ cursor: pointer;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(201, 169, 97, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 199, 44, 0.08) 0%, transparent 70%);
             animation: rotate 30s linear infinite;
         }
 
@@ -636,6 +755,7 @@ cursor: pointer;
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 2rem;
             font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0, 36, 73, 0.3);
         }
 
         .cta-text {
@@ -647,29 +767,60 @@ cursor: pointer;
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--accent);
-            color: var(--primary);
+            padding: 1.3rem 3.2rem;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 50%, var(--brand-yellow) 100%);
+            color: var(--brand-blue-dark);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border-radius: 3px;
+            box-shadow: 
+                0 4px 15px rgba(255, 199, 44, 0.35),
+                0 15px 50px rgba(255, 199, 44, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 10px rgba(0, 36, 73, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 36, 73, 0.15);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-45deg);
+            transition: transform 0.6s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 25px rgba(255, 199, 44, 0.5),
+                0 20px 60px rgba(255, 199, 44, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -4px 15px rgba(0, 36, 73, 0.15);
+            background: linear-gradient(135deg, var(--brand-yellow-bright) 0%, var(--brand-yellow) 50%, var(--brand-yellow-bright) 100%);
         }
 
-        /* Footer */
+        .cta-button:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        /* Footer - Matching index.html */
         footer {
             padding: 5rem 3rem 2rem;
-            background: var(--primary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, var(--midnight-blue) 0%, var(--brand-blue-dark) 100%);
+            border-top: 1px solid rgba(255, 199, 44, 0.2);
         }
 
         .footer-content {
@@ -690,9 +841,13 @@ cursor: pointer;
         .footer-logo {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             font-weight: 600;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.3));
         }
 
         .footer-description {
@@ -706,7 +861,10 @@ cursor: pointer;
             font-size: 0.9rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--accent);
+            background: linear-gradient(90deg, var(--brand-yellow) 0%, var(--brand-yellow-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
@@ -727,42 +885,27 @@ cursor: pointer;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--brand-yellow);
             padding-left: 0.5rem;
+            text-shadow: 0 2px 10px rgba(255, 199, 44, 0.3);
         }
 
         .footer-bottom {
             padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 199, 44, 0.1);
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            .featured-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-
-            .amenity-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
         @media (max-width: 768px) {
-            /* Navigation */
             nav {
                 padding: 0.8rem 1rem;
-                background: rgba(10, 10, 10, 0.98);
-                backdrop-filter: blur(20px);
-                mix-blend-mode: normal;
             }
 
             nav.scrolled {
                 padding: 0.8rem 1rem;
-                background: rgba(10, 10, 10, 0.98);
             }
 
             .nav-container {
@@ -772,7 +915,6 @@ cursor: pointer;
 
             .logo {
                 font-size: 1.3rem;
-                letter-spacing: 0.02em;
             }
 
             .nav-links {
@@ -781,44 +923,18 @@ cursor: pointer;
 
             .menu-toggle {
                 display: flex;
-                padding: 8px;
             }
 
-            .menu-toggle span {
-                width: 25px;
-                height: 2px;
-            }
-
-            /* Hero Section */
             .amenities-hero {
-                padding: 0 0.8rem;
-                min-height: 50vh;
                 height: auto;
+                min-height: 50vh;
+                padding: 0 0.8rem;
             }
 
             .hero-content {
                 padding: 6rem 0.8rem 4rem;
             }
 
-            .hero-subtitle {
-                font-size: clamp(0.7rem, 2vw, 0.85rem);
-                letter-spacing: 0.15em;
-                margin-bottom: 1rem;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 6vw, 2.8rem);
-                margin-bottom: 1rem;
-            }
-
-            .hero-description {
-                font-size: clamp(0.9rem, 2.5vw, 1rem);
-                line-height: 1.6;
-                margin: 1.2rem auto 2rem;
-                max-width: 95%;
-            }
-
-            /* Sections */
             .featured-amenities,
             .categories-section,
             .accessibility-section {
@@ -829,41 +945,11 @@ cursor: pointer;
                 padding: 3rem 1rem;
             }
 
-            .section-header {
-                margin-bottom: 2.5rem;
-            }
-
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-                margin-bottom: 0.8rem;
-            }
-
-            .section-subtitle {
-                font-size: clamp(0.9rem, 2.5vw, 1rem);
-            }
-
-            /* Featured Cards */
             .featured-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .featured-card {
-                padding: 1.5rem;
-                border-radius: 15px;
-            }
-
-            .featured-title {
-                font-size: clamp(1.3rem, 4vw, 1.6rem);
-                margin-bottom: 0.8rem;
-            }
-
-            .featured-description {
-                font-size: clamp(0.85rem, 2.2vw, 0.95rem);
-                line-height: 1.6;
-            }
-
-            /* Category Tabs */
             .category-tabs {
                 flex-direction: column;
                 align-items: center;
@@ -874,189 +960,21 @@ cursor: pointer;
             .tab-btn {
                 width: 100%;
                 max-width: 280px;
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
             }
 
-            /* Amenity Grid */
             .amenity-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
-            .amenity-item {
-                padding: 1rem;
-                border-radius: 10px;
-            }
-
-            .amenity-name {
-                font-size: clamp(0.85rem, 2.2vw, 0.9rem);
-            }
-
-            /* Accessibility */
             .accessibility-grid {
                 grid-template-columns: 1fr;
                 gap: 1.2rem;
             }
 
-            .accessibility-item {
-                padding: 1.2rem;
-                border-radius: 10px;
-            }
-
-            .accessibility-text {
-                font-size: clamp(0.85rem, 2.2vw, 0.9rem);
-            }
-
-            /* CTA */
-            .cta-title {
-                font-size: clamp(1.5rem, 5vw, 2.2rem);
-                margin-bottom: 1.2rem;
-            }
-
-            .cta-text {
-                font-size: clamp(0.9rem, 2.5vw, 1rem);
-                margin-bottom: 2rem;
-                line-height: 1.6;
-            }
-
-            .cta-button {
-                padding: 1rem 2rem;
-                font-size: 0.8rem;
-            }
-
-            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-            }
-
-            footer {
-                padding: 3rem 1rem 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.6rem 0.8rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .hero-content {
-                padding: 5rem 0.6rem 3rem;
-            }
-
-            .hero-title {
-                font-size: clamp(1.8rem, 5.5vw, 2.2rem);
-                margin-bottom: 0.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.65rem;
-                letter-spacing: 0.1em;
-                margin-bottom: 0.8rem;
-            }
-
-            .hero-description {
-                font-size: 0.85rem;
-                line-height: 1.5;
-                margin: 1rem auto 1.5rem;
-            }
-
-            .featured-amenities,
-            .categories-section,
-            .accessibility-section {
-                padding: 2rem 0.6rem;
-            }
-
-            .amenities-cta {
-                padding: 2.5rem 0.6rem;
-            }
-
-            .featured-card {
-                padding: 1.2rem;
-            }
-
-            .featured-title {
-                font-size: 1.3rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .tab-btn {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.75rem;
-            }
-
-            .amenity-item {
-                padding: 0.8rem;
-                gap: 1rem;
-            }
-
-            .amenity-name {
-                font-size: 0.8rem;
-            }
-
-            .accessibility-item {
-                padding: 1rem;
-            }
-
-            .accessibility-text {
-                font-size: 0.8rem;
-            }
-
-            .cta-title {
-                font-size: 1.5rem;
-            }
-
-            .cta-text {
-                font-size: 0.85rem;
-            }
-
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .hero-content {
-                padding: 4.5rem 0.5rem 2.5rem;
-            }
-
-            .hero-title {
-                font-size: clamp(1.6rem, 5vw, 2rem);
-            }
-
-            .hero-subtitle {
-                font-size: 0.6rem;
-                letter-spacing: 0.08em;
-            }
-
-            .hero-description {
-                font-size: 0.8rem;
-                margin: 0.8rem auto 1.2rem;
-            }
-
-            .featured-amenities,
-            .categories-section,
-            .accessibility-section {
-                padding: 1.8rem 0.5rem;
-            }
-
-            .amenities-cta {
-                padding: 2rem 0.5rem;
-            }
-
-            .cta-button {
-                padding: 0.8rem 1.2rem;
-                font-size: 0.7rem;
-                max-width: 260px;
             }
         }
     </style>
@@ -1064,8 +982,6 @@ cursor: pointer;
 <body>
     <!-- Noise Texture -->
     <div class="noise"></div>
-
-
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -1079,6 +995,9 @@ cursor: pointer;
                 <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                 <li><a href="index.html#location" class="nav-link">Location</a></li>
                 <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link">Hotel Policies</a></li>
+                <li><a href="#" class="nav-link">FAQ</a></li>
+                <li><a href="#" class="nav-link">Specials</a></li>
                 <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
             </ul>
             <button class="menu-toggle" id="menuToggle">
@@ -1088,7 +1007,6 @@ cursor: pointer;
             </button>
         </div>
     </nav>
-
 
     <!-- Hero Section -->
     <section class="amenities-hero">
@@ -1114,22 +1032,22 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="pool-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#1b3b36;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
-                            <rect x="10" y="35" width="80" height="50" rx="5" fill="url(#pool-gradient)" opacity="0.2"/>
-                            <path d="M15 45 Q25 40, 35 45 T55 45 T75 45 T85 45" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.8">
+                            <rect x="10" y="35" width="80" height="50" rx="5" fill="url(#pool-gradient)" opacity="0.3"/>
+                            <path d="M15 45 Q25 40, 35 45 T55 45 T75 45 T85 45" stroke="#4a90e2" stroke-width="2" fill="none" opacity="0.8">
                                 <animate attributeName="d" values="M15 45 Q25 40, 35 45 T55 45 T75 45 T85 45;M15 45 Q25 50, 35 45 T55 45 T75 45 T85 45;M15 45 Q25 40, 35 45 T55 45 T75 45 T85 45" dur="3s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M15 55 Q25 60, 35 55 T55 55 T75 55 T85 55" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.6">
+                            <path d="M15 55 Q25 60, 35 55 T55 55 T75 55 T85 55" stroke="#4a90e2" stroke-width="2" fill="none" opacity="0.6">
                                 <animate attributeName="d" values="M15 55 Q25 60, 35 55 T55 55 T75 55 T85 55;M15 55 Q25 50, 35 55 T55 55 T75 55 T85 55;M15 55 Q25 60, 35 55 T55 55 T75 55 T85 55" dur="3s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M15 65 Q25 70, 35 65 T55 65 T75 65 T85 65" stroke="#c9a961" stroke-width="2" fill="none" opacity="0.4">
+                            <path d="M15 65 Q25 70, 35 65 T55 65 T75 65 T85 65" stroke="#4a90e2" stroke-width="2" fill="none" opacity="0.4">
                                 <animate attributeName="d" values="M15 65 Q25 70, 35 65 T55 65 T75 65 T85 65;M15 65 Q25 60, 35 65 T55 65 T75 65 T85 65;M15 65 Q25 70, 35 65 T55 65 T75 65 T85 65" dur="3s" repeatCount="indefinite"/>
                             </path>
-                            <circle cx="50" cy="25" r="5" fill="#c9a961" opacity="0.8"/>
-                            <path d="M45 28 L50 32 L55 28" stroke="#c9a961" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <circle cx="50" cy="25" r="5" fill="#ffc72c" opacity="0.8"/>
+                            <path d="M45 28 L50 32 L55 28" stroke="#ffc72c" stroke-width="2" fill="none" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3 class="featured-title">Indoor Heated Pool</h3>
@@ -1142,28 +1060,28 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="breakfast-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <path d="M25 35 C25 30, 30 25, 35 25 L55 25 C60 25, 65 30, 65 35 L65 55 C65 60, 60 65, 55 65 L35 65 C30 65, 25 60, 25 55 Z" fill="url(#breakfast-gradient)" opacity="0.3"/>
-                            <path d="M65 40 L70 40 C75 40, 78 43, 78 48 C78 53, 75 56, 70 56 L65 56" stroke="#c9a961" stroke-width="2" fill="none"/>
-                            <path d="M35 20 Q37 15, 35 10 Q33 5, 35 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6">
+                            <path d="M65 40 L70 40 C75 40, 78 43, 78 48 C78 53, 75 56, 70 56 L65 56" stroke="#ffc72c" stroke-width="2" fill="none"/>
+                            <path d="M35 20 Q37 15, 35 10 Q33 5, 35 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6">
                                 <animate attributeName="d" values="M35 20 Q37 15, 35 10 Q33 5, 35 0;M35 20 Q33 15, 35 10 Q37 5, 35 0;M35 20 Q37 15, 35 10 Q33 5, 35 0" dur="4s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M45 20 Q47 15, 45 10 Q43 5, 45 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6">
+                            <path d="M45 20 Q47 15, 45 10 Q43 5, 45 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6">
                                 <animate attributeName="d" values="M45 20 Q47 15, 45 10 Q43 5, 45 0;M45 20 Q43 15, 45 10 Q47 5, 45 0;M45 20 Q47 15, 45 10 Q43 5, 45 0" dur="4s" begin="0.5s" repeatCount="indefinite"/>
                             </path>
-                            <path d="M55 20 Q57 15, 55 10 Q53 5, 55 0" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6">
+                            <path d="M55 20 Q57 15, 55 10 Q53 5, 55 0" stroke="#ffc72c" stroke-width="1.5" fill="none" opacity="0.6">
                                 <animate attributeName="d" values="M55 20 Q57 15, 55 10 Q53 5, 55 0;M55 20 Q53 15, 55 10 Q57 5, 55 0;M55 20 Q57 15, 55 10 Q53 5, 55 0" dur="4s" begin="1s" repeatCount="indefinite"/>
                             </path>
-                            <ellipse cx="50" cy="75" rx="35" ry="8" fill="#d4c4b0" opacity="0.5"/>
-                            <path d="M40 70 Q45 65, 50 70 Q55 65, 60 70" fill="#c9a961" opacity="0.8"/>
+                            <ellipse cx="50" cy="75" rx="35" ry="8" fill="#ffe380" opacity="0.5"/>
+                            <path d="M40 70 Q45 65, 50 70 Q55 65, 60 70" fill="#ffc72c" opacity="0.8"/>
                         </svg>
                     </div>
-                    <h3 class="featured-title">Complimentary Hot Breakfast</h3>
+                    <h3 class="featured-title">Grab & Go Breakfast</h3>
                     <p class="featured-description">
-                        Start your day right with our complimentary Daybreak continental breakfast. Featuring fresh options daily, hot coffee, tea, and a variety of breakfast items to fuel your Houston adventures.
+                        Start your day right with our complimentary Grab & Go breakfast menu. Includes donuts, granola bars, yogurt along with juice and coffee to fuel your Houston adventures.
                     </p>
                 </div>
                 <div class="featured-card">
@@ -1171,24 +1089,24 @@ cursor: pointer;
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="business-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#d4c4b0;stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#ffc72c;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffe380;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <rect x="20" y="20" width="60" height="40" rx="3" fill="url(#business-gradient)" opacity="0.3"/>
-                            <rect x="25" y="25" width="50" height="30" fill="#0a0a0a" opacity="0.2"/>
-                            <rect x="30" y="30" width="20" height="3" fill="#c9a961" opacity="0.8"/>
-                            <rect x="30" y="36" width="40" height="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="30" y="40" width="40" height="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="30" y="44" width="30" height="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="47" y="60" width="6" height="15" fill="#c9a961" opacity="0.8"/>
-                            <rect x="35" y="75" width="30" height="4" rx="2" fill="#c9a961" opacity="0.8"/>
-                            <rect x="25" y="82" width="50" height="12" rx="2" fill="#d4c4b0" opacity="0.6"/>
-                            <rect x="28" y="85" width="44" height="6" fill="#c9a961" opacity="0.3"/>
-                            <circle cx="85" cy="15" r="8" fill="none" stroke="#c9a961" stroke-width="2" opacity="0.8">
+                            <rect x="25" y="25" width="50" height="30" fill="#003c71" opacity="0.2"/>
+                            <rect x="30" y="30" width="20" height="3" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="30" y="36" width="40" height="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="30" y="40" width="40" height="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="30" y="44" width="30" height="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="47" y="60" width="6" height="15" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="35" y="75" width="30" height="4" rx="2" fill="#ffc72c" opacity="0.8"/>
+                            <rect x="25" y="82" width="50" height="12" rx="2" fill="#ffe380" opacity="0.6"/>
+                            <rect x="28" y="85" width="44" height="6" fill="#ffc72c" opacity="0.3"/>
+                            <circle cx="85" cy="15" r="8" fill="none" stroke="#ffc72c" stroke-width="2" opacity="0.8">
                                 <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
                             </circle>
-                            <path d="M82 15 L85 15 L85 18" stroke="#c9a961" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            <path d="M82 15 L85 15 L85 18" stroke="#ffc72c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3 class="featured-title">24-Hour Business Center</h3>
@@ -1227,7 +1145,7 @@ cursor: pointer;
                         <div class="amenity-icon-small">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round"/></svg>
                         </div>
-                        <span class="amenity-name">24-Hour Front Desk</span>
+                        <span class="amenity-name">24/7 Virtual Front Desk</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
@@ -1272,19 +1190,19 @@ cursor: pointer;
                 <div class="amenity-grid">
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/><rect x="6" y="11" width="12" height="6" fill="#c9a961" opacity="0.3"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" stroke-width="2"/><rect x="6" y="11" width="12" height="6" fill="#ffc72c" opacity="0.3"/></svg>
                         </div>
                         <span class="amenity-name">Flat Screen Television</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><path d="M18 2H6v7h12V2z" stroke-width="2"/><path d="M12 9v13" stroke-width="2"/><circle cx="12" cy="15" r="2" fill="#c9a961"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M18 2H6v7h12V2z" stroke-width="2"/><path d="M12 9v13" stroke-width="2"/><circle cx="12" cy="15" r="2" fill="#ffc72c"/></svg>
                         </div>
                         <span class="amenity-name">Refrigerator</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="1" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="2"/><circle cx="12" cy="14" r="2" fill="#c9a961" opacity="0.6"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="1" stroke-width="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="2"/><circle cx="12" cy="14" r="2" fill="#ffc72c" opacity="0.6"/></svg>
                         </div>
                         <span class="amenity-name">Microwave</span>
                     </div>
@@ -1390,31 +1308,31 @@ cursor: pointer;
                 <div class="amenity-grid">
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2" stroke-width="2"/><circle cx="7.5" cy="18" r="1.5" fill="#c9a961"/><circle cx="16.5" cy="18" r="1.5" fill="#c9a961"/><path d="M5 12h14" stroke-width="2"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2" stroke-width="2"/><circle cx="7.5" cy="18" r="1.5" fill="#ffc72c"/><circle cx="16.5" cy="18" r="1.5" fill="#ffc72c"/><path d="M5 12h14" stroke-width="2"/></svg>
                         </div>
                         <span class="amenity-name">Free Parking</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="1" y="6" width="22" height="12" rx="2" stroke-width="2"/><circle cx="6" cy="15" r="2" fill="#c9a961"/><circle cx="18" cy="15" r="2" fill="#c9a961"/><path d="M6 6v-2" stroke-width="2"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="1" y="6" width="22" height="12" rx="2" stroke-width="2"/><circle cx="6" cy="15" r="2" fill="#ffc72c"/><circle cx="18" cy="15" r="2" fill="#ffc72c"/><path d="M6 6v-2" stroke-width="2"/></svg>
                         </div>
                         <span class="amenity-name">Bus Parking</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><path d="M1 10h6v11H1z" stroke-width="2"/><path d="M7 10h14l2 3v8h-2" stroke-width="2"/><circle cx="10" cy="19" r="2" fill="#c9a961"/><circle cx="19" cy="19" r="2" fill="#c9a961"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M1 10h6v11H1z" stroke-width="2"/><path d="M7 10h14l2 3v8h-2" stroke-width="2"/><circle cx="10" cy="19" r="2" fill="#ffc72c"/><circle cx="19" cy="19" r="2" fill="#ffc72c"/></svg>
                         </div>
                         <span class="amenity-name">Truck Parking</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="9" width="13" height="10" rx="2" stroke-width="2"/><path d="M16 11h4l2 2v6" stroke-width="2"/><circle cx="7" cy="20" r="1.5" fill="#c9a961"/><circle cx="20" cy="20" r="1.5" fill="#c9a961"/><path d="M8 9V6" stroke-width="2"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="3" y="9" width="13" height="10" rx="2" stroke-width="2"/><path d="M16 11h4l2 2v6" stroke-width="2"/><circle cx="7" cy="20" r="1.5" fill="#ffc72c"/><circle cx="20" cy="20" r="1.5" fill="#ffc72c"/><path d="M8 9V6" stroke-width="2"/></svg>
                         </div>
                         <span class="amenity-name">RV Parking</span>
                     </div>
                     <div class="amenity-item">
                         <div class="amenity-icon-small">
-                            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="8" rx="1" stroke-width="2"/><path d="M9 11V9" stroke-width="2"/><path d="M15 11V9" stroke-width="2"/><circle cx="8" cy="19" r="1" fill="#c9a961"/><circle cx="16" cy="19" r="1" fill="#c9a961"/></svg>
+                            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="8" rx="1" stroke-width="2"/><path d="M9 11V9" stroke-width="2"/><path d="M15 11V9" stroke-width="2"/><circle cx="8" cy="19" r="1" fill="#ffc72c"/><circle cx="16" cy="19" r="1" fill="#ffc72c"/></svg>
                         </div>
                         <span class="amenity-name">Trailer Parking</span>
                     </div>
@@ -1437,14 +1355,13 @@ cursor: pointer;
                 <p class="accessibility-subtitle">Committed to providing comfortable accommodations for all guests</p>
             </div>
             <div class="accessibility-grid">
-                                <div class="accessibility-item">
+                <div class="accessibility-item">
                     <div class="accessibility-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <circle cx="12" cy="9" r="2"/>
                             <path d="M12 11v3"/>
                             <path d="M8 17l2-2 2 2 2-2 2 2"/>
-                            <path d="M16 17l2-2 2 2"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Wheelchair Accessible per ADA Standards</span>
@@ -1455,9 +1372,6 @@ cursor: pointer;
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                             <polyline points="9 22 9 12 15 12 15 22"/>
                             <rect x="8" y="10" width="8" height="8" rx="1"/>
-                            <path d="M10 12h4"/>
-                            <path d="M10 15h3"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Accessible Guest Rooms with 32" Clear Width Doorways</span>
@@ -1469,9 +1383,6 @@ cursor: pointer;
                             <line x1="9" y1="9" x2="15" y2="9"/>
                             <line x1="9" y1="13" x2="15" y2="13"/>
                             <line x1="9" y1="17" x2="13" y2="17"/>
-                            <circle cx="7" cy="7" r="1" fill="currentColor"/>
-                            <path d="M8 21h8"/>
-                            <path d="M12 17v4"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Accessible Front Desk & Business Center</span>
@@ -1484,10 +1395,6 @@ cursor: pointer;
                             <line x1="17" y1="2" x2="17" y2="7"/>
                             <path d="M8 12h8"/>
                             <path d="M8 16h6"/>
-                            <path d="M8 20h4"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
-                            <path d="M6 21h12"/>
-                            <path d="M12 17v4"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">TVs with Closed Captioning</span>
@@ -1499,10 +1406,6 @@ cursor: pointer;
                             <circle cx="12" cy="7" r="4"/>
                             <path d="M12 11v4"/>
                             <path d="M9 15h6"/>
-                            <path d="M8 19h8"/>
-                            <path d="M12 2v2"/>
-                            <path d="M12 6v2"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Staff Trained in Service to Guests with Disabilities</span>
@@ -1514,12 +1417,6 @@ cursor: pointer;
                             <path d="M14 3h7v7h-7z"/>
                             <path d="M14 14h7v7h-7z"/>
                             <path d="M3 14h7v7H3z"/>
-                            <path d="M10 10h4v4h-4z"/>
-                            <path d="M10 3h4v4h-4z"/>
-                            <path d="M10 17h4v4h-4z"/>
-                            <path d="M3 10h4v4H3z"/>
-                            <path d="M17 10h4v4h-4z"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Accessible Routes Throughout Property</span>
@@ -1532,9 +1429,6 @@ cursor: pointer;
                             <path d="M9 6l6 6"/>
                             <path d="M9 12l6 6"/>
                             <circle cx="12" cy="12" r="3"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
-                            <path d="M8 21h8"/>
-                            <path d="M12 17v4"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Service Animals Welcome</span>
@@ -1547,9 +1441,6 @@ cursor: pointer;
                             <line x1="6" y1="1" x2="6" y2="4"/>
                             <line x1="10" y1="1" x2="10" y2="4"/>
                             <line x1="14" y1="1" x2="14" y2="4"/>
-                            <path d="M8 12h8"/>
-                            <path d="M8 16h6"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Venues Serving Food & Drink are Wheelchair Accessible</span>
@@ -1560,10 +1451,6 @@ cursor: pointer;
                             <path d="M22 12h-4l-3 9H9l-3-9H2"/>
                             <path d="M5 6h14"/>
                             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                            <path d="M12 12v6"/>
-                            <path d="M9 18h6"/>
-                            <circle cx="12" cy="12" r="3"/>
-                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
                         </svg>
                     </div>
                     <span class="accessibility-text">Accessible Pool Area</span>
@@ -1597,7 +1484,7 @@ cursor: pointer;
                 <ul class="footer-links">
                     <li><a href="guestrooms.html">63 Guest Rooms</a></li>
                     <li><a href="gallery.html">Photo Gallery</a></li>
-                    <li><a href="#">Free Continental Breakfast</a></li>
+                    <li><a href="#">Free Grab & Go Breakfast</a></li>
                     <li><a href="#">Indoor Heated Pool</a></li>
                     <li><a href="#">Business Center</a></li>
                 </ul>
@@ -1614,7 +1501,7 @@ cursor: pointer;
             <div class="footer-section">
                 <h4>Guest Services</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html#contact">24-Hour Front Desk</a></li>
+                    <li><a href="index.html#contact">24/7 Virtual Front Desk</a></li>
                     <li><a href="#">Express Check-In/Out</a></li>
                     <li><a href="#">Multilingual Staff</a></li>
                     <li><a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank">Make a Reservation</a></li>
@@ -1627,8 +1514,6 @@ cursor: pointer;
     </footer>
 
     <script>
-
-
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -1664,6 +1549,15 @@ cursor: pointer;
                 menuToggle.classList.remove('active');
                 document.body.style.overflow = '';
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // Category Tabs
@@ -1720,7 +1614,6 @@ cursor: pointer;
                 }
             });
         });
-
     </script>
 </body>
 </html>
