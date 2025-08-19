@@ -56,7 +56,7 @@
             line-height: 1.6;
         }
 
-        /* Premium Navigation */
+        /* Premium Navigation - Matching index.html */
         nav {
             position: fixed;
             top: 0;
@@ -98,6 +98,11 @@
             transition: all 0.3s ease;
             font-weight: 700;
             filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.2));
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 4px 20px rgba(255, 199, 44, 0.4));
+            transform: translateY(-1px);
         }
 
         .nav-links {
@@ -1030,7 +1035,7 @@
                 <li><a href="../amenities.html" class="nav-link">Amenities</a></li>
                 <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
                 <li><a href="#" class="nav-link">Hotel Policies</a></li>
-                <li><a href="#" class="nav-link">FAQ</a></li>
+                                        <li><a href="#" class="nav-link">Reviews</a></li>
                 <li><a href="#" class="nav-link">Specials</a></li>
                 <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
             </ul>
@@ -1058,7 +1063,7 @@
     <section class="room-hero">
         <div class="room-hero-container">
             <div class="room-image-showcase">
-                <img src="../Images/index/card2.avif" alt="1 King Bed Accessible Room" class="room-main-image">
+                <img src="../Images/guestrooms/card8.avif" alt="1 King Bed Accessible Room" class="room-main-image">
                 <div class="image-badge">
                     <svg class="accessible-icon" viewBox="0 0 24 24">
                         <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
@@ -1479,7 +1484,7 @@
                     <!-- Room 1 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-non-smoking.jpg" alt="1 King Bed Non-Smoking">
+                            <img src="../Images/guestrooms/card6.avif" alt="1 King Bed Non-Smoking">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Non-Smoking</h3>
@@ -1490,7 +1495,7 @@
                     <!-- Room 2 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-smoking.jpg" alt="1 King Bed Smoking">
+                            <img src="../Images/guestrooms/card1.avif" alt="1 King Bed Smoking">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Smoking</h3>
@@ -1501,7 +1506,7 @@
                     <!-- Room 3 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-second-floor.jpg" alt="1 King Bed Second Floor">
+                            <img src="../Images/guestrooms/card5.avif" alt="1 King Bed Second Floor">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Second Floor</h3>
@@ -1512,7 +1517,7 @@
                     <!-- Room 4 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/queen-second-floor.jpg" alt="1 Queen Bed Second Floor">
+                            <img src="../Images/guestrooms/card3.avif" alt="1 Queen Bed Second Floor">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 Queen Bed, Second Floor</h3>
@@ -1523,7 +1528,7 @@
                     <!-- Room 5 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/queen-double.jpg" alt="2 Queen Beds">
+                            <img src="../Images/guestrooms/card7.avif" alt="2 Queen Beds">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">2 Queen Beds, Second Floor</h3>
@@ -1634,6 +1639,43 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                setTimeout(() => navLinks.classList.add('visible'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                navLinks.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
             });
         });
 

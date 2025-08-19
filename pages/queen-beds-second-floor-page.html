@@ -966,7 +966,7 @@
                 <li><a href="../amenities.html" class="nav-link">Amenities</a></li>
                 <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
                 <li><a href="#" class="nav-link">Hotel Policies</a></li>
-                <li><a href="#" class="nav-link">FAQ</a></li>
+                                        <li><a href="#" class="nav-link">Reviews</a></li>
                 <li><a href="#" class="nav-link">Specials</a></li>
                 <li><button class="book-now" onclick="window.open('https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview', '_blank')">Book Now</button></li>
             </ul>
@@ -994,7 +994,7 @@
     <section class="room-hero">
         <div class="room-hero-container">
             <div class="room-image-showcase">
-                <img src="../Images/index/card4.avif" alt="2 Queen Beds Second Floor Room" class="room-main-image">
+                <img src="../Images/guestrooms/card7.avif" alt="2 Queen Beds Second Floor Room" class="room-main-image">
                 <div class="image-badge">
                     <svg class="non-smoking-icon" viewBox="0 0 24 24">
                         <path d="M2 5.27L3.28 4 20 20.72 18.73 22l-7-7H2v-3h7.73L2 4.27M20.5 13H22v3h-1.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5M18 13h1.5v3H18v-3m.85-8.12c.62-.61 1-1.45 1-2.38h-1.5c0 1.02-.83 1.85-1.85 1.85v1.5c2.24 0 4 1.83 4 4.07V12H22V9.76c0-2.22-1.28-4.14-3.15-5.03m-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75V2.1c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V12H19.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
@@ -1286,7 +1286,7 @@
                     <!-- Room 1 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-non-smoking.jpg" alt="1 King Bed Non-Smoking">
+                            <img src="../Images/guestrooms/card6.avif" alt="1 King Bed Non-Smoking">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Non-Smoking</h3>
@@ -1297,7 +1297,7 @@
                     <!-- Room 2 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-smoking.jpg" alt="1 King Bed Smoking">
+                            <img src="../Images/guestrooms/card1.avif" alt="1 King Bed Smoking">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Smoking</h3>
@@ -1308,7 +1308,7 @@
                     <!-- Room 3 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-second-floor.jpg" alt="1 King Bed Second Floor">
+                            <img src="../Images/guestrooms/card5.avif" alt="1 King Bed Second Floor">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Second Floor</h3>
@@ -1319,7 +1319,7 @@
                     <!-- Room 4 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/queen-second-floor.jpg" alt="1 Queen Bed Second Floor">
+                            <img src="../Images/guestrooms/card3.avif" alt="1 Queen Bed Second Floor">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 Queen Bed, Second Floor</h3>
@@ -1330,7 +1330,7 @@
                     <!-- Room 5 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
-                            <img src="Images/gallery/king-accessible.jpg" alt="1 King Bed Accessible">
+                            <img src="../Images/guestrooms/card2.avif" alt="1 King Bed Accessible">
                         </div>
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Accessible</h3>
@@ -1441,6 +1441,43 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                setTimeout(() => navLinks.classList.add('visible'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                navLinks.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active', 'visible');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
             });
         });
 
