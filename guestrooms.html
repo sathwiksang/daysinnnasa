@@ -538,6 +538,23 @@
             border-radius: 3px;
         }
 
+        .floor-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.9) 0%, rgba(0, 36, 73, 0.9) 100%);
+            color: var(--brand-yellow);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 36, 73, 0.4);
+            border-radius: 3px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 199, 44, 0.3);
+        }
+
         .room-details {
             padding: 2.5rem;
             display: flex;
@@ -1035,10 +1052,13 @@
             </div>
 
             <div class="rooms-grid">
-                <!-- Room 1: King Bed Smoking -->
+                <!-- 1st Floor Rooms -->
+                
+                <!-- Room 1: King Bed Smoking (1st Floor) -->
                 <div class="room-card" data-category="king" id="room-king-smoking">
                     <div class="room-image-container">
                         <img src="Images/guestrooms/card1.avif" alt="1 King Bed Smoking Room with LVP Flooring" class="room-img">
+                        <span class="floor-badge">1st Floor</span>
                         <span class="room-badge">Smoking</span>
                     </div>
                     <div class="room-details">
@@ -1071,10 +1091,11 @@
                     </div>
                 </div>
 
-                <!-- Room 5b: 2 Queen Beds First Floor Non-Smoking -->
+                <!-- Room 2: 2 Queen Beds, First Floor, Non-Smoking (1st Floor) -->
                 <div class="room-card" data-category="queen" id="room-queen-first-floor">
                     <div class="room-image-container">
                         <img src="Images/guestrooms/card2.avif" alt="2 Queen Beds First Floor Non-Smoking Room" class="room-img">
+                        <span class="floor-badge">1st Floor</span>
                         <span class="room-badge">Non-Smoking</span>
                     </div>
                     <div class="room-details">
@@ -1101,106 +1122,11 @@
                     </div>
                 </div>
 
-                <!-- Room 6b: 1 Queen Bed Second Floor Non-Smoking -->
-                <div class="room-card" data-category="queen" id="room-queen-second-floor-single">
-                    <div class="room-image-container">
-                        <img src="Images/guestrooms/card3.avif" alt="1 Queen Bed Second Floor Non-Smoking Room" class="room-img">
-                        <span class="room-badge">Non-Smoking</span>
-                    </div>
-                    <div class="room-details">
-                        <div class="room-category">Queen Room - Second Floor</div>
-                        <h3 class="room-name">1 Queen Bed, Second Floor, Non-Smoking</h3>
-                        <div class="room-occupancy">
-                            <div class="occupancy-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                <span>Up to 2 Adults</span>
-                            </div>
-                        </div>
-                        <p class="room-desc">
-                            Second floor non-smoking room with one Queen bed. Features 40 inch HDTV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
-                        </p>
-                        <div class="room-features">
-                            <div class="room-feature">40" HDTV</div>
-                            <div class="room-feature">Second Floor</div>
-                            <div class="room-feature">Free WiFi</div>
-                        </div>
-                        <div class="room-actions">
-                            <a href="pages/queen-room-second-floor.html" class="room-btn btn-details">See Details</a>
-                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Room 7b: 1 King Bed Studio Suite Non-Smoking -->
-                <div class="room-card" data-category="suite" id="room-king-studio-suite">
-                    <div class="room-image-container">
-                        <img src="Images/guestrooms/card4.avif" alt="1 King Bed Studio Suite Non-Smoking" class="room-img">
-                        <span class="room-badge">Suite</span>
-                    </div>
-                    <div class="room-details">
-                        <div class="room-category">Studio Suite</div>
-                        <h3 class="room-name">1 King Bed, Studio Suite, Second Floor, Non-Smoking</h3>
-                        <div class="room-occupancy">
-                            <div class="occupancy-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                <span>Up to 2 Adults</span>
-                            </div>
-                        </div>
-                        <p class="room-desc">
-                            Spacious non-smoking studio suite with sofa bed, sitting area, and kitchenette. Includes 40 inch HDTV w/HBO, coffee maker, microwave, oven, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
-                        </p>
-                        <div class="room-features">
-                            <div class="room-feature">Kitchenette</div>
-                            <div class="room-feature">Sofa Bed</div>
-                            <div class="room-feature">Indoor Access</div>
-                        </div>
-                        <div class="room-actions">
-                            <a href="pages/king-studio-suite.html" class="room-btn btn-details">See Details</a>
-                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Room 2: King Bed Second Floor Non-Smoking -->
-                <div class="room-card" data-category="king" id="room-king-second-floor">
-                    <div class="room-image-container">
-                        <img src="Images/guestrooms/card5.avif" alt="1 King Bed Second Floor Non-Smoking Room" class="room-img">
-                        <span class="room-badge">Non-Smoking</span>
-                    </div>
-                    <div class="room-details">
-                        <div class="room-category">King Room - Second Floor</div>
-                        <h3 class="room-name">1 King Bed, Second Floor, Non-Smoking</h3>
-                        <div class="room-occupancy">
-                            <div class="occupancy-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                <span>Up to 2 Adults</span>
-                            </div>
-                        </div>
-                        <p class="room-desc">
-                            Second floor air-conditioned room with large and comfortable King bed. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity.
-                        </p>
-                        <div class="room-features">
-                            <div class="room-feature">
-                                40" HDTV
-                            </div>
-                            <div class="room-feature">
-                                Second Floor
-                            </div>
-                            <div class="room-feature">
-                                Ceiling Fan
-                            </div>
-                        </div>
-                        <div class="room-actions">
-                            <a href="pages/king-bed-second-floor-page.html" class="room-btn btn-details">See Details</a>
-                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Room 3: King Bed Non-Smoking -->
+                <!-- Room 3: 1 King Bed, Non-Smoking (1st Floor) -->
                 <div class="room-card" data-category="king" id="room-king-non-smoking">
                     <div class="room-image-container">
                         <img src="Images/guestrooms/card6.avif" alt="1 King Bed Non-Smoking Room with LVP Flooring" class="room-img">
+                        <span class="floor-badge">1st Floor</span>
                         <span class="room-badge">Non-Smoking</span>
                     </div>
                     <div class="room-details">
@@ -1233,49 +1159,11 @@
                     </div>
                 </div>
 
-                <!-- Additional rooms continue with same structure... -->
-                <!-- I'll include a few more for completeness -->
-
-                <!-- Room 4: 2 Queen Beds Second Floor -->
-                <div class="room-card" data-category="queen" id="room-queen-second-floor">
-                    <div class="room-image-container">
-                        <img src="Images/guestrooms/card7.avif" alt="2 Queen Beds Second Floor Non-Smoking Room" class="room-img">
-                        <span class="room-badge">Non-Smoking</span>
-                    </div>
-                    <div class="room-details">
-                        <div class="room-category">Double Queen - Second Floor</div>
-                        <h3 class="room-name">2 Queen Beds, Second Floor, Non-Smoking</h3>
-                        <div class="room-occupancy">
-                            <div class="occupancy-icon">
-                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                <span>Up to 4 Adults</span>
-                            </div>
-                        </div>
-                        <p class="room-desc">
-                            Second floor air-conditioned room with two Queen beds that can easily accommodate up to four adults. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included.
-                        </p>
-                        <div class="room-features">
-                            <div class="room-feature">
-                                40" HDTV
-                            </div>
-                            <div class="room-feature">
-                                Second Floor
-                            </div>
-                            <div class="room-feature">
-                                Family Room
-                            </div>
-                        </div>
-                        <div class="room-actions">
-                            <a href="pages/queen-beds-second-floor-page.html" class="room-btn btn-details">See Details</a>
-                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Room 8: King Accessible -->
+                <!-- Room 4: 1 King Bed, Accessible (1st Floor) -->
                 <div class="room-card" data-category="accessible king" id="room-king-accessible">
                     <div class="room-image-container">
                         <img src="Images/guestrooms/card8.avif" alt="1 King Bed Accessible Room" class="room-img">
+                        <span class="floor-badge">1st Floor</span>
                         <span class="room-badge">Accessible</span>
                     </div>
                     <div class="room-details">
@@ -1303,6 +1191,144 @@
                         </div>
                         <div class="room-actions">
                             <a href="pages/king-bed-accessible-page.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd Floor Rooms -->
+                
+                <!-- Room 5: 1 Queen Bed, Second Floor, Non-Smoking (2nd Floor) -->
+                <div class="room-card" data-category="queen" id="room-queen-second-floor-single">
+                    <div class="room-image-container">
+                        <img src="Images/guestrooms/card3.avif" alt="1 Queen Bed Second Floor Non-Smoking Room" class="room-img">
+                        <span class="floor-badge">2nd Floor</span>
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Queen Room - Second Floor</div>
+                        <h3 class="room-name">1 Queen Bed, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor non-smoking room with one Queen bed. Features 40 inch HDTV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">40" HDTV</div>
+                            <div class="room-feature">Second Floor</div>
+                            <div class="room-feature">Free WiFi</div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/queen-room-second-floor.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 6: 1 King Bed, Studio Suite, Second Floor, Non-Smoking (2nd Floor) -->
+                <div class="room-card" data-category="suite" id="room-king-studio-suite">
+                    <div class="room-image-container">
+                        <img src="Images/guestrooms/card4.avif" alt="1 King Bed Studio Suite Non-Smoking" class="room-img">
+                        <span class="floor-badge">2nd Floor</span>
+                        <span class="room-badge">Suite</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Studio Suite</div>
+                        <h3 class="room-name">1 King Bed, Studio Suite, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Spacious non-smoking studio suite with sofa bed, sitting area, and kitchenette. Includes 40 inch HDTV w/HBO, coffee maker, microwave, oven, fridge in a wetbar, iron/ironing board, ceiling fan, and work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">Kitchenette</div>
+                            <div class="room-feature">Sofa Bed</div>
+                            <div class="room-feature">Indoor Access</div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/king-studio-suite.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 7: 1 King Bed, Second Floor, Non-Smoking (2nd Floor) -->
+                <div class="room-card" data-category="king" id="room-king-second-floor">
+                    <div class="room-image-container">
+                        <img src="Images/guestrooms/card5.avif" alt="1 King Bed Second Floor Non-Smoking Room" class="room-img">
+                        <span class="floor-badge">2nd Floor</span>
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">King Room - Second Floor</div>
+                        <h3 class="room-name">1 King Bed, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 2 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned room with large and comfortable King bed. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included. Private bath with full tub and granite vanity.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Second Floor
+                            </div>
+                            <div class="room-feature">
+                                Ceiling Fan
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/king-bed-second-floor-page.html" class="room-btn btn-details">See Details</a>
+                            <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room 8: 2 Queen Beds, Second Floor, Non-Smoking (2nd Floor) -->
+                <div class="room-card" data-category="queen" id="room-queen-second-floor">
+                    <div class="room-image-container">
+                        <img src="Images/guestrooms/card7.avif" alt="2 Queen Beds Second Floor Non-Smoking Room" class="room-img">
+                        <span class="floor-badge">2nd Floor</span>
+                        <span class="room-badge">Non-Smoking</span>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-category">Double Queen - Second Floor</div>
+                        <h3 class="room-name">2 Queen Beds, Second Floor, Non-Smoking</h3>
+                        <div class="room-occupancy">
+                            <div class="occupancy-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span>Up to 4 Adults</span>
+                            </div>
+                        </div>
+                        <p class="room-desc">
+                            Second floor air-conditioned room with two Queen beds that can easily accommodate up to four adults. Interior stairs only access. This spacious room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi included.
+                        </p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                40" HDTV
+                            </div>
+                            <div class="room-feature">
+                                Second Floor
+                            </div>
+                            <div class="room-feature">
+                                Family Room
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="pages/queen-beds-second-floor-page.html" class="room-btn btn-details">See Details</a>
                             <a href="https://www.wyndhamhotels.com/days-inn/webster-texas/days-inn-and-suites-nasa-space-center-houston/overview" target="_blank" class="room-btn btn-availability">Book Now</a>
                         </div>
                     </div>
