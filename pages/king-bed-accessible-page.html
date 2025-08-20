@@ -241,8 +241,8 @@
 
         .image-badge {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             color: var(--brand-blue-dark);
             padding: 0.6rem 1.8rem;
@@ -251,10 +251,20 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             box-shadow: 0 6px 20px rgba(255, 199, 44, 0.4);
-            border-radius: 3px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .image-badge {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1.2rem;
+                font-size: 0.7rem;
+            }
         }
 
         .accessible-icon {
@@ -263,26 +273,11 @@
             fill: var(--brand-white);
         }
 
-        .perfect-for-badge {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            background: linear-gradient(135deg, rgba(0, 60, 113, 0.9) 0%, rgba(0, 36, 73, 0.9) 100%);
-            color: var(--brand-yellow);
-            padding: 0.5rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 199, 44, 0.3);
-            border-radius: 3px;
-        }
 
         .ada-certified-badge {
             position: absolute;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
             color: var(--accessible-blue);
             padding: 0.6rem 1.5rem;
@@ -291,10 +286,20 @@
             letter-spacing: 0.05em;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 102, 204, 0.3);
-            border-radius: 3px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .ada-certified-badge {
+                bottom: 1rem;
+                left: 1rem;
+                padding: 0.5rem 1.2rem;
+                font-size: 0.7rem;
+            }
         }
 
         .room-info {
@@ -1171,7 +1176,6 @@
                     </svg>
                     ADA Accessible
                 </div>
-                <div class="perfect-for-badge">Perfect for Couples</div>
                 <div class="ada-certified-badge">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>

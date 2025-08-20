@@ -990,6 +990,122 @@
                 text-align: center;
             }
         }
+
+        /* Extra Small Mobile (320px - iPhone SE and similar) */
+        @media (max-width: 375px) {
+            .rooms-hero {
+                padding-top: 100px;
+                min-height: 90vh;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .hero-content {
+                padding: 4rem 0.5rem 3rem;
+                max-width: 100%;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 0.15em;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 12vw, 3.5rem);
+                line-height: 1.05;
+                margin-bottom: 1.2rem;
+                letter-spacing: -0.01em;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.5;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .room-filters {
+                padding: 1.5rem 0.5rem 0.8rem;
+                top: 50px;
+            }
+
+            .filters-container {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.7rem;
+                min-width: 80px;
+                flex: 1 1 calc(50% - 0.25rem);
+                max-width: calc(50% - 0.25rem);
+            }
+
+            .rooms-section {
+                padding: 2.5rem 0.5rem 4rem;
+            }
+
+            .room-card {
+                max-width: 100%;
+            }
+
+            .room-image-container {
+                height: 200px;
+            }
+
+            .room-info {
+                padding: 1.2rem;
+            }
+
+            .room-type {
+                font-size: 0.75rem;
+            }
+
+            .room-name {
+                font-size: 1.3rem;
+                line-height: 1.2;
+                margin-bottom: 0.8rem;
+            }
+
+            .room-description {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 1rem;
+            }
+
+            .room-features {
+                gap: 0.6rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .feature-item {
+                font-size: 0.8rem;
+            }
+
+            .feature-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .room-cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            nav {
+                padding: 0.6rem 0.8rem;
+            }
+
+            nav.scrolled {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>

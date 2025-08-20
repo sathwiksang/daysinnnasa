@@ -522,6 +522,97 @@
             margin: 0 auto;
         }
 
+        /* Must Know Information Section */
+        .must-know-section {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .must-know-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--error-red) 0%, var(--warning-amber) 100%);
+        }
+
+        .must-know-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .must-know-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--error-red) 0%, var(--warning-amber) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+            animation: pulse 2s ease infinite;
+        }
+
+        .must-know-icon svg {
+            width: 35px;
+            height: 35px;
+            stroke: var(--brand-white);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .must-know-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--brand-blue-dark);
+            font-weight: 600;
+        }
+
+        .must-know-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .must-know-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--brand-white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 36, 73, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .must-know-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 36, 73, 0.1);
+        }
+
+        .must-know-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--warning-amber);
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .must-know-text {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
         /* Policy Cards Grid */
         .policies-grid {
             display: grid;
@@ -550,6 +641,8 @@
         .policy-card:nth-child(4) { animation-delay: 0.4s; }
         .policy-card:nth-child(5) { animation-delay: 0.5s; }
         .policy-card:nth-child(6) { animation-delay: 0.6s; }
+        .policy-card:nth-child(7) { animation-delay: 0.7s; }
+        .policy-card:nth-child(8) { animation-delay: 0.8s; }
 
         .policy-card::before {
             content: '';
@@ -748,6 +841,85 @@
             width: 20px;
             height: 20px;
             stroke: var(--brand-yellow);
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* COVID-19 Notice Section */
+        .covid-notice {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .covid-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .covid-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--info-blue) 0%, var(--success-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .covid-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--brand-white);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .covid-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--brand-blue-dark);
+            font-weight: 600;
+        }
+
+        .covid-content {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .covid-list {
+            list-style: none;
+            margin-top: 1.5rem;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .covid-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.8rem;
+            background: var(--brand-white);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .covid-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        .covid-list svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--info-blue);
             fill: none;
             flex-shrink: 0;
             margin-top: 2px;
@@ -997,6 +1169,10 @@
                 padding: 3rem 1rem 5rem;
             }
 
+            .must-know-section {
+                padding: 2rem 1.5rem;
+            }
+
             .policies-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1012,6 +1188,10 @@
 
             .notice-list {
                 grid-template-columns: 1fr;
+            }
+
+            .covid-notice {
+                padding: 2rem 1.5rem;
             }
 
             .links-container {
@@ -1063,6 +1243,10 @@
                 padding: 0 0.3rem;
             }
 
+            .must-know-section {
+                padding: 1.5rem 1rem;
+            }
+
             .policy-header {
                 flex-direction: column;
                 text-align: center;
@@ -1070,6 +1254,10 @@
 
             .policy-icon {
                 margin: 0 auto;
+            }
+
+            .covid-notice {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -1124,7 +1312,7 @@
                     </svg>
                 </div>
                 <div class="info-label">Check-In Time</div>
-                <div class="info-value">3:00 PM</div>
+                <div class="info-value">3:00 PM - 11:00 PM</div>
             </div>
             <div class="info-item">
                 <div class="info-icon">
@@ -1144,7 +1332,7 @@
                     </svg>
                 </div>
                 <div class="info-label">Children Policy</div>
-                <div class="info-value">17 & Under Free</div>
+                <div class="info-value">All Ages Welcome</div>
             </div>
             <div class="info-item">
                 <div class="info-icon">
@@ -1153,8 +1341,8 @@
                         <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11"></path>
                     </svg>
                 </div>
-                <div class="info-label">Security Deposit</div>
-                <div class="info-value">$100 USD</div>
+                <div class="info-label">Age Restriction</div>
+                <div class="info-value">Min. 25 Years</div>
             </div>
         </div>
     </section>
@@ -1162,6 +1350,46 @@
     <!-- Policies Section -->
     <section class="policies-section">
         <div class="policies-container">
+            <!-- Must Know Information Section -->
+            <div class="must-know-section">
+                <div class="must-know-header">
+                    <div class="must-know-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="16"></line>
+                            <line x1="12" y1="8" x2="12" y2="8"></line>
+                        </svg>
+                    </div>
+                    <h2 class="must-know-title">Must-Know Information</h2>
+                </div>
+                <ul class="must-know-list">
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text">All guests under 21 years checking in without an adult will be charged a <strong>refundable cash deposit</strong></span>
+                    </li>
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text">Guests residing within 50 miles of the property will be charged a <strong>refundable cash deposit of $100 USD</strong></span>
+                    </li>
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text">All guests must check in by <strong>midnight</strong> - Please inform us of late arrival in advance</span>
+                    </li>
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text"><strong>Indoor pool and guest laundry are temporarily closed</strong> due to damages from the URI freeze</span>
+                    </li>
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text">Photo ID and credit card are <strong>required at check-in</strong> for all guests</span>
+                    </li>
+                    <li class="must-know-item">
+                        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                        <span class="must-know-text">Please inform us of your expected arrival time in advance using the Special Requests box when booking</span>
+                    </li>
+                </ul>
+            </div>
+
             <!-- Policy Cards Grid -->
             <div class="policies-grid">
                 <!-- Check-In Policy -->
@@ -1179,7 +1407,7 @@
                         <h3 class="policy-title">Check-In Policy</h3>
                     </div>
                     <div class="policy-content">
-                        Check-in begins at <span class="policy-highlight">3:00 PM</span>. Early check-in may be available upon request, subject to room availability. Valid photo identification and credit card are required at check-in for incidentals.
+                        Check-in time is from <span class="policy-highlight">3:00 PM to 11:00 PM</span>. Guests must show photo ID and credit card at check-in. Please notify the property of your arrival time in advance. Late arrivals after 11:00 PM must be arranged prior to arrival.
                     </div>
                 </div>
 
@@ -1211,10 +1439,10 @@
                                 <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"></path>
                             </svg>
                         </div>
-                        <h3 class="policy-title">Children Stay Free</h3>
+                        <h3 class="policy-title">Children & Beds</h3>
                     </div>
                     <div class="policy-content">
-                        Children <span class="policy-highlight">17 years and under</span> stay free when sharing the room with parents or guardians. Maximum occupancy limits apply. Cribs are available upon request at no additional charge.
+                        Children of <span class="policy-highlight">all ages are welcome</span>. Children 18 and above will be charged as adults at this property. Cribs and extra beds are not available. Please add the number and ages of children when booking for correct pricing.
                     </div>
                 </div>
 
@@ -1230,10 +1458,10 @@
                                 <path d="M17.34 14C17.34 14 16 19 12 19C8 19 6.66 14 6.66 14C5.6 14 4.74 14.84 4.74 15.9C4.74 18.14 7.36 21 12 21C16.64 21 19.26 18.14 19.26 15.9C19.26 14.84 18.4 14 17.34 14Z"></path>
                             </svg>
                         </div>
-                        <h3 class="policy-title">Pet & Service Animal</h3>
+                        <h3 class="policy-title">Pet Policy</h3>
                     </div>
                     <div class="policy-content">
-                        <span class="policy-highlight">ADA defined service animals</span> are welcome at our hotel. We regret that no other pets are allowed to ensure the comfort and safety of all our guests.
+                        <span class="policy-highlight">Pets are not allowed</span> at this property. We regret any inconvenience this may cause. Service animals as defined by the ADA are always welcome.
                     </div>
                 </div>
 
@@ -1251,7 +1479,7 @@
                         <h3 class="policy-title">Smoking Policy</h3>
                     </div>
                     <div class="policy-content">
-                        Smoking is permitted at this hotel in <span class="policy-highlight">designated areas</span>. Please select your room preference when booking. A cleaning fee will apply for smoking in non-smoking rooms.
+                        Smoking is permitted in <span class="policy-highlight">designated areas</span>. Please select your room preference when booking. A cleaning fee will apply for smoking in non-smoking rooms.
                     </div>
                 </div>
 
@@ -1267,10 +1495,46 @@
                                 <line x1="9" y1="16" x2="15" y2="16"></line>
                             </svg>
                         </div>
-                        <h3 class="policy-title">Cancellation Policy</h3>
+                        <h3 class="policy-title">Cancellation/Prepayment</h3>
                     </div>
                     <div class="policy-content">
-                        Reservations may be cancelled up to <span class="policy-highlight">24 hours</span> before arrival without penalty. Cancellations within 24 hours or no-shows will be charged one night's room rate plus tax.
+                        Cancellation and prepayment policies <span class="policy-highlight">vary by accommodation type</span>. Please check the conditions of your selected option when booking. Enter your stay dates to see specific terms.
+                    </div>
+                </div>
+
+                <!-- Age Restriction -->
+                <div class="policy-card">
+                    <div class="policy-header">
+                        <div class="policy-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <line x1="20" y1="8" x2="20" y2="14"></line>
+                                <line x1="23" y1="11" x2="17" y2="11"></line>
+                            </svg>
+                        </div>
+                        <h3 class="policy-title">Age Restriction</h3>
+                    </div>
+                    <div class="policy-content">
+                        The minimum age for check-in is <span class="policy-highlight">25 years</span>. Valid government-issued photo identification is required for all guests at check-in.
+                    </div>
+                </div>
+
+                <!-- Group Bookings -->
+                <div class="policy-card">
+                    <div class="policy-header">
+                        <div class="policy-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"></path>
+                                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"></path>
+                            </svg>
+                        </div>
+                        <h3 class="policy-title">Group Bookings</h3>
+                    </div>
+                    <div class="policy-content">
+                        When booking <span class="policy-highlight">more than 9 rooms</span>, different policies and additional fees may apply. Please contact the property directly for group reservations and special arrangements.
                     </div>
                 </div>
             </div>
@@ -1296,15 +1560,7 @@
                         </li>
                         <li>
                             <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
-                            <span>Refundable cash deposit of $100 USD required at check-in</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
-                            <span>Deposit applies to guests under 25 years of age</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
-                            <span>Local guests within 50-miles require security deposit</span>
+                            <span>Security deposits required: Cash deposit of $100 USD for guests under 25 or living within 50 miles</span>
                         </li>
                         <li>
                             <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
@@ -1313,6 +1569,58 @@
                         <li>
                             <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
                             <span>Express check-in/out available for your convenience</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Special requests are subject to availability and may incur additional charges</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>We take special requests - add them in the next booking step!</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- COVID-19 Notice -->
+            <div class="covid-notice">
+                <div class="covid-header">
+                    <div class="covid-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L12 6"></path>
+                            <path d="M12 18L12 22"></path>
+                            <path d="M4.93 4.93L7.76 7.76"></path>
+                            <path d="M16.24 16.24L19.07 19.07"></path>
+                            <path d="M2 12L6 12"></path>
+                            <path d="M18 12L22 12"></path>
+                            <path d="M4.93 19.07L7.76 16.24"></path>
+                            <path d="M16.24 7.76L19.07 4.93"></path>
+                        </svg>
+                    </div>
+                    <h3 class="covid-title">COVID-19 Safety Measures</h3>
+                </div>
+                <div class="covid-content">
+                    <p>In response to COVID-19, we have implemented additional safety and sanitation measures:</p>
+                    <ul class="covid-list">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Enhanced cleaning and sanitation protocols are in effect throughout the property</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Food and beverage services may be limited or unavailable</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Reception and service hours may be reduced</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Spa and gym facilities are currently unavailable</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline></svg>
+                            <span>Certain services and amenities may be reduced or unavailable</span>
                         </li>
                     </ul>
                 </div>

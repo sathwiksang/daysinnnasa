@@ -238,8 +238,8 @@
 
         .image-badge {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             color: var(--brand-blue-dark);
             padding: 0.6rem 1.8rem;
@@ -248,10 +248,20 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             box-shadow: 0 6px 20px rgba(255, 199, 44, 0.4);
-            border-radius: 3px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .image-badge {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1.2rem;
+                font-size: 0.7rem;
+            }
         }
 
         .non-smoking-icon {
@@ -260,26 +270,11 @@
             fill: var(--brand-white);
         }
 
-        .perfect-for-badge {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            background: linear-gradient(135deg, rgba(0, 60, 113, 0.9) 0%, rgba(0, 36, 73, 0.9) 100%);
-            color: var(--brand-yellow);
-            padding: 0.5rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 199, 44, 0.3);
-            border-radius: 3px;
-        }
 
         .floor-indicator {
             position: absolute;
-            bottom: 2rem;
-            left: 2rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
             color: var(--brand-blue-dark);
             padding: 0.6rem 1.5rem;
@@ -288,29 +283,22 @@
             letter-spacing: 0.05em;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 60, 113, 0.2);
-            border-radius: 3px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 10;
         }
 
-        .stairs-notice {
-            position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, rgba(255, 199, 44, 0.95) 0%, rgba(255, 221, 0, 0.9) 100%);
-            color: var(--brand-blue-dark);
-            padding: 0.6rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 199, 44, 0.3);
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        @media (max-width: 768px) {
+            .floor-indicator {
+                bottom: 1rem;
+                left: 1rem;
+                padding: 0.5rem 1.2rem;
+                font-size: 0.7rem;
+            }
         }
+
 
         .room-info {
             padding: 2rem;
@@ -1102,18 +1090,11 @@
                     </svg>
                     Non-Smoking
                 </div>
-                <div class="perfect-for-badge">Perfect for Families</div>
                 <div class="floor-indicator">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M15 20v-8H9v8H4v-9l8-7 8 7v9h-5z"/>
                     </svg>
                     2nd Floor
-                </div>
-                <div class="stairs-notice">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M4 21h1.5v-3h2v-1.5h-2v-2h2V13h-2v-2h2V9.5h-2v-2h2V6h-2V3H4v18m5-18v1.5h2v2h-2V9h2v2h-2v1.5h2v2h-2V16h2v2h-2v3h1.5V3H9m6 0h-1.5v3h-2v1.5h2v2h-2V11h2v2h-2v1.5h2v2h-2V18h2v3H15V3z"/>
-                    </svg>
-                    Interior Stairs Only
                 </div>
             </div>
             <div class="room-info">
