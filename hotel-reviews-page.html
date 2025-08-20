@@ -378,6 +378,12 @@
         .star-icon:nth-child(4) { animation-delay: 0.6s; }
         .star-icon:nth-child(5) { animation-delay: 0.8s; }
 
+        .star-icon.half-star {
+            fill: var(--brand-yellow);
+            opacity: 0.5;
+            filter: drop-shadow(0 2px 10px rgba(255, 199, 44, 0.15));
+        }
+
         @keyframes star-pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -1116,13 +1122,13 @@
         </div>
         <div class="hero-content">
             <div class="rating-display">
-                <div class="rating-number">4.8</div>
+                <div class="rating-number">4.3</div>
                 <div class="stars-container">
                     <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg class="star-icon half-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 </div>
             </div>
             <div class="hero-subtitle">What Our Guests Say</div>
@@ -1151,7 +1157,7 @@
                         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                     </svg>
                 </div>
-                <div class="stat-number">500+</div>
+                <div class="stat-number">865</div>
                 <div class="stat-label">Total Reviews</div>
             </div>
             <div class="stat-card">
@@ -1171,7 +1177,7 @@
                         <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69365 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69365 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22249 22.4518 8.5C22.4518 7.77751 22.3095 7.0621 22.0329 6.39464C21.7563 5.72718 21.351 5.12075 20.84 4.61Z"/>
                     </svg>
                 </div>
-                <div class="stat-number">4.8/5</div>
+                <div class="stat-number">4.3/5</div>
                 <div class="stat-label">Average Rating</div>
             </div>
             <div class="stat-card">
@@ -1203,10 +1209,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">JD</div>
+                            <div class="reviewer-avatar">SL</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">John Davidson</div>
-                                <div class="review-date">2 weeks ago</div>
+                                <div class="reviewer-name">Sheri Lanik</div>
+                                <div class="review-date">3 months ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1214,11 +1220,11 @@
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         </div>
                     </div>
                     <div class="review-text">
-                        "Excellent location near NASA Space Center! The rooms were clean and spacious, and the staff was incredibly helpful. The indoor pool was a great addition for the kids. Highly recommend for families visiting the area."
+                        "The staff was great, easy check in. Parts of the room definitely showed it's age, but was clean with a comfortable bed. The price was affordable and easy to find. We only stayed one night. Check in was easy, the location was great, close to different places to eat and although they did not have an EV charge station there for us to use, there were options close by. The bed was very comfortable. In the morning when we were getting ready to leave we found that the shower did not work, that was disappointing because although the room was clean you could definitely see the age the place and I was less than thrilled about having to take a bath over a shower. The 'breakfast' was not really a breakfast, but just yogurt, packaged powdered donuts, granola bars, coffee and juices."
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
@@ -1235,10 +1241,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">SM</div>
+                            <div class="reviewer-avatar">CE</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">Sarah Martinez</div>
-                                <div class="review-date">1 month ago</div>
+                                <div class="reviewer-name">Cynthia Engledow</div>
+                                <div class="review-date">a month ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1250,7 +1256,7 @@
                         </div>
                     </div>
                     <div class="review-text">
-                        "Great value for money! The grab & go breakfast was perfect for our early morning start to NASA. Room was comfortable and the 24/7 virtual front desk made check-in super easy. Will definitely stay here again!"
+                        "This hotel is one of the best in the area. Staff and personnel are great! This is the 2nd time staying here. It is clean and well maintained. We stayed here for my husband to go to a water class the first time. Liked it so well we are staying here for our anniversary. We will definitely come here again! Close to NASA and other attraction in the area. Not far from Galveston and much cheaper than Galveston! Quieter than others in the area. Can't say enough about it. Check in was easy with a kiosk. Clerks are still in duty if you need assistance!"
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
@@ -1267,10 +1273,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">RJ</div>
+                            <div class="reviewer-avatar">IV</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">Robert Johnson</div>
-                                <div class="review-date">1 month ago</div>
+                                <div class="reviewer-name">Isabel Vazquez</div>
+                                <div class="review-date">a month ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1282,7 +1288,7 @@
                         </div>
                     </div>
                     <div class="review-text">
-                        "Good location for business travel. Close to many corporate offices and only 20 minutes from downtown Houston. The business center was helpful for printing documents. Rooms could use some updating but overall a solid choice."
+                        "Big rooms, Family friendly, Kids loved the pool! Location like 40min from The beach. clean Area. Staff, Everyone was really nice! Only thing we would say was More breakfast options should be available. They Only had Powdered donuts, Granola bars, Nd Yogurt As an option when we stayd. Close by Free Parking. Fun things to do in the area and Good food."
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
@@ -1299,10 +1305,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">ET</div>
+                            <div class="reviewer-avatar">MG</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">Emily Thompson</div>
-                                <div class="review-date">2 months ago</div>
+                                <div class="reviewer-name">Mary Garza</div>
+                                <div class="review-date">a month ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1314,7 +1320,7 @@
                         </div>
                     </div>
                     <div class="review-text">
-                        "Perfect for our family trip to Space Center Houston! The kids loved the pool and the location couldn't be better - just minutes from NASA. Staff was friendly and accommodating. Free parking was a huge plus!"
+                        "Stay was great. Person at reception during check in went above and beyond. Service was great. Room was very clean. Indoor pool was amazing. Chemicals were not strong and water was at a perfect room temperature. Defenitely will stay here again when in the area."
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
@@ -1331,10 +1337,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">MW</div>
+                            <div class="reviewer-avatar">NW</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">Michael Wilson</div>
-                                <div class="review-date">3 months ago</div>
+                                <div class="reviewer-name">Nicole Welch</div>
+                                <div class="review-date">2 months ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1346,7 +1352,7 @@
                         </div>
                     </div>
                     <div class="review-text">
-                        "Outstanding service and cleanliness! The virtual front desk system works great and saved us time. Close to Kemah Boardwalk and many restaurants. The indoor heated pool was clean and well-maintained. Highly recommend!"
+                        "This is a hard review, and here is why. Everything went great, and some things are just what they are because of the setup. Lets start with the great: Staff was on point all the way from front desk (wish I got his name but seems very invested in this operation), rooms were very clean (I left a tip because i love a clean room), it was quite, and best of all the A/C worked amazingly with an added fan bonus..he was cold so that means I was comfortable 😄...Only downfall is no elevator, we were on second floor with big heavy luggage, but the staff helped us get it upstairs. All the furniture is modern and updated, the 'older' place still shows, but again the place did exactly what I look for a comfortable night stay and the price I think reflects those certain things that aren't necessarily on the operation stand point. Price was on point for this location. If they upgraded the elevator situation and maybe upgrading some of the hard fixtures, eventually they could up their prices. 👍"
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
@@ -1363,10 +1369,10 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <div class="reviewer-avatar">LC</div>
+                            <div class="reviewer-avatar">JG</div>
                             <div class="reviewer-details">
-                                <div class="reviewer-name">Lisa Chen</div>
-                                <div class="review-date">3 months ago</div>
+                                <div class="reviewer-name">Jason Gonzalez</div>
+                                <div class="review-date">2 months ago</div>
                             </div>
                         </div>
                         <div class="review-rating">
@@ -1374,11 +1380,11 @@
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="review-star empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         </div>
                     </div>
                     <div class="review-text">
-                        "Very convenient location for visiting NASA and exploring the Clear Lake area. The grab & go breakfast had good variety. Only minor issue was the hotel has no elevator, but staff helped with luggage."
+                        "Rudy's Customer Service was spectacular. He gave us the best deal in the area. The room was clean, the kids enjoyed the indoor heated pool. Overall our experience was one to make us want to book another trip with them soon. Thank you Rudy for everything."
                     </div>
                     <div class="review-source">
                         <svg class="source-icon" viewBox="0 0 24 24">
