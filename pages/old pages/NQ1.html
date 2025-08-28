@@ -464,6 +464,88 @@
             flex-shrink: 0;
         }
 
+        /* Special Notice */
+        .special-notice {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(0, 60, 113, 0.05) 100%);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .notice-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--sky-blue);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .notice-text {
+            color: var(--brand-blue-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .room-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 199, 44, 0.1) 0%, rgba(255, 199, 44, 0.05) 100%);
+            border-left: 3px solid var(--brand-yellow);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+            color: var(--brand-blue-dark);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .included-services {
+            background: linear-gradient(135deg, var(--champagne) 0%, rgba(255, 199, 44, 0.05) 100%);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(255, 199, 44, 0.15);
+        }
+
+        .included-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--brand-blue-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .included-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .included-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--brand-blue);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .included-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--brand-yellow);
+            filter: drop-shadow(0 2px 5px rgba(255, 199, 44, 0.3));
+        }
+
         /* Other Rooms Section */
         .other-rooms-section {
             padding: 5rem 3rem;
@@ -924,6 +1006,18 @@
             <div class="room-info">
                 <div class="room-category-label">Queen Room - Second Floor</div>
                 <h1 class="room-title">1 Queen Bed, Second Floor, Stairs Only</h1>
+                <div class="room-highlight">
+                    🏢 Upstairs Interior Corridor
+                </div>
+                
+                <div class="special-notice">
+                    <svg class="notice-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <div class="notice-text">
+                        <strong>Please Note:</strong> This second-floor room is accessible via stairs only; no elavator. Perfect for guests who prefer a quieter, more private setting away from ground-floor activity.
+                    </div>
+                </div>
                 <p class="room-description">
                     This air-conditioned non-smoking room with one queen bed can easily accommodate up to two adults. This spacious and comfortable room offers a HDTV w/HBO & Cinemax, coffee maker, microwave,& mini-fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi is included. The room includes a private bath with full tub and granite vanity with hairdryer and complimentary toiletries and plush towels.
                 </p>
@@ -939,6 +1033,18 @@
                             <path d="M7 14c1.66 0 3-1.34 3-3S8.66 8 7 8s-3 1.34-3 3 1.34 3 3 3zm12-7h-8v8H3V9.5C3 8.12 4.12 7 5.5 7S8 8.12 8 9.5V10h8V7z"/>
                         </svg>
                         1 Queen Size Bed
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg style="width: 20px; height: 20px; fill: var(--brand-yellow);" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        Capacity: 2 Persons
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg style="width: 20px; height: 20px; fill: var(--brand-yellow);" viewBox="0 0 24 24">
+                            <path d="M2 5.27L3.28 4 20 20.72 18.73 22l-7-7H2v-3h7.73L2 4.27M20.5 13H22v3h-1.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5M18 13h1.5v3H18v-3m.85-8.12c.62-.61 1-1.45 1-2.38h-1.5c0 1.02-.83 1.85-1.85 1.85v1.5c2.24 0 4 1.83 4 4.07V12H22V9.76c0-2.22-1.28-4.14-3.15-5.03m-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75V2.1c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V12H19.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
+                        </svg>
+                        100% Non-Smoking
                     </div>
                 </div>
                 <div class="room-capacity">
@@ -958,32 +1064,39 @@
     <!-- Amenities Section -->
     <section class="amenities-section" id="amenities">
         <div class="amenities-container">
-            <h2 class="section-title">Room Amenities</h2>
+            <h2 class="section-title">Room Amenities & Services</h2>
             
-            <!-- Complimentary Services Section -->
-            <div class="amenity-group" style="margin-bottom: 3rem;">
-                <h3 class="amenity-group-title">Complimentary Services Included</h3>
-                <ul class="amenity-list">
-                    <li class="amenity-item">
-                        <svg class="amenity-icon" viewBox="0 0 24 24">
-                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM15.1 8H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/>
+            <!-- Included Services Box -->
+            <div class="included-services">
+                <h3 class="included-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                    </svg>
+                    Complimentary Services Included
+                </h3>
+                <div class="included-list">
+                    <div class="included-item">
+                        <svg class="included-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
                         Grab & Go Breakfast
-                    </li>
-                    <li class="amenity-item">
-                        <svg class="amenity-icon" viewBox="0 0 24 24">
-                            <path d="M1 9l2-2v8l-2-2v-4zm4.67-1.5L7.5 5.67 12 10.17l4.5-4.5 1.83 1.83L12 13.83 5.67 7.5z"/>
+                    </div>
+                    <div class="included-item">
+                        <svg class="included-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
                         WiFi
-                    </li>
-                    <li class="amenity-item">
-                        <svg class="amenity-icon" viewBox="0 0 24 24">
-                            <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.2c.27-.27.35-.66.24-1.02C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+                    </div>
+                    <div class="included-item">
+                        <svg class="included-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
                         Local Calls
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
+            
+            
             <div class="amenities-grid">
                 <div class="amenity-group">
                     <h3 class="amenity-group-title">General Services</h3>

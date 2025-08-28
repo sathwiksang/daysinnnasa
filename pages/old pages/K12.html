@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Queen Beds, Second Floor | Days Inn & Suites NASA Webster</title>
+    <title>1 King Bed, Smoking | Days Inn & Suites NASA Webster</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,8 +33,6 @@
             --silver: #e8e8e8;
             --smoke-gray: #6b7280;
             --smoke-light: #9ca3af;
-            --fresh-green: #10b981;
-            --mint-green: #d1fae5;
             
             /* Functional Colors */
             --glass: rgba(255, 255, 255, 0.08);
@@ -242,8 +240,8 @@
             right: 1.5rem;
             background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             color: var(--brand-blue-dark);
-            padding: 0.6rem 1.8rem;
-            font-size: 0.8rem;
+            padding: 0.8rem 2rem;
+            font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -255,21 +253,27 @@
             z-index: 10;
         }
 
-        @media (max-width: 768px) {
-            .image-badge {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.5rem 1.2rem;
-                font-size: 0.7rem;
-            }
-        }
-
-        .non-smoking-icon {
+        .smoking-icon {
             width: 16px;
             height: 16px;
             fill: var(--brand-white);
         }
 
+        .perfect-for-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, rgba(0, 60, 113, 0.9) 0%, rgba(0, 36, 73, 0.9) 100%);
+            color: var(--brand-yellow);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 199, 44, 0.3);
+            border-radius: 3px;
+        }
 
         .floor-indicator {
             position: absolute;
@@ -277,7 +281,7 @@
             left: 1.5rem;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
             color: var(--brand-blue-dark);
-            padding: 0.6rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.05em;
@@ -289,16 +293,6 @@
             gap: 0.5rem;
             z-index: 10;
         }
-
-        @media (max-width: 768px) {
-            .floor-indicator {
-                bottom: 1rem;
-                left: 1rem;
-                padding: 0.5rem 1.2rem;
-                font-size: 0.7rem;
-            }
-        }
-
 
         .room-info {
             padding: 2rem;
@@ -435,10 +429,10 @@
             box-shadow: 0 5px 20px rgba(0, 36, 73, 0.3);
         }
 
-        /* Non-Smoking Notice */
-        .non-smoking-notice {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(209, 250, 229, 0.3) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+        /* Smoking Notice */
+        .smoking-notice {
+            background: linear-gradient(135deg, rgba(107, 114, 128, 0.1) 0%, rgba(156, 163, 175, 0.05) 100%);
+            border: 1px solid rgba(107, 114, 128, 0.3);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 2rem;
@@ -450,7 +444,7 @@
         .notice-icon {
             width: 24px;
             height: 24px;
-            fill: var(--fresh-green);
+            fill: var(--smoke-gray);
             flex-shrink: 0;
             margin-top: 2px;
         }
@@ -461,10 +455,10 @@
             line-height: 1.6;
         }
 
-        /* Stairs Access Notice */
-        .stairs-access-notice {
-            background: linear-gradient(135deg, rgba(255, 199, 44, 0.1) 0%, rgba(255, 245, 214, 0.3) 100%);
-            border: 1px solid rgba(255, 199, 44, 0.3);
+        /* Easy Access Notice */
+        .easy-access-notice {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(103, 232, 249, 0.1) 100%);
+            border: 1px solid rgba(8, 145, 178, 0.3);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 2rem;
@@ -473,10 +467,10 @@
             gap: 1rem;
         }
 
-        .stairs-icon {
+        .access-icon {
             width: 24px;
             height: 24px;
-            fill: var(--brand-yellow);
+            fill: var(--sky-blue);
             flex-shrink: 0;
             margin-top: 2px;
         }
@@ -674,42 +668,42 @@
         .rooms-carousel {
             position: relative;
             overflow: hidden;
-            padding: 0 60px;
+            padding: 0 50px;
         }
 
         .rooms-slider {
             display: flex;
-            gap: 2rem;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s ease;
+            gap: 30px;
         }
 
         .other-room-card {
-            flex: 0 0 calc(33.333% - 1.33rem);
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 300px;
             background: var(--brand-white);
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 36, 73, 0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
+            border: 1px solid var(--silver);
         }
 
         .other-room-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 36, 73, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 36, 73, 0.15);
         }
 
         .other-room-image {
+            width: 100%;
             height: 200px;
             overflow: hidden;
-            position: relative;
-            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--midnight-blue) 100%);
         }
 
         .other-room-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
 
         .other-room-card:hover .other-room-image img {
@@ -717,74 +711,82 @@
         }
 
         .other-room-info {
-            padding: 1.5rem;
+            padding: 25px;
         }
 
         .other-room-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            color: var(--brand-blue-dark);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.3;
         }
 
         .other-room-type {
-            font-size: 0.85rem;
-            color: var(--brand-blue);
-            margin-bottom: 1rem;
-            font-weight: 500;
+            color: var(--smoke-gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
         .other-room-link {
-            color: var(--brand-yellow);
+            display: inline-block;
+            color: var(--brand-blue);
             text-decoration: none;
-            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
+            position: relative;
+        }
+
+        .other-room-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand-blue);
+            transition: width 0.3s ease;
         }
 
         .other-room-link:hover {
-            color: var(--brand-yellow-bright);
-            gap: 0.6rem;
-        }
-
-        /* Carousel Controls */
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-yellow-bright) 100%);
             color: var(--brand-blue-dark);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            z-index: 3;
-            box-shadow: 0 5px 20px rgba(255, 199, 44, 0.3);
         }
 
-        .carousel-button:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 30px rgba(255, 199, 44, 0.5);
+        .other-room-link:hover::after {
+            width: 100%;
         }
 
-        .carousel-prev {
-            left: 0;
+        @media (max-width: 1024px) {
+            .other-room-card {
+                flex: 0 0 calc(50% - 15px);
+                min-width: 280px;
+            }
         }
 
-        .carousel-next {
-            right: 0;
+        @media (max-width: 768px) {
+            .other-room-card {
+                flex: 0 0 100%;
+                min-width: 100%;
+            }
+            
+            .rooms-carousel {
+                padding: 0 30px;
+            }
+            
+            .carousel-button {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .carousel-prev {
+                left: -20px;
+            }
+            
+            .carousel-next {
+                right: -20px;
+            }
         }
 
         /* Footer */
@@ -1007,6 +1009,20 @@
                 height: 300px;
             }
 
+            .image-badge {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
+
+            .floor-indicator {
+                bottom: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
+
             .room-title {
                 font-size: 2rem;
             }
@@ -1083,73 +1099,76 @@
     <section class="room-hero">
         <div class="room-hero-container">
             <div class="room-image-showcase">
-                <img src="../Images/guestrooms/card7.avif" alt="2 Queen Beds Second Floor Room" class="room-main-image">
+                <img src="../Images/guestrooms/card1.avif" alt="1 King Bed Smoking Room" class="room-main-image">
                 <div class="image-badge">
-                    <svg class="non-smoking-icon" viewBox="0 0 24 24">
-                        <path d="M2 5.27L3.28 4 20 20.72 18.73 22l-7-7H2v-3h7.73L2 4.27M20.5 13H22v3h-1.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5M18 13h1.5v3H18v-3m.85-8.12c.62-.61 1-1.45 1-2.38h-1.5c0 1.02-.83 1.85-1.85 1.85v1.5c2.24 0 4 1.83 4 4.07V12H22V9.76c0-2.22-1.28-4.14-3.15-5.03m-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75V2.1c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V12H19.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
+                    <svg class="smoking-icon" viewBox="0 0 24 24">
+                        <path d="M2 16h15v3H2zm20.5 0H21v3h1.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5zM18 16v3h1.5v-3zm.85-8.27c.62-.61 1-1.45 1-2.38C19.85 3.5 18.35 2 16.5 2v1.5c1.02 0 1.85.83 1.85 1.85S17.52 7.2 16.5 7.2v1.5c2.24 0 4 1.83 4 4.07V15H22v-2.24c0-2.22-1.28-4.14-3.15-5.03zm-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75v-1.5c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V15h1.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
                     </svg>
-                    Non-Smoking
+                    Smoking
                 </div>
                 <div class="floor-indicator">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15 20v-8H9v8H4v-9l8-7 8 7v9h-5z"/>
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
                     </svg>
-                    2nd Floor
+                    1st Floor
                 </div>
             </div>
             <div class="room-info">
-                <div class="room-category-label">Queen Room - Non-Smoking</div>
-                <h1 class="room-title">2 Queen Beds, Second Floor</h1>
-                <div class="room-highlight">
-                    ✨ Spacious family-friendly accommodation with two queen beds
-                </div>
-                
-                <div class="non-smoking-notice">
-                    <svg class="notice-icon" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <div class="room-category-label">King Room - Smoking</div>
+                <h1 class="room-title">1 King Bed, Smoking</h1>
+                <div class="easy-access-notice">
+                    <svg class="access-icon" viewBox="0 0 24 24">
+                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
                     </svg>
                     <div class="notice-text">
-                        <strong>Non-Smoking Room:</strong> This room is 100% smoke-free. Our non-smoking rooms provide a fresh, clean environment for all guests.
+                        <strong>Ground Floor Convenience:</strong> Located on the 1st floor with easy access - no stairs or elevators needed. Perfect for guests with luggage, families with children, or those who prefer quick access to their room.
                     </div>
                 </div>
-
-                <div class="stairs-access-notice">
-                    <svg class="stairs-icon" viewBox="0 0 24 24">
+                
+                <div class="smoking-notice">
+                    <svg class="notice-icon" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                     </svg>
                     <div class="notice-text">
-                        <strong>Interior Stairs Access Only:</strong> This second-floor room is accessible via interior stairs only. There is no elevator access. Please consider this when booking if you have mobility concerns or heavy luggage.
+                        <strong>Smoking Room:</strong> This room is designated for guests who smoke. Our smoking rooms are professionally cleaned and ventilated to ensure comfort for all smoking guests.
                     </div>
                 </div>
 
                 <p class="room-description">
-                    The 2 Queen Beds, Second Floor, Interior Stairs Only, Non-Smoking at Days Inn & Suites in Webster, TX is an air-conditioned room with two double beds that can easily accommodate up to four adults. This spacious and comfortable room offers a 40 inch flatscreen TV w/HBO, coffee maker, microwave, fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi is included. The room includes a private bath with full tub and granite vanity with hairdryer and complimentary toiletries and plush towels.
+                    The 1 King Bed, Smoking at NASA Days Inn & Suites is an air-conditioned room with large and comfortable King bed that can easily accommodate up to 2 adults making this a perfect room for couples. This spacious room offers a HDTV w/HBO & Cinemax, coffee maker, microwave,& mini-fridge in a wetbar, iron/ironing board, ceiling fan, and a small sitting area with a work desk. Free WiFi is included. The room includes a private bath with full tub and granite vanity with hairdryer and complimentary toiletries and plush towels.
                 </p>
+                
+                <div class="room-details" style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: 500; color: var(--brand-blue-dark); margin-bottom: 0.5rem;">Floor: 1st Floor (Easy Access)</p>
+                    <p style="font-weight: 500; color: var(--brand-blue-dark); margin-bottom: 0.5rem;">1 King Size Bed</p>
+                    <p style="font-weight: 500; color: var(--brand-blue-dark); margin-bottom: 0.5rem;">Capacity: 2 Persons</p>
+                    <p style="font-weight: 500; color: var(--brand-blue-dark);">Smoking Permitted</p>
+                </div>
                 
                 <div class="room-features">
                     <div class="feature-item">
                         <svg class="feature-icon" viewBox="0 0 24 24">
-                            <path d="M16 9h-1V4h-2v5h-2V4H9v5H8V4H6v5c-1.1 0-2 .9-2 2v5h1.33L6 19h1l.67-3h8.67L17 19h1l.67-3H20v-5c0-1.1-.9-2-2-2z"/>
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
-                        <span>Capacity: 4 Persons</span>
+                        <span>Capacity: 2 Persons</span>
                     </div>
                     <div class="feature-item">
                         <svg class="feature-icon" viewBox="0 0 24 24">
-                            <path d="M4 21h1.5v-3h2v-1.5h-2v-2h2V13h-2v-2h2V9.5h-2v-2h2V6h-2V3H4v18"/>
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
                         </svg>
-                        <span>Floor: 2nd Floor (Interior Stairs Only)</span>
+                        <span>Floor: 1st Floor (Easy Access)</span>
                     </div>
                     <div class="feature-item">
                         <svg class="feature-icon" viewBox="0 0 24 24">
                             <path d="M2 21h19v-2H2v2zM20 8h-3V4h-2v4h-4V4H9v4H6V4H4v4c-1.11 0-2 .89-2 2v8h2v-4h4v4h2v-4h4v4h2v-4h4v4h2v-8c0-1.11-.89-2-2-2z"/>
                         </svg>
-                        <span>2 Queen Size Beds</span>
+                        <span>1 King Size Bed</span>
                     </div>
                     <div class="feature-item">
                         <svg class="feature-icon" viewBox="0 0 24 24">
-                            <path d="M2 5.27L3.28 4 20 20.72 18.73 22l-7-7H2v-3h7.73L2 4.27M20.5 13H22v3h-1.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5"/>
+                            <path d="M7 11H1v3h6v-3zm2.17-8h8v2h-8zM19 2.5c0-.83-.67-1.5-1.5-1.5S16 1.67 16 2.5 16.67 4 17.5 4 19 3.33 19 2.5zm1.85 1.35c-.62.61-1.45.98-2.35.98v1.5c1.32 0 2.5-.52 3.42-1.44L20.85 3.85zm1.48 1.48c-.77.77-1.78 1.17-2.83 1.17v1.5c1.39 0 2.74-.55 3.73-1.55l-1.06-1.06c.03-.02.05-.04.08-.06h.08z"/>
                         </svg>
-                        <span>100% Non-Smoking</span>
+                        <span>Smoking Permitted</span>
                     </div>
                 </div>
                 
@@ -1179,13 +1198,7 @@
                         <svg class="included-icon" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        Free Continental Breakfast
-                    </div>
-                    <div class="included-item">
-                        <svg class="included-icon" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        USA Today Newspaper
+                        Grab & Go Breakfast
                     </div>
                     <div class="included-item">
                         <svg class="included-icon" viewBox="0 0 24 24">
@@ -1208,63 +1221,92 @@
                     <ul class="amenity-list">
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M2 5.27L3.28 4 20 20.72 18.73 22l-7-7H2v-3h7.73L2 4.27"/>
-                            </svg>
-                            Non-Smoking
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M6.8 10.61L5.37 9.19C5.73 8.79 6.59 8 7.75 8c.8 0 1.39.39 1.81.67.31.21.51.33.69.33s.37-.12.69-.33"/>
-                            </svg>
-                            Microwave
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M8 5h10v7h2V5c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v7h2V5zm10 14H8c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2z"/>
-                            </svg>
-                            Kitchenette
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
-                            </svg>
-                            Ironing Board
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34"/>
+                                <path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22z"/>
                             </svg>
                             Air Conditioner
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M12 3v10c0 .55-.45 1-1 1s-1-.45-1-1V3c0-.55.45-1 1-1s1 .45 1 1m6.5 2c.83 0 1.5.67 1.5 1.5v16"/>
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
                             </svg>
                             Heater
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99z"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                             </svg>
-                            Desk
+                            Ceiling Fan
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4"/>
+                                <path d="M6.8 10.61L5.37 9.19C5.73 8.79 6.59 8 7.75 8c.8 0 1.39.39 1.81.67.31.21.51.33.69.33s.37-.12.69-.33c.41-.28 1-.67 1.81-.67s1.39.39 1.81.67c.31.21.51.33.69.33s.37-.12.69-.33c.41-.28 1-.67 1.81-.67 1.16 0 2.02.79 2.38 1.19l-1.43 1.42c-.18-.15-.43-.31-.75-.31-.37 0-.7.22-.98.42-.46.32-1.06.68-1.97.68s-1.51-.36-1.97-.68c-.28-.2-.61-.42-.98-.42-.37 0-.7.22-.98.42-.46.32-1.06.68-1.97.68s-1.51-.36-1.97-.68c-.28-.2-.61-.42-.98-.42-.32 0-.57.16-.75.31z"/>
                             </svg>
-                            Complimentary Newspaper
+                            Microwave
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M14.5 10.5l-.75 1.5H17v1h-5v1.5h5v1h-5V17h-1.5v-2.5H5.5v-1h5V12h-5v-1h3.25l-.75-1.5H5.5v-1h2l-1-2h1.65"/>
+                                <path d="M8 5h10v7h2V5c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v7h2V5zm10 14H8c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2zM20 13H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2z"/>
                             </svg>
-                            Daily Housekeeping Service
+                            Mini-fridge
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78"/>
+                                <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                            </svg>
+                            Coffee/Tea Maker
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            </svg>
+                            Hair Dryer
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zM21 18.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                            Iron & Ironing Board
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6v-9.02h12V20zm0-11H6V4h12v5z"/>
                             </svg>
                             Work Desk with Ergonomic Chair
+                        </li>
+                    </ul>
+                </div>
+                <div class="amenity-group">
+                    <h3 class="amenity-group-title">Bathroom</h3>
+                    <ul class="amenity-list">
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M7 4v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zM5 9v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9H5z"/>
+                            </svg>
+                            Private Bathroom
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Large Vanity
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-7 2v1c0 1.1.9 2 2 2s2-.9 2-2v-1h-4zm8-15H6C4.34 4 3 5.34 3 7v10c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V7c0-1.66-1.34-3-3-3z"/>
+                            </svg>
+                            Tub with Shower
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8.5 8c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zm7 0c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zm-.9 5.4c-.49 1.54-1.86 2.6-3.6 2.6s-3.11-1.06-3.6-2.6L8 14c.55 2.24 2.51 4 5 4s4.45-1.76 5-4l-.4-1.6z"/>
+                            </svg>
+                            Toilet
+                        </li>
+                        <li class="amenity-item">
+                            <svg class="amenity-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            Toiletries
                         </li>
                     </ul>
                 </div>
@@ -1273,80 +1315,39 @@
                     <ul class="amenity-list">
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/>
-                            </svg>
-                            LCD/LED TV
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57"/>
-                            </svg>
-                            Direct Dial Phone
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17"/>
-                            </svg>
-                            Cable TV
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85"/>
-                            </svg>
-                            Alarm Clock
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2z"/>
-                            </svg>
-                            Electronic Locks
-                        </li>
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
                                 <path d="M1 9l2-2v8l-2-2v-4zm4.67-1.5L7.5 5.67 12 10.17l4.5-4.5 1.83 1.83L12 13.83 5.67 7.5z"/>
                             </svg>
-                            Wireless Internet Access
-                        </li>
-                    </ul>
-                </div>
-                <div class="amenity-group">
-                    <h3 class="amenity-group-title">Room Features</h3>
-                    <ul class="amenity-list">
-                        <li class="amenity-item">
-                            <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M2 21h19v-2H2v2zM20 8h-3V4h-2v4h-4V4H9v4H6V4H4v4c-1.11 0-2 .89-2 2v8h2v-4h4v4h2v-4h4v4h2v-4h4v4h2v-8c0-1.11-.89-2-2-2z"/>
-                            </svg>
-                            Two Queen Beds
+                            WiFi
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M16 9h-1V4h-2v5h-2V4H9v5H8V4H6v5c-1.1 0-2 .9-2 2v5h1.33L6 19h1l.67-3h8.67L17 19h1l.67-3H20v-5c0-1.1-.9-2-2-2z"/>
+                                <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/>
                             </svg>
-                            Sleeps 4 Adults Comfortably
+                            HDTV
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M7 4v2c0 .55-.45 1-1 1s-1-.45-1-1V4c0-.55.45-1 1-1s1 .45 1 1zm4 0v2c0 .55-.45 1-1 1s-1-.45-1-1V4"/>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             </svg>
-                            Private Full Bath
+                            DirecTV Satellite
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M21.5 10.69c-.02 0-.04 0-.06.01l-2.4-2.4C19.04 8.2 19 8.1 19 8V3c0-.55-.45-1-1-1s-1 .45-1 1v3.58l-7.17-5.5"/>
+                                <path d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L11.17 10H2v4h9.17l-1.88 1.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l3.59-3.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01zM20 8V4h-2v4h-4v2h4v4h2v-4h4V8z"/>
                             </svg>
-                            Sitting Area
+                            HBO
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M5 17h4c0 1.65-1.35 3-3 3s-3-1.35-3-3m7-2h10v2H12V15m-5 3h2c0 .55-.45 1-1 1s-1-.45-1-1m13-10H9l-1.34 5h9.34l-1.34 5H18l2-10z"/>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             </svg>
-                            Coffee Maker
+                            Cinemax
                         </li>
                         <li class="amenity-item">
                             <svg class="amenity-icon" viewBox="0 0 24 24">
-                                <path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 1.74.6 3.35 1.61 4.61l5.89 7.39 5.88-7.38A6.49 6.49 0 0 0 19.5 9.5C19.5 5.36 16.14 2 12 2"/>
+                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
                             </svg>
-                            Granite Vanity
+                            RFID Door Lock
                         </li>
                     </ul>
                 </div>
@@ -1373,21 +1374,10 @@
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Non-Smoking</h3>
                             <p class="other-room-type">Ground Floor</p>
-                            <a href="king-bed-non-smoking.html" class="other-room-link">View Room →</a>
+                            <a href="NK2.html" class="other-room-link">View Room →</a>
                         </div>
                     </div>
                     <!-- Room 2 -->
-                    <div class="other-room-card">
-                        <div class="other-room-image">
-                            <img src="../Images/guestrooms/card1.avif" alt="1 King Bed Smoking">
-                        </div>
-                        <div class="other-room-info">
-                            <h3 class="other-room-name">1 King Bed, Smoking</h3>
-                            <p class="other-room-type">Ground Floor</p>
-                            <a href="king-bed-smoking-page.html" class="other-room-link">View Room →</a>
-                        </div>
-                    </div>
-                    <!-- Room 3 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
                             <img src="../Images/guestrooms/card5.avif" alt="1 King Bed Second Floor">
@@ -1395,10 +1385,10 @@
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Second Floor</h3>
                             <p class="other-room-type">Interior Stairs Only</p>
-                            <a href="king-bed-second-floor.html" class="other-room-link">View Room →</a>
+                            <a href="NK1.html" class="other-room-link">View Room →</a>
                         </div>
                     </div>
-                    <!-- Room 4 -->
+                    <!-- Room 3 -->
                     <div class="other-room-card">
                         <div class="other-room-image">
                             <img src="../Images/guestrooms/card3.avif" alt="1 Queen Bed Second Floor">
@@ -1406,7 +1396,18 @@
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 Queen Bed, Second Floor</h3>
                             <p class="other-room-type">Interior Stairs Only</p>
-                            <a href="#" class="other-room-link">View Room →</a>
+                            <a href="NQ1.html" class="other-room-link">View Room →</a>
+                        </div>
+                    </div>
+                    <!-- Room 4 -->
+                    <div class="other-room-card">
+                        <div class="other-room-image">
+                            <img src="../Images/guestrooms/card7.avif" alt="2 Queen Beds">
+                        </div>
+                        <div class="other-room-info">
+                            <h3 class="other-room-name">2 Queen Beds, Second Floor</h3>
+                            <p class="other-room-type">Family Room</p>
+                            <a href="NQQ1.html" class="other-room-link">View Room →</a>
                         </div>
                     </div>
                     <!-- Room 5 -->
@@ -1417,7 +1418,7 @@
                         <div class="other-room-info">
                             <h3 class="other-room-name">1 King Bed, Accessible</h3>
                             <p class="other-room-type">Wheelchair Accessible</p>
-                            <a href="#" class="other-room-link">View Room →</a>
+                            <a href="PNK1.html" class="other-room-link">View Room →</a>
                         </div>
                     </div>
                 </div>
